@@ -1,0 +1,22 @@
+.ux-titled-picker .x-panel-body {
+	background: inherit;
+}
+.ux-titled-picker .ux-picker-title {
+	-webkit-box-shadow:none !important;
+	font-weight:bolder;
+}
+.ux-titled-picker .x-picker-slot-title, .ux-titled-picker .ux-picker-title {
+	color: white;
+    text-shadow: rgba(0, 0, 0, 0.5) 0 -0.08em 0;
+    text-align: center;                
+    overflow: hidden;              
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 0.2em 0.2em;
+}
+.ux-titled-picker .x-sheet-body .x-layout-box .x-picker-slot:first-child .x-picker-slot-title {
+	border-top-left-radius: 0.4em;
+}
+.ux-titled-picker .x-sheet-body .x-layout-box .x-picker-slot:last-child .x-picker-slot-title {
+	border-top-right-radius: 0.4em;
+}

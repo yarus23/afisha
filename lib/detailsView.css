@@ -1,0 +1,415 @@
+/*---detailsHeader View---*/
+div.detailsView div.detailsHeader
+{
+    margin-bottom:-0.5em;
+}
+div.detailsView div.detailsHeader div.title
+{
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-top: 0.2em;
+    padding-left: 0.3em;
+}
+div.detailsView div.detailsHeader div.fav_click
+{
+    margin-top:-0.2em;
+    height: 100%;
+    width: 2.5em;
+    display: inline-block;
+    position: absolute;
+}
+div.detailsView div.detailsHeader img.favouriteBtn
+{
+    display:inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.2em;
+}
+div.detailsView div.detailsHeader div.infoblock
+{
+    height:16px;
+    width:100%;
+    white-space: nowrap;
+    margin-top: -0.2em;
+    margin-bottom: 1em;
+}
+div.detailsView div.detailsHeader div.infoblock span.num-votes
+{
+    font-size: 0.6em;
+}
+div.detailsView div.detailsHeader div.infoblock span.genre
+{
+    display:inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+div.detailsView div.detailsHeader span.small-gray-text
+{
+    top:-0.3em;
+    position:relative;
+    font-size:0.7em;
+    color: slategray;
+}
+/*---galleryView---*/
+div.galleryView div.galleryToolbar
+{
+    background-image: none;
+    background-color: #c8c8c8;
+    border-top: #b3b3b3;
+    border-bottom: #b3b3b3;
+}
+div.detailsView div.galleryView div.x-panel-body,
+div.detailsView div.galleryView div.x-panel-body div.x-carousel,
+div.detailsView div.galleryView div.x-panel-body div.x-carousel div.x-carousel-body,
+div.detailsView div.galleryView div.x-carousel div.x-carousel-item,
+div.detailsView div.galleryView div.x-carousel div.x-carousel-item div.x-panel-body
+{
+    height:100%;
+}
+div.detailsView div.galleryView div.x-loading-spinner.custom-mask
+{
+    top:35%;
+    margin: auto;
+    -webkit-animation-name: none;
+}
+div.detailsView div.galleryView img.galerryImg.hidden
+{
+    display: none;
+}
+div.detailsView div.galleryView img.galerryImg
+{
+    height:100%;
+    max-width: 100%;
+    display:block;
+    margin:0 auto;
+}
+div.detailsView div.galleryView div.x-carousel div.x-mask
+{
+    margin-left: 0.5em;
+}
+div.detailsView div.galleryView div.x-carousel div.x-carousel-indicator div.counter
+{
+    color:red;
+}
+div.detailsView div.galleryView div.x-carousel div.x-carousel-indicator span
+{
+    background-color: #354F6E;
+}
+div.detailsView div.galleryView div.x-carousel div.x-carousel-indicator span.x-carousel-indicator-active
+{
+    background-color: #4D80BC;
+}
+/*#354F6E
+/*---div.myDisclosure---*/
+div.detailsView div.myDisclosure,
+div#fullScheduleView div.myDisclosure
+{
+    background-color: transparent;
+}
+div.detailsView div.myDisclosure div.x-list-item,
+div#fullScheduleView div.myDisclosure div.x-list-item
+{
+    padding: 0.1em 0.7em;
+    min-height: 1.2em;
+}
+div.detailsView div.myDisclosure .x-item-disabled,
+div#fullScheduleView div.myDisclosure .x-item-disabled
+{
+    color: #b3b3b3;
+    /*color: #3d4c5b;*/
+}
+div.detailsView div.myDisclosure .x-item-pressed,
+div#fullScheduleView div.myDisclosure .x-item-pressed
+{
+  border-top-color: #77b2f8;
+  background: #77b2f8 none;
+}
+div.detailsView div.myDisclosure div.list-item-title,
+div#fullScheduleView div.myDisclosure div.list-item-title
+{
+    font-weight: normal;
+    vertical-align: middle;
+}
+div.detailsView div.myDisclosure div.x-list-item .x-list-disclosure,
+div#fullScheduleView div.myDisclosure div.x-list-item .x-list-disclosure
+{
+    -webkit-mask: none;
+    -webkit-mask-size: 0;
+    background-color:transparent;
+    background-image: url('../config/resources/icons/9_r.png');
+    background-size: 0.6em 1.3em;
+    background-position: center;
+    background-repeat:no-repeat;
+    width: 0.6em;
+    height: auto;
+}
+/*---buttonsList---*/
+div.detailsView div.buttonsList{
+    border-bottom: 1px solid #D9D9D9;
+}
+div.detailsView div.buttonsList div.wideButton
+{
+    //padding: 0.1em 0em;
+    min-height: 2.6em;
+}
+div.detailsView div.buttonsList div.map-button div.list-item-title,
+div.detailsView div.buttonsList div.wideButton div.list-item-title
+{
+    white-space: normal;
+    /*vertical-align: top;*/
+}
+div.detailsView div.buttonsList div.map-button 
+{
+    border-top: 1px solid #D1D1D1;
+    /*font-size: 0.9em;
+    color: slategray;
+    margin-left:-0.1em;*/
+}
+div.detailsView div.buttonsList div.map-button span.distance
+{
+    font-size: 0.7em;
+    color: slategray;
+}
+div.detailsView div.buttonsList div.map-button.x-item-disabled img
+{
+    background-image: url('resources/icons/4_disable.png');
+}
+div.detailsView div.buttonsList.eventButtons div.x-list-item.commentsButton
+{
+    border-top: none;
+}
+div.detailsView div.buttonsList a.mylink
+{
+    position:absolute; 
+    width: 0px; 
+    height: 0px; 
+    opacity: 0;
+}
+div.detailsView div.buttonsList a.phonelink
+{
+    width:100%;
+    //height:100%;
+    display:-webkit-box;
+    display:box;
+    color:black;
+    padding:0.5em 0em; //padding:0.5em 0.7em;
+}
+div.detailsView div.buttonsList div.x-list-item img.x-icon-mask
+{
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  margin-left: -0.4em;
+  margin-right: 0.5em;
+}
+/*---scheduleList---*/
+div.detailsView div.scheduleList h3.x-list-header,
+div#fullScheduleView div.scheduleList h3.x-list-header
+{
+    padding:0.2em 0.7em;
+}
+div.detailsView div.scheduleList div.scheduleItem,
+div#fullScheduleView div.scheduleList div.scheduleItem
+{
+    padding-left: 0.6em;
+    min-height: 2.8em;
+}
+div.detailsView div.scheduleList div.x-list-item div.schedule,
+div#fullScheduleView div.scheduleList div.x-list-item div.schedule
+{
+    white-space: normal;
+    color: black;
+    font-style: normal;
+}
+div.detailsView div.scheduleList div.x-list-item div.schedule i,
+div#fullScheduleView div.scheduleList div.x-list-item div.schedule i
+{
+    color: slategray;
+    font-style:normal;
+}
+div.detailsView div.scheduleList div.x-list-item div.boldTitle,
+div#fullScheduleView div.scheduleList div.x-list-item div.boldTitle
+{
+    font-weight: bold;
+    display: block;
+}
+div.detailsView div.scheduleList div.x-list-item div.boldTitle:last-child,
+div#fullScheduleView div.scheduleList div.x-list-item div.boldTitle:last-child
+{
+    padding-top:1em;
+}
+/*---detailsFooter---*/
+div.detailsView div.detailsFooter
+{
+    margin-left:0.6em;
+    margin-right:0.6em;
+    margin-top: 0.5em;
+    font-size: 0.9em;
+    color: #3d4c5b;
+}
+div.detailsView div.detailsFooter iframe
+{
+    display:none;
+}
+div.detailsView div.detailsFooter strong
+{
+    font-weight: bold;
+}
+div.detailsView div.detailsFooter div.separator
+{
+    width:100%;
+    height:1px;
+    background-color: #c8c8c8;
+    margin-bottom: 0.6em;
+    margin-top: 0.6em;
+}
+div.detailsView div.detailsFooter div.description
+{
+    font-size: 0.9em;
+    width:100%;
+    //height:100%;
+    margin-top: 0.6em;
+}
+div.detailsView div.detailsFooter div.description img
+{
+    display: none;
+}
+div.detailsView div.detailsFooter div.info
+{
+    font-size: 0.9em;
+    width:100%;
+}
+div.detailsView div.detailsFooter a
+{
+    display: none;
+}
+/*---fullScheduleView---*/
+div#fullScheduleView div.fullScheduleToolbar
+{
+    height:2.2em;
+    background-image:none;
+    background-color: transparent;
+}
+div#fullScheduleView div.fullScheduleToolbar div.fullScheduleTitle
+{
+    padding-left:0.7em;
+    color:black;
+    overflow: hidden;              
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+/*---commentsView---*/
+div#commentsView div.add-comment-button{
+    -webkit-border-radius: 0em;
+    border-radius: 0em;
+}
+div#commentsView div.x-panel-body div.x-html
+{
+    padding-top: 0;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+}
+div#commentsView div.thread
+{
+    padding-left:1em !important;
+}
+div#commentsView div.com_text
+{
+    margin-top:0.7em;
+    font-weight: bold;
+}
+div#commentsView div.com_text div.com_info a.tooltip
+{
+    pointer-events: none;
+    text-decoration: none !important;
+}
+
+div#commentsView div.com_text div.com_info div:first-child
+{
+    width:2.2em !important;
+    height:2em !important;
+}
+div#commentsView div.com_text div.com_info div:first-child img
+{
+    width:2em;
+    height:2em;
+}
+div#commentsView div.com_text div.com_info div.tooltip-target img
+{
+    display:none;
+}
+div#commentsView div.com_text div.com_info table
+{
+    height: 1em !important;
+    margin-bottom: -0.2em  !important;
+}
+div#commentsView div.com_text div.com_info table tbody tr td
+{
+    font-size: 0.8em;
+    font-style: italic;
+    font-weight: normal;
+    color: #3d4c5b;
+    padding: 0;
+}
+div#commentsView div.com_text div.com_info table tbody tr td:last-child,
+div#commentsView div#comments_auth,
+div#commentsView div.com_text div.com_links,
+div#commentsView div.com_text div.com_form
+{
+    display:none;
+}
+/*------*/
+div#imageViwer div.x-carousel img.galerryImg
+{
+    position:absolute; 
+    width: 0px; 
+    height: 0px; 
+    opacity: 0;
+    /*
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+    background-color: black;*/
+}
+div#imageViwer div.x-panel-body,
+div#imageViwer div.x-panel-body div.x-carousel,
+div#imageViwer div.x-panel-body div.x-carousel div.x-carousel-body,
+div#imageViwer div.x-carousel div.x-carousel-item,
+div#imageViwer div.x-carousel div.x-carousel-item div.x-panel-body
+{
+    background-color: black;
+    height:100%;
+}
+div#imageViwer div.x-carousel div.bigimg
+{
+    width:100%;
+    height:100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 50% 50%;
+    background-color: black;
+}
+div#imageViwer div.x-carousel div.x-carousel-indicator div.counter
+{
+    color:red;
+}
+
+div.detailsView div.myDisclosure div.x-list-item .x-list-disclosure,
+div#fullScheduleView div.myDisclosure div.x-list-item .x-list-disclosure
+{
+    background-size: 1em 1em;
+}
+
+div.detailsView div.buttonsList div.wideButton
+{
+//    min-height: 1.2em;
+}
+
+div.detailsView div.x-toolbar div.x-button.backBtn {
+    color: yellow;
+}
+    
+    

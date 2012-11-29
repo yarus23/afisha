@@ -1,0 +1,13 @@
+div.actionSheetHeader{
+    margin-bottom:0.5em;
+}
+div.actionSheetHeader div.x-panel-body{
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

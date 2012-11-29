@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+
+<project name="Afisha" default="build">
+  <include buildfile="regex.nant"/>
+  
+  <property name="db" value="afishache" />
+  
+  <property name="programsdir" value="C:\!programs" />
+  <property name="builddir" value="build" />
+  <property name="YUICompressor.dir" value="yuicompressor/build" />
+
+   <target name="JavaScript.minify">
+    <echo message="${filename}" />
+    <exec program="java" workingdir="${programsdir}/${YUICompressor.dir}">
+        <arg value="-jar" />
+        <arg value="yuicompressor-2.4.7.jar" />
+        <arg value="-o" />
+        <arg value="${filename}.min" />
+        <arg value="${filename}" />
+    </exec>
+    <move file="${filename}.min" tofile="${filename}" overwrite="true" />
+   </target>
+
+   <target name="minify">
+      <foreach item="File" property="filename">
+         <in>
+           <items>
+              <include name="${builddir}\**\*.js"/>
+              <include name="${builddir}\**\*.css"/>
+              <exclude name="**/sencha-touch.js"/>
+			  <exclude name="**/phonegap-1.2.0.js"/>
+           </items>
+         </in>
+         <do>
+            <echo message="${filename}" />
+            <call target="JavaScript.minify"/>
+         </do>
+      </foreach>
+   </target>
+
+   <target name="prepare">
+     <delete dir="${builddir}" />
+     <mkdir dir="${builddir}" />
+
+	 <copy todir="${builddir}/config" includeemptydirs="true" overwrite="true">
+        <fileset basedir="./config/!configs/${db}">	 
+			<include name="*.*"/>
+			<include name="resources/css/sencha-touch.css"/>
+			<include name="resources/icons/*.*"/>
+			<include name="resources/icons/childbrowser/*.*"/>
+			<include name="resources/icons/social/*.*"/>
+		</fileset>
+     </copy>
+	 
+     <copy todir="${builddir}" includeemptydirs="true" overwrite="true">
+        <fileset basedir=".">
+			<include name="app/**/*.*"/>
+			<include name="lib/**/*.*"/>
+			<include name="app.css"/>
+			<include name="adv.css"/>
+			<exclude name="app/app.js"/>
+			<exclude name="**/cordova-1.8.1.ios.js"/>
+			<exclude name="**/ChildBrowser.ios.js"/>
+        </fileset>
+     </copy>
+
+     <copy todir="${builddir}/lib" includeemptydirs="true" overwrite="true">
+        <fileset basedir="./resources/lib">
+           <include name="sencha-touch.js"/>
+        </fileset>
+     </copy>
+
+     <copy file="index.htm" tofile="${builddir}/index.htm">
+        <filterchain>
+           <regex pattern="&lt;!--Phonegap" replacement=""/>
+           <regex pattern="Phonegap--&gt;" replacement=""/>
+        </filterchain>
+     </copy>
+     <copy todir="${builddir}" includeemptydirs="true" overwrite="true">
+        <fileset basedir=".">
+           <include name="app/app.js"/>
+        </fileset>
+     </copy>
+
+   </target>
+
+   <target name="build" depends="prepare, minify"/>
+
+</project>
