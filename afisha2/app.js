@@ -66,21 +66,9 @@ Ext.application({
     name: 'Afisha',
     requires:['Afisha.util.gf'],
     views:['Viewport','AfishaViews.Categories'],
-    models:['AfishaModels.Categories'],
-    stores:['AfishaStores.Categories','AfishaStores.LifeSubCategories'],
+    models:['AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule'],
+    stores:['AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule'],
     controllers:['Navigation','AfishaC.Categories'],
-    /*views: ['Viewport', 'Navigation', 'Main','Adv',
-		'Main.Toolbar', 'Main.MyCity', 'Main.Reception', 'Main.News', 'Main.Settings',
-                'LiveAsk.LiveAsk',
-		'Main.MyCity.2GIS', 'Main.MyCity.2GISFilter', 'Main.MyCity.2GISCompanyInfo','Main.NewsList',
-		'News.NewsView','News.NewsContent', 'Main.Reception.Contacts', 'Main.Reception.ContactsFilter', 'Main.2GISCard'],
-
-	controllers: ['Settings', 'Navigation', 'MyCity', 'MyCity.2GIS','News','News.NewsView','Reception', 'Reception.Contacts','Reception.LiveAsk','Adv', '2GISCard'],	
-	
-	models: ['Settings', '2GISRubric', '2GISCompany', '2GISCompanyInfo', '2GISFilter','NewsModel', 'Contacts', 'GroupedContacts'],
-	
-	stores: ['Settings', '2GISRubricator','NewsStore', '2GISCompanies', 'Contacts', 'GroupedContacts'],
-	*/	
     launch: function() {
         //Ext.fly('splash').destroy();
         //переносим всякий левак из regApplication
