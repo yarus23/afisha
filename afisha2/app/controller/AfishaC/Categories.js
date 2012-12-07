@@ -56,42 +56,38 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
 	},
 			
     loadCategory:function(type){
-
-       var callback = function(success,response){
-		  debugger;
-          if (success){
-			//check that fields not undefined
-			var data_str = Ext.encode(response.query.results.json.root);
-                    
-			if( recNo >= 0 )
-				cache.getById('type').set('data', data_str);
-			else
-				cache.insert(0, { id: type, data: data_str });
-		      
-			this.fillStores(data_str,type)
-           } else {
-            Ext.Msg.alert('Афиша', 'Не удалось загрузить данные. Проверьте интернет соединение.');
-            console.log("Не удалось загрузить данные")                
-           }
-           Ext.Viewport.setMasked(false);
+        var callback = function(success,response){
+              //debugger;
+            if (success){
+                //check that fields not undefined
+                var data_str = Ext.encode(response.query.results.json.root);
+                if( recNo >= 0 )
+                        cache.getById('type').set('data', data_str);
+                else
+                        cache.insert(0, { id: type, data: data_str });
+                this.fillStores(data_str,type)
+            } else {
+                Afisha.gf.alert('Не удалось загрузить данные. Проверьте интернет соединение.');
+                console.log("Не удалось загрузить данные")                
+            }
+            Ext.Viewport.setMasked(false);
         }
-                    
-		var cache = Ext.getStore('Cache');
-		var recNo = cache.indexOfId(type);
-		if( recNo >= 0 ) {
-		  console.log('loading ' + type + ' from cache');
-          this.fillStores(cache.getAt(recNo).get('data'),type);
-	    }
+
+        var cache = Ext.getStore('Cache');
+        var recNo = cache.indexOfId(type);
+        if( recNo >= 0 ) {
+            console.log('loading ' + type + ' from cache');
+            this.fillStores(cache.getAt(recNo).get('data'),type);
+        }
         else {
-			    
-			Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
-			this.loadJsonP(type, callback);
-		}
+            Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
+            this.loadJsonP(type, callback);
+        }
     },
     
     fillStores:function(data_str, type){
-		var data = Ext.decode(data_str);
-		
+	var data = Ext.decode(data_str);
+        
         var schStore = Ext.getStore('Schedule');
         var placesStore = Ext.getStore('Places');
         var eventsStore = Ext.getStore('Events');
@@ -100,17 +96,41 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             return false;
         }
         
-        // сюда приходят для ресторанов
-        // 0 - places
-        // 1 - kitchen
-        // куда все это девать? при условии что у заказчика набор может быть другой
+        // из ниоткуда новые типы данных не появятся, так что можно свитчем запилить все случаи, то-же самое с китченами и пр.
+        //конечно то еще решение, но думаю больше времени потратим на адаптирование оригинального синемарута
+        //от костыля в виде конфига каждого сторе как это есть сейчас для в сторефактори мы не уйдем
+        //но тут нам придется не дергать строгоименованные store для каждой сущности
+        //а работать с одними и теми-же источниками данных, просто какие-то используя в конкретной ситуации
+        //а какие-то нет
         
-        schStore.setData(data[0].schedule);
+        for (var i = 0; i < data.length; i++){
+            for (var name in data[i]){
+                if (!name)
+                    continue;
+                switch (name){
+                    case 'schedule':{
+                        schStore.setData(data[i][name]);
+                        schStore.setCurrentType(type);
+                        break;
+                    }
+                    case 'films':
+                    case 'events':{
+                        eventsStore.setData(data[i][name]);
+                        eventsStore.setCurrentType(type);   
+                    }
+                    case 'places':{
+                        placesStore.setData(data[i][name]);
+                        placesStore.setCurrentType(type);   
+                    }
+                }
+            }
+        }
+        /*schStore.setData(data[0].schedule);
         schStore.setCurrentType(type);
         placesStore.setData(data[2].places);
         placesStore.setCurrentType(type);
         eventsStore.setData(data[1].films ? data[1].films : data[1].events);
-        eventsStore.setCurrentType(type);
+        eventsStore.setCurrentType(type);*/
         
         console.log('loaded schedule ' + schStore.getCount());
         console.log('loaded places ' + placesStore.getCount());
