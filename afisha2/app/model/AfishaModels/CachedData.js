@@ -4,8 +4,9 @@ Ext.define('Afisha.model.AfishaModels.CachedData', {
     config:{
         fields: [
             //{name:'id',type:'int'},
-            {name:'type',type:'string'},
-            {name:'data',type:'auto'}
+            {name:'id',type:'string'},
+            {name:'data',type:'string'}, // string совместимо с localstorage
+            {name:'hash',type:'string'}
 		]
 	}
 });	

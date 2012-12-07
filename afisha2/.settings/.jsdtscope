@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="app/model/AfishaModels/|lib/sencha/|app/controller/AfishaC/|app/view/AfishaViews/|app/view/|app/controller/|app/store/AfishaStores/|app/util/|config/|app/view/components/" kind="src" path=""/>
+	<classpathentry excluding="AfishaC/" kind="src" path="app/controller"/>
+	<classpathentry kind="src" path="app/controller/AfishaC"/>
+	<classpathentry kind="src" path="app/model/AfishaModels"/>
+	<classpathentry kind="src" path="app/store/AfishaStores"/>
+	<classpathentry kind="src" path="app/util"/>
+	<classpathentry excluding="AfishaViews/|components/" kind="src" path="app/view"/>
+	<classpathentry kind="src" path="app/view/AfishaViews"/>
+	<classpathentry kind="src" path="app/view/components"/>
+	<classpathentry kind="src" path="config"/>
+	<classpathentry kind="src" path="lib/sencha"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.baseBrowserLibrary/StandardBrowser/html5"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

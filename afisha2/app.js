@@ -66,8 +66,8 @@ Ext.application({
     name: 'Afisha',
     requires:['Afisha.util.gf'],
     views:['Viewport','AfishaViews.Categories'],
-    models:['AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule'],
-    stores:['AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule'],
+    models:['AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule'],
+    stores:['AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule'],
     controllers:['Navigation','AfishaC.Categories'],
     launch: function() {
         //Ext.fly('splash').destroy();
