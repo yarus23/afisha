@@ -65,10 +65,10 @@ Ext.Loader.setConfig({
 Ext.application({
     name: 'Afisha',
     requires:['Afisha.util.gf'],
-    views:['Viewport','AfishaViews.Categories'],
+    views:['Viewport','AfishaViews.Categories', 'AfishaViews.Events'],
     models:['AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule'],
     stores:['AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule'],
-    controllers:['Navigation','AfishaC.Categories'],
+    controllers:['Navigation','AfishaC.Categories', 'AfishaC.Events'],
     launch: function() {
         //Ext.fly('splash').destroy();
         //переносим всякий левак из regApplication

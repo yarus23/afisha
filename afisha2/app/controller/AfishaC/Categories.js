@@ -10,6 +10,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
     currentSubStore:null,
     config: {
         refs: {
+			viewport: 'aviewport',
             categoriesView: 'aviewport categories',
             topToolbar: 'aviewport categories toptoolbar',
             catList: 'aviewport categories list'
@@ -21,7 +22,22 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             }
         }
     },
+    
+    launch: function(){
+        this.getApplication().on({
+            switchToEvents: this.switchToEvents,
+            scope: this});
+            
+    },
+    
+    switchToEvents: function() {
+        this.getViewport().animateActiveItem(1, {type: 'slide', direction: 'left'})
+        this.getApplication().fireEvent('setCatName', this.selectedItem.get('name'));
+    },
+    
     onCatListItemTap:function(me,idx,target,record){
+        this.selectedItem = record;
+
         var subCategoriesStore = record.get('subcategories');
         if (subCategoriesStore){
             this.getTopToolbar().setTitle(record.get('name'));
@@ -57,14 +73,16 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
 			
     loadCategory:function(type){
         var callback = function(success,response){
-              //debugger;
             if (success){
                 //check that fields not undefined
                 var data_str = Ext.encode(response.query.results.json.root);
-                if( recNo >= 0 )
-                        cache.getById('type').set('data', data_str);
+                if( recNo >= 0 ) {
+                    var rec = cache.getById(type);
+                    rec.set('data', data_str);
+                    rec.set('timestamp', Ext.Date.now());
+                }
                 else
-                        cache.insert(0, { id: type, data: data_str });
+                    cache.insert(0, { id: type, data: data_str, timestamp: Ext.Date.now() });
                 this.fillStores(data_str,type)
             } else {
                 Afisha.gf.alert('Не удалось загрузить данные. Проверьте интернет соединение.');
@@ -75,9 +93,14 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
 
         var cache = Ext.getStore('Cache');
         var recNo = cache.indexOfId(type);
-        if( recNo >= 0 ) {
+        
+        // Данные в кеше валидны 1 час
+        if( recNo >= 0 && (Ext.Date.now() - cache.getAt(recNo).get('timestamp')) < (1000 * 60 * 60)) {
             console.log('loading ' + type + ' from cache');
-            this.fillStores(cache.getAt(recNo).get('data'),type);
+            if( this.currentCategory == type )
+                this.getApplication().fireEvent('switchToEvents');
+            else
+                this.fillStores(cache.getAt(recNo).get('data'),type);
         }
         else {
             Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
@@ -86,7 +109,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
     },
     
     fillStores:function(data_str, type){
-	var data = Ext.decode(data_str);
+	    var data = Ext.decode(data_str);
         
         var schStore = Ext.getStore('Schedule');
         var placesStore = Ext.getStore('Places');
@@ -125,17 +148,13 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                 }
             }
         }
-        /*schStore.setData(data[0].schedule);
-        schStore.setCurrentType(type);
-        placesStore.setData(data[2].places);
-        placesStore.setCurrentType(type);
-        eventsStore.setData(data[1].films ? data[1].films : data[1].events);
-        eventsStore.setCurrentType(type);*/
-        
         console.log('loaded schedule ' + schStore.getCount());
         console.log('loaded places ' + placesStore.getCount());
         console.log('loaded events ' + eventsStore.getCount());
         //debugger;
+        
+        this.currentCategory = type;
+        this.getApplication().fireEvent('switchToEvents');
         return true;
     }
 });

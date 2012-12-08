@@ -3,8 +3,11 @@ Ext.define('Afisha.view.Viewport',{
     xtype:'aviewport',
     config:{
         items:[{
-            xtype:'categories'
-        }],
+                xtype:'categories'
+            }, {
+                xtype: 'events'
+            }
+        ],
         fullscreen:true,
         layout:'card'
     }

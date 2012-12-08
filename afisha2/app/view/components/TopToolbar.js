@@ -3,7 +3,7 @@ Ext.define('Afisha.view.components.TopToolbar', {
 	xtype: 'toptoolbar',
 	config: {
 		items: [{
-                    height:'2em',
+                    height:'2.2em',
                     text: 'Назад',
                     xtype:'button',
                     ui: 'default',
