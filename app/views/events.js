@@ -454,7 +454,7 @@ Afisha.views.commonList = Ext.extend(Ext.ux.BufferedList, {
     store:'',
     height:'2.7em',
     disableSelection:true,
-    minimumItems: Ext.is.Tablet ? 25 : 15,
+    minimumItems: Ext.is.Tablet ? 25 : 15,ы
     batchSize:5,
     cleanupBoundary: Ext.is.Tablet ? 35 : 20,
     maxItemHeight:48,

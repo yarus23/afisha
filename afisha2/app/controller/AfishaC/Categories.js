@@ -29,10 +29,15 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             scope: this});
             
     },
-    
+
     switchToEvents: function() {
         this.getViewport().animateActiveItem(1, {type: 'slide', direction: 'left'})
-        this.getApplication().fireEvent('setCatName', this.selectedItem.get('name'));
+        this.getApplication().fireEvent('setCatName', 
+				this.selectedItem.get('name'),
+				this.selectedItem.get('left') ? this.selectedItem.get('left').name : '',
+				this.selectedItem.get('right').name,
+				this.selectedItem.get('hiddenToolbar')
+				);
     },
     
     onCatListItemTap:function(me,idx,target,record){
