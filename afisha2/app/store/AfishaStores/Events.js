@@ -5,7 +5,7 @@ Ext.define('Afisha.store.AfishaStores.Events', {
         model: 'Afisha.model.AfishaModels.Events',
         autoLoad: false,
         reader: {
-            type: 'json',
+            type: 'jsonreader',
             rootProperty: 'root'
         }        
     }

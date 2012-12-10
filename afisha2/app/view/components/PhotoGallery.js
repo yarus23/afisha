@@ -1,0 +1,29 @@
+Ext.define('Afisha.view.components.PhotoGallery',{
+    extend:'Ext.Panel',
+    xtype:'photogallery',
+    config:{
+        layout:'hbox',
+        cls:'photogallery',
+        style:'margin-top:1em;',
+        items:[{
+            xtype:'img',
+            src:'resources/arr_left.png',
+            width:'1em',
+            height:'10em',
+            style:'background-size:auto;'
+        },{
+            flex:1,
+            height:'10em',
+            xtype:'carousel',
+            ui:'light',
+            cls:'imgPreview',
+            items:[]
+        },{
+            xtype:'img',
+            src:'resources/arr_right.png',
+            width:'1em',
+            height:'10em',
+            style:'background-size:auto;'
+        }]
+    }
+});

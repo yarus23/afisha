@@ -1,18 +1,11 @@
 Ext.define('Afisha.view.components.TopToolbar', {
 	extend: 'Ext.TitleBar',
 	xtype: 'toptoolbar',
+        requires:['Afisha.view.components.BackButton'],
 	config: {
 		items: [{
-                    height:'2.2em',
-                    text: 'Назад',
-                    xtype:'button',
-                    ui: 'default',
-                    iconCls: 'arrow_left',
-                    iconMask: true,
-                    iconAlign: 'center',
-                    cls: 'maintoolbar-back-btn',
-                    align:'left'
-		}],
+                    xtype:'backbutton'
+                }],
             title:Global.app_name
 	}
 });

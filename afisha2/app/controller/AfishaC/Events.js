@@ -5,24 +5,21 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         refs: {
             viewport: 'aviewport',
             toolbar: 'events titlebar',
-            backButton: 'events titlebar button',
             tabpanel: 'events tabpanel',
             eventsList: 'events tabpanel #eventsList',
             placesList: 'events tabpanel #placesList',
         },
-
         control: {
-            backButton:{
-                tap:'onBackButtonTap'
+            placesList:{
+                itemtap:'onPlacesListItemTap'
             }
         }
     },
-    launch: function(){
-        // вызываем из контроллера категорий
-        this.getApplication().on({
-            setCatName: this.setupDialog,
-            scope: this});
-            
+    initView:function(opt){
+        this.setupDialog(opt.name, opt.eventsName,opt.placesName, opt.onlyPlaces);
+    },
+    onPlacesListItemTap:function(me,idx,target,record){
+        this.getApplication().fireEvent('showItem', 'placeview',record, true);
     },
     setupDialog: function(name, eventsName, placesName, onlyPlaces) {
         // имя диалога
@@ -43,7 +40,7 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         this.getPlacesList().getScrollable().getScroller().scrollTo(0, 0);
         this.getEventsList().getScrollable().getScroller().scrollTo(0, 0);
     },
-    onBackButtonTap: function() {
-        this.getViewport().animateActiveItem(0, {type: 'slide', direction: 'right'})        
+    goBack: function() {
+        return false;
     }
 })

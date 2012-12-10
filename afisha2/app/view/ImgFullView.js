@@ -1,0 +1,21 @@
+Ext.define('Afisha.view.ImgFullView',{
+    extend:'Ext.Panel',
+    xtype:'Imgfullview',
+    config:{
+        //controllerName:'AfishaC.Categories',
+        layout:'fit',
+        style:'padding:0;',
+        centered:true,
+        top:0,
+        left:0,
+        width:'100%',
+        height:'100%',
+        items:[{
+            xtype:'carousel',
+            style:'background-color:black;',
+            ui:'light',
+            id:'imgFullview',
+            items:[]
+        }],
+    }
+});

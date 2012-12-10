@@ -2,26 +2,92 @@ Ext.define('Afisha.controller.Navigation', {
     extend: 'Ext.app.Controller',
 
     config: {
+        useAnimation:true,
         refs: {
             viewport: 'aviewport',
-            backButton: 'aviewport toptoolbar button'
+            backButton: 'aviewport backbutton',
+            imgFullView: 'aviewport imgfullview'
         },
 
         control: {
+            //imgFullView: {
+            //    tap:'onBackButtonTap'
+            //},
             backButton:{
                 tap:'onBackButtonTap'
             }
         }
     },
+    launch: function(){
+        this.getApplication().on({
+            showItem: this.showItem,
+            goBack: this.onBackButtonTap,
+            scope: this});
+        //
+        this.pushToHistory(this.getViewport().getActiveItem().xtype,null);
+    },
+    _history:[],
+    pushToHistory:function(xtype, options){
+        var ln = this._history.length;
+        if (ln && this._history[ln-1].xtype == xtype)
+            return;
+        this._history.push({xtype:xtype, options:options})
+    },
+    backFromHistory:function(){
+        //debugger;
+        if (this._history.length < 2){
+            //todo: exitApp
+            return;//
+        }
+        this._history.pop();
+        var currentEl = this._history[this._history.length - 1];
+        //debugger;
+        if (currentEl.options){
+            var item = this.getItem(currentEl.xtype);
+            var controller = this.getConntroller(item.getControllerName());
+            if (controller && controller.initView)
+                controller.initView(currentEl.options);
+        }
+        this.switchPanels(currentEl.xtype, 'right');
+    },
+    getItem:function(_xtype){
+        var items = this.getViewport().getItems();
+        return items.findBy(function(a,b){if (a.xtype == _xtype) return true; return false; });
+    },
+    getConntroller:function(name){
+        return Afisha.app.getController(name);
+    },
+    //reInit - вызывать ли инит элемента при переходен Назад на него (нужно для зацикленных переходов типа кино-фильм-кино)
+    showItem:function(xtype, options, reInit ){
+        if (!reInit){
+            this.pushToHistory(xtype, null);
+        }
+        else{
+            this.pushToHistory(xtype, options);
+        }
+        var item = this.getItem(xtype);
+        var controller = this.getConntroller(item.getControllerName());
+        if (controller && controller.initView)
+            controller.initView(options);
+        this.switchPanels(xtype, 'left');
+        
+    },
+    switchPanels:function(xtype, animDirection){
+        if (this.getUseAnimation() && animDirection)
+            this.getViewport().animateActiveItem(xtype, {type: 'slide', direction: animDirection})
+        else
+            this.getViewport().setActiveItem(xtype);
+    },
     onBackButtonTap:function(){
         var item = this.getViewport().getActiveItem();
         var controllerName = item.getControllerName();
-        var controller = Afisha.app.getController(controllerName);
-        console.log(controller)
-        if (controller && controller.goBack()){
-            console.log('yes')
+        var controller = this.getConntroller(controllerName);
+        //console.log(controller)
+        if (controller && controller.goBack && controller.goBack()){
+            //console.log('yes')
             return;
         }
-        console.log('no')
+        this.backFromHistory();
+        //console.log('no')
     }
 });

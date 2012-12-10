@@ -31,13 +31,12 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
     },
 
     switchToEvents: function() {
-        this.getViewport().animateActiveItem(1, {type: 'slide', direction: 'left'})
-        this.getApplication().fireEvent('setCatName', 
-				this.selectedItem.get('name'),
-				this.selectedItem.get('left') ? this.selectedItem.get('left').name : '',
-				this.selectedItem.get('right').name,
-				this.selectedItem.get('hiddenToolbar')
-				);
+        this.getApplication().fireEvent('showItem', 'events',{
+            name: this.selectedItem.get('name'),
+            eventsName: this.selectedItem.get('left') ? this.selectedItem.get('left').name : '',
+            placesName: this.selectedItem.get('right').name,
+            onlyPlaces: this.selectedItem.get('hiddenToolbar')
+        });
     },
     
     onCatListItemTap:function(me,idx,target,record){
@@ -103,7 +102,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         if( recNo >= 0 && (Ext.Date.now() - cache.getAt(recNo).get('timestamp')) < (1000 * 60 * 60)) {
             console.log('loading ' + type + ' from cache');
             if( this.currentCategory == type )
-                this.getApplication().fireEvent('switchToEvents');
+                this.switchToEvents();
             else
                 this.fillStores(cache.getAt(recNo).get('data'),type);
         }
@@ -120,7 +119,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         var placesStore = Ext.getStore('Places');
         var eventsStore = Ext.getStore('Events');
         if(!schStore || !placesStore || !eventsStore){
-			console.log('Ошибка загрузки store!');
+            console.log('Ошибка загрузки store!');
             return false;
         }
         
@@ -137,7 +136,8 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                     continue;
                 switch (name){
                     case 'schedule':{
-                        schStore.setData(data[i][name]);
+                        // раньше у разных type были разные поля в schedule, исправляем это, чтобы не лепить еще больше костылей
+                        schStore.setData(Afisha.gf.unifySchedule(data[i][name]));
                         schStore.setCurrentType(type);
                         break;
                     }
@@ -145,10 +145,12 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                     case 'events':{
                         eventsStore.setData(data[i][name]);
                         eventsStore.setCurrentType(type);   
+                        break;
                     }
                     case 'places':{
                         placesStore.setData(data[i][name]);
                         placesStore.setCurrentType(type);   
+                        break;
                     }
                 }
             }
@@ -159,7 +161,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         //debugger;
         
         this.currentCategory = type;
-        this.getApplication().fireEvent('switchToEvents');
+        this.switchToEvents();
         return true;
     }
 });

@@ -64,76 +64,74 @@ Ext.Loader.setConfig({
 Afisha = {};
 Afisha.useGPS = true;
 Afisha.lastRequest = null;
-
-        Afisha.placesGroupString = function(record) {
-            if (!this.showGroups || this.hideGroups)
-                return '';
-            if (record.get('sort') > 10 )
-              {
-                return 'Рекомендуем';
-              }
-            else
-              return 'Все'; 
+Afisha.placesGroupString = function(record) {
+    if (!this.showGroups || this.hideGroups)
+        return '';
+    if (record.get('sort') > 10 )
+      {
+        return 'Рекомендуем';
+      }
+    else
+      return 'Все'; 
+}
+Afisha.eventsGroupString = function(record) {
+    if (!this.showGroups)
+        return '';
+    switch(this.curFilter)
+    {
+        case 'filterCurrentDay':
+            return 'Сегодня';
+        case 'filterNextDay':
+            return 'Завтра';
+        case 'filterCurrentWeek':
+            return 'Текущая неделя';
+        case 'filterNextWeek':
+            return 'Следущая неделя';
+        case 'filterAllDays':
+            return 'Все';
+        default:
+            return '';
+    }
+}
+Afisha.ckeckByDate = function(event_id, date, end_date, val_field){
+    if (!val_field)
+        val_field = 'clubevent_id';
+    if (end_date)
+    {
+        for (var i = 0; i < this.data.items.length; i++)
+        {
+            var fDate = this.data.items[i].data.finish_date;
+            if ((this.data.items[i].data[val_field] == event_id) && ((fDate && (fDate >= date) && (this.data.items[i].data.start_date <= end_date)) || 
+                (!fDate && (this.data.items[i].data.start_date >= date) && (this.data.items[i].data.start_date <= end_date))))
+                return true;
         }
-        Afisha.eventsGroupString = function(record) {
-            if (!this.showGroups)
-                return '';
-            switch(this.curFilter)
-            {
-                case 'filterCurrentDay':
-                    return 'Сегодня';
-                case 'filterNextDay':
-                    return 'Завтра';
-                case 'filterCurrentWeek':
-                    return 'Текущая неделя';
-                case 'filterNextWeek':
-                    return 'Следущая неделя';
-                case 'filterAllDays':
-                    return 'Все';
-                default:
-                    return '';
-            }
+    }
+    else
+    {
+        for (var i = 0; i < this.data.items.length; i++)
+        {
+            var fDate = this.data.items[i].data.finish_date;
+            if ((this.data.items[i].data[val_field] == event_id) && ((fDate && (date >= this.data.items[i].data.start_date) && (date <= fDate)) || 
+                (!fDate && (this.data.items[i].data.start_date == date))))
+                return true;
         }
-        Afisha.ckeckByDate = function(event_id, date, end_date, val_field){
-            if (!val_field)
-                val_field = 'clubevent_id';
-            if (end_date)
-            {
-                for (var i = 0; i < this.data.items.length; i++)
-                {
-                    var fDate = this.data.items[i].data.finish_date;
-                    if ((this.data.items[i].data[val_field] == event_id) && ((fDate && (fDate >= date) && (this.data.items[i].data.start_date <= end_date)) || 
-                        (!fDate && (this.data.items[i].data.start_date >= date) && (this.data.items[i].data.start_date <= end_date))))
-                        return true;
-                }
-            }
-            else
-            {
-                for (var i = 0; i < this.data.items.length; i++)
-                {
-                    var fDate = this.data.items[i].data.finish_date;
-                    if ((this.data.items[i].data[val_field] == event_id) && ((fDate && (date >= this.data.items[i].data.start_date) && (date <= fDate)) || 
-                        (!fDate && (this.data.items[i].data.start_date == date))))
-                        return true;
-                }
-            }
-            return false;
-        }
- 
+    }
+    return false;
+}
 //Ext.Ajax.setDisableCaching(false);
 Ext.application({
     name: 'Afisha',
     requires:['Afisha.util.gf'],
-    views:['Viewport','AfishaViews.Categories', 'AfishaViews.Events'],
-    models:['AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule'],
+    views:['Viewport','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView'],
+    models:['AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary'],
     stores:['AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule'],
-    controllers:['Navigation','AfishaC.Categories', 'AfishaC.Events'],
+    controllers:['Navigation','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView'],
     launch: function() {
         //Ext.fly('splash').destroy();
         //переносим всякий левак из regApplication
         Ext.Viewport.add({
-			xtype: 'aviewport'
-		});
+                xtype: 'aviewport'
+        });
         Afisha.gf.isOnline(true);
     },
 
