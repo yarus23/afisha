@@ -35,7 +35,8 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             name: this.selectedItem.get('name'),
             eventsName: this.selectedItem.get('left') ? this.selectedItem.get('left').name : '',
             placesName: this.selectedItem.get('right').name,
-            onlyPlaces: this.selectedItem.get('hiddenToolbar')
+            onlyPlaces: this.selectedItem.get('hiddenToolbar'),
+            filter: this.selectedItem.get('filter')
         });
     },
     
@@ -50,6 +51,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             return;
         }
         this.loadCategory(record.get('type'));
+        //this.switchToEvents();
     },
     reInitCategoryList:function(){
         this.getCatList().setStore(this.defaultStore)
@@ -68,7 +70,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         Ext.data.JsonP.request({
             url : 'http://query.yahooapis.com/v1/public/yql',
             params: {format:'json', q: 'select * from json where url="' +
-                                      'http://www.tula.rodgor.ru/nafisha/export_json.php?type=' + type + '"'},
+                                      'http://afisha.mikhelev.ru/app/testbase?type=' + type + '"'},
             callbackKey: 'callback',
             scope:this,
             callback: callback
@@ -79,7 +81,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         var callback = function(success,response){
             if (success){
                 //check that fields not undefined
-                var data_str = Ext.encode(response.query.results.json.root);
+                var data_str = Ext.encode(response.query.results.root);
                 if( recNo >= 0 ) {
                     var rec = cache.getById(type);
                     rec.set('data', data_str);
@@ -122,38 +124,26 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             console.log('Ошибка загрузки store!');
             return false;
         }
-        
-        // из ниоткуда новые типы данных не появятся, так что можно свитчем запилить все случаи, то-же самое с китченами и пр.
-        //конечно то еще решение, но думаю больше времени потратим на адаптирование оригинального синемарута
-        //от костыля в виде конфига каждого сторе как это есть сейчас для в сторефактори мы не уйдем
-        //но тут нам придется не дергать строгоименованные store для каждой сущности
-        //а работать с одними и теми-же источниками данных, просто какие-то используя в конкретной ситуации
-        //а какие-то нет
-        
-        for (var i = 0; i < data.length; i++){
-            for (var name in data[i]){
-                if (!name)
-                    continue;
-                switch (name){
+        for(var item in data) {
+                switch (item){
                     case 'schedule':{
                         // раньше у разных type были разные поля в schedule, исправляем это, чтобы не лепить еще больше костылей
-                        schStore.setData(Afisha.gf.unifySchedule(data[i][name]));
+                        schStore.setData(Afisha.gf.unifySchedule(data[item]));
                         schStore.setCurrentType(type);
                         break;
                     }
                     case 'films':
                     case 'events':{
-                        eventsStore.setData(data[i][name]);
+                        eventsStore.setData(data[item]);
                         eventsStore.setCurrentType(type);   
                         break;
                     }
                     case 'places':{
-                        placesStore.setData(data[i][name]);
+                        placesStore.setData(data[item]);
                         placesStore.setCurrentType(type);   
                         break;
                     }
                 }
-            }
         }
         console.log('loaded schedule ' + schStore.getCount());
         console.log('loaded places ' + placesStore.getCount());

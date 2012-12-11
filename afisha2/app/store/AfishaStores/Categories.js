@@ -12,7 +12,7 @@ Ext.define('Afisha.store.AfishaStores.Categories', {
                 left: { name: 'Фильмы', store: null,/* Afisha.stores.cinemaFilmsStore,*/id: 'film' },
                 right: {name: 'Кинотеатры', store: null,/* Afisha.stores.cinemaPlacesStore,*/ id: 'kino' }
             },
-            { id: 'cafe', name: 'Рестораны', type: 'restaurant', hiddenToolbar:true,
+            { id: 'cafe', name: 'Рестораны', type: 'restaurant', hiddenToolbar:true, filter: { items: ['kitchen', 'genre', 'district']},
                 right: {store: null,/* Afisha.stores.restaurantPlacesStore, */id: 'restaurant' }
             },
             { id: 'pool', name: 'Бильярд, Боулинг', type: 'pool', hiddenToolbar:true,

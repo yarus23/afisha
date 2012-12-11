@@ -118,7 +118,7 @@ div.eventsTabBar.x-docked-top .x-tab {
     -webkit-border-bottom-left-radius:0px;
 
     height:1.9em;
-    width:45%;
+    width:47%;
     color:black;
 
     background-color: white;
@@ -143,14 +143,21 @@ div.eventsTabBar.x-docked-top .x-tab span {
     line-height:1.5em;
 }
 
+div.eventsTabBar.x-docked-top {
+    border-color: gray;
+}
+
 div.eventsTabBar.x-docked-top .x-tab.x-tab-active {
     background-color: #F7F7F7;
-    border:1px solid lightgray;
-    border-bottom-width:0px;
+    border:1px solid gray;
+    border-bottom-style:none;
 }
 
 .x-toolbar-title {
     line-height:1.8em;
+}
+.x-panel.x-floating {
+    padding:2px;
 }
 
 .x-button-back, .x-toolbar .x-button-back {
