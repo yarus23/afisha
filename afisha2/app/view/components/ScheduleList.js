@@ -2,8 +2,6 @@ Ext.define('Afisha.view.components.ScheduleList',{
     extend:'Ext.dataview.List',
     xtype:'schedulelist',
     config:{
-        layout:'fit',
-        height:'20em',
         scrollable:false,
         grouped : true,
         cls:'myDisclosure scheduleList',

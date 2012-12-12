@@ -129,8 +129,6 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             console.log('Ошибка загрузки store!');
             return false;
         }
-//        for(var item in data) {
-//                switch (item){
 
         for (var i = 0; i < data.length; i++){
             for (var name in data[i]){

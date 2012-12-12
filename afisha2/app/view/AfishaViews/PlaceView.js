@@ -62,7 +62,11 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
                 id:'pv_gallery'
             },{
                 xtype:'schedulelist',
-                id: 'pv_schedulelist'
+                id: 'pv_schedulelist',
+                scrollable: {
+                    disabled: true
+                },
+                height:'10em'
             }]
         }] 
     }
