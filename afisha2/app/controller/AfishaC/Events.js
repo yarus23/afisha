@@ -2,6 +2,9 @@ Ext.define('Afisha.controller.AfishaC.Events', {
     extend: 'Ext.app.Controller',
 
     config: {
+        //чтобы при переходе назад на этот экран был открыт таб с которого пришли
+        lastTabNum:0,
+        
         refs: {
             viewport: 'aviewport',
             toolbar: 'events titlebar',
@@ -43,21 +46,22 @@ Ext.define('Afisha.controller.AfishaC.Events', {
     popoverpanel.showBy(this.getSortButton());
     },
     onPlacesListItemTap:function(me,idx,target,record){
+        this.setLastTabNum(1);
         this.getApplication().fireEvent('showItem', 'placeview',record, true);
     },
     setupDialog: function(name, eventsName, placesName, onlyPlaces, filter) {
+        var tabPanel = this.getTabpanel();
         // имя диалога
         this.getToolbar().setTitle(name);
-        
         // имена кнопок
-        this.getTabpanel().getTabBar().getAt(0).setTitle(eventsName);
-        this.getTabpanel().getTabBar().getAt(1).setTitle(placesName);
+        tabPanel.getTabBar().getAt(0).setTitle(eventsName);
+        tabPanel.getTabBar().getAt(1).setTitle(placesName);
         
         // переключим на places если нужно
-        this.getTabpanel().setActiveItem(onlyPlaces ? 1 : 0)
+       tabPanel.setActiveItem(onlyPlaces ? 1 : 0)
         
         // скроем тулбар если нужно
-        this.getTabpanel().getTabBar().setHidden(onlyPlaces);
+        tabPanel.getTabBar().setHidden(onlyPlaces);
         
         // передернем список
         this.getPlacesList().getScrollable().getScroller().scrollTo(0, 0);

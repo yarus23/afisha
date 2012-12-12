@@ -1,11 +1,11 @@
 Ext.define('Afisha.view.AfishaViews.PlaceView',{
     extend:'Ext.Container',
     xtype:'placeview',
-    requires:['Afisha.view.components.BackButton'],//,'Afisha.view.components.HrefBtn','Afisha.view.components.UrlBtn','Afisha.view.components.ClickBtn'],
+    requires:['Afisha.view.components.BackButton','Afisha.view.components.PhotoGallery','Afisha.view.components.ScheduleList'],//,'Afisha.view.components.HrefBtn','Afisha.view.components.UrlBtn','Afisha.view.components.ClickBtn'],
     config:{
         controllerName:'AfishaC.PlaceView',
         cls:'detailsView',
-        layout:'vbox',
+        layout:'fit',
         items:[{
             xtype:'titlebar',
             docked:'top',
@@ -14,13 +14,15 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
             }]
         },{
             xtype:'panel',
-            flex:1,
-            layout:'vbox',
+            //flex:1,
+            layout: {
+                type:'vbox',    
+                align:'stretch'
+            },
             scrollable: {
                 direction: 'vertical',
                 directionLock: true
             },
-            style:'border:1px solid red;',
             items:[{
                 xtype:'panel',
                 id:'pv_header',
@@ -55,6 +57,12 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
                 id:'pv_buttons',
                 layout:'vbox',
                 style:'margin-top:0.5em; border-top-color: #999;'
+            },{
+                xtype:'photogallery',
+                id:'pv_gallery'
+            },{
+                xtype:'schedulelist',
+                id: 'pv_schedulelist'
             }]
         }] 
     }

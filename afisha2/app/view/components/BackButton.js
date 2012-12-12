@@ -39,7 +39,7 @@ Ext.define('Afisha.view.components.UrlBtn', {
 		iconAlign: 'left',
                 style:'border-top:0;',
                 cls:'listBtn',
-		tpl: new Ext.XTemplate('<span class="x-button-label custom-label" style="color:black; text-decoration: none; padding: .3em .6em;" {value}>',
+		tpl: new Ext.XTemplate('<span class="x-button-label custom-label" style="color:black; text-decoration: none; padding: .3em .6em;" >{value}',
                 '<a href={value} style="display:none;" />',
                 '</span>'),
                 handler:function(me){
@@ -56,9 +56,9 @@ Ext.define('Afisha.view.components.ClickBtn', {
 	config: {
 		iconMask: true,
 		iconAlign: 'left',
-                style:'border-top:0;',
+                //style:'border-top:0;',
                 cls:'listBtn',
-		tpl: new Ext.XTemplate('<span class="x-button-label custom-label" style="color:black; text-decoration: none; padding: .3em .6em;" {value}>',
+		tpl: new Ext.XTemplate('<span class="x-button-label custom-label" style="color:black; text-decoration: none; padding: .3em .6em;">{value}',
                 '</span>')
 	}
 });

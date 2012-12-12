@@ -16,7 +16,7 @@ Ext.define('Afisha.model.AfishaModels.Places', {
             {name:'text',type:'string'},
             {name:'vote',type:'float'},
             {name:'num_votes',type:'int'},
-            {name:'com_count',type:'int'},
+            {name:'com_count',type:'int', defaultValue: 0},
             {name:'sort',type:'int',defaultValue: '0'},
             {name:'lat',type:'float',defaultValue: '0.0'},
             {name:'lng',type:'float',defaultValue: '0.0'},

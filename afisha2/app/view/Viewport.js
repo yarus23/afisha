@@ -7,6 +7,8 @@ Ext.define('Afisha.view.Viewport',{
             }, {
                 xtype: 'events'
             },{
+                xtype:'imgfullview'
+            },{
                 xtype:'placeview'
             }
         ],

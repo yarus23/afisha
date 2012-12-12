@@ -59,7 +59,7 @@ Ext.define('Afisha.controller.Navigation', {
     },
     //reInit - вызывать ли инит элемента при переходен Назад на него (нужно для зацикленных переходов типа кино-фильм-кино)
     showItem:function(xtype, options, reInit ){
-        if (!reInit){
+        if (reInit !== true){
             this.pushToHistory(xtype, null);
         }
         else{

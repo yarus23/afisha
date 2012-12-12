@@ -1,3 +1,32 @@
+/*
+ * Устанавливает дату в 00:00 следующего дня
+ **/
+Date.prototype.nextDay = function(){
+    var cd = this.getDate();
+    this.setHours(0, 0, 0, 0);
+    this.setDate(cd + 1);
+}
+
+Date.prototype.nextWeek = function(){
+    var cd = this.getDate();
+    this.setHours(0, 0, 0, 0);
+    this.setDate(cd + 7);
+}
+/*
+ * Эмуляция Mouse Click
+ **/
+Element.prototype.mouseClick = function()
+{
+    if( document.createEvent ) 
+    {
+        var evObj = document.createEvent('MouseEvents');
+        evObj.initEvent( 'click', true, false );
+        this.dispatchEvent(evObj);
+    } else if( document.createEventObject ) 
+{
+        this.fireEvent('onclick');
+    }
+}
 Ext.data.Types.CUSTOMDATE = {
     convert: function(value) {
         var dateFormat = this.getDateFormat(),
@@ -121,12 +150,16 @@ Afisha.ckeckByDate = function(event_id, date, end_date, val_field){
 //Ext.Ajax.setDisableCaching(false);
 Ext.application({
     name: 'Afisha',
-    requires:['Afisha.util.gf'],
-    views:['Viewport','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView'],
-    models:['AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary'],
+    requires:['Ext.DateExtras', 'Afisha.util.gf','Afisha.util.schMethods'],
+    views:['Viewport','ImgFullView','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView'],
+    models:['AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList'],
     stores:['AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule'],
-    controllers:['Navigation','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView'],
+    controllers:['Navigation','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','ImgFullView'],
     launch: function() {
+        //компенсируем изменения сенчи
+        Date.prototype.format = function(format){
+            return Ext.DateExtras.format(this, format);
+        }
         //Ext.fly('splash').destroy();
         //переносим всякий левак из regApplication
         Ext.Viewport.add({
