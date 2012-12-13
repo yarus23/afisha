@@ -27,31 +27,33 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
                 xtype:'panel',
                 id:'ev_header',
                 cls:'detailsHeader',
-                tpl:new Ext.XTemplate(
-                    '<div class="title" >',
-                        '{[this.getRate(values.vote)]}',
-                        '<tpl if="name.length">{name}</tpl><tpl if="!name.length">{aka}</tpl>',
-                    '</div>',
-                    {
-                        getRate:function(rate){
-                            rate = parseFloat(rate);
-                            if (isNaN(rate))
-                                rate = 0;
-
-                            rate = Math.floor(rate + 0.499);
-                            var s = '';
-                            if( rate >= 4.9 )
-                                s += '<div class="superstar"></div>';
-                            else
-                            if( rate == 0 )
-                                s += '<div class="superstar empty"></div>';
-                            else {
-                                s += '<div class="superstars"><div class="superstar" style="width:'+(0.76*rate + 0.05)+'em"></div><div class="superstar empty" style="width:'+0.8 * (5-rate)+'em"></div></div>';
-                            }
-                            return s;
-                        }
-                    }
-                )
+                items:[{
+                    xtype:'img',
+                    src:'resources/star-0.png',
+                    height:'1em',
+                    width:'5em',
+                    docked:'right'
+                },{
+                    xtype:'panel',
+                    docked:'right',
+                    id:'ev_rate_count',
+                    style:'font-size:0.8em'
+                },{
+                    xtype:'panel',
+                    id:'ev_title',
+                    style:'font-size: 1.2em; font-weight: bold;padding-left:0.3em;'
+                }]
+            },{
+                xtype:'panel',
+                layout:'hbox',
+//                items:[{
+//                    xtype:'panel',
+//                    html:'1 qweqwe qweqwe qweqwe qwe qwe  qweqwe qwe qwe qwe '
+//                },{
+//                    xtype:'panel',
+//                    html:'2',
+//                    flex:1
+//                }]
             },{
                 xtype:'photogallery',
                 id:'ev_gallery'

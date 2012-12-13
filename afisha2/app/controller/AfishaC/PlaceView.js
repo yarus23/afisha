@@ -4,17 +4,29 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
     config: {
         refs: {
             viewport: 'aviewport',
-            header:'aviewport placeview panel#pv_header',
+            title:'aviewport placeview panel#pv_header panel#pv_title',
+            rateCount:'aviewport placeview panel#pv_header panel#pv_rate_count',
+            rateImg:'aviewport placeview panel#pv_header img',
             buttons:'aviewport placeview panel#pv_buttons',
             photogallery: 'aviewport placeview photogallery',
             schList: 'schedulelist'
         },
     },
     initView:function(record){
-        this.getHeader().setRecord(record);
+        this.setupHeader(record)
         this.checkButtonsFields(record);
         this.collectImages(record);
         this.getSchList().bindScheduleData(record.get('id'),null,false);
+    },
+    setupHeader:function(record){
+        var name = record.get('name');
+        this.getTitle().setHtml(name ? name : record.get('aka'));
+        var rate = parseFloat(record.get('vote'));
+        if (isNaN(rate))
+            rate = 0;
+        rate = Math.floor(rate + 0.499);
+        this.getRateImg().setSrc('resources/star-' + rate + '.png');
+        this.getRateCount().setHtml(record.get('num_votes'))
     },
     checkButtonsFields:function(record){
         var buttonsPanel = this.getButtons();
