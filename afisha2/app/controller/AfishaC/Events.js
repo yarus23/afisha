@@ -19,6 +19,9 @@ Ext.define('Afisha.controller.AfishaC.Events', {
             placesList:{
                 itemtap:'onPlacesListItemTap'
             },
+            eventsList:{
+                itemtap:'onEventsListItemTap'
+            },
             sortButton:{
                 tap: 'onSortButtonPress'
             }
@@ -48,6 +51,10 @@ Ext.define('Afisha.controller.AfishaC.Events', {
     onPlacesListItemTap:function(me,idx,target,record){
         this.setLastTabNum(1);
         this.getApplication().fireEvent('showItem', 'placeview',record, true);
+    },
+    onEventsListItemTap:function(me,idx,target,record){
+        this.setLastTabNum(0);
+        this.getApplication().fireEvent('showItem', 'eventview',record, true);
     },
     setupDialog: function(name, eventsName, placesName, onlyPlaces, filter) {
         var tabPanel = this.getTabpanel();

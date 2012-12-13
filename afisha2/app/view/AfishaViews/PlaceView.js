@@ -66,7 +66,9 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
                 scrollable: {
                     disabled: true
                 },
-                height:'10em'
+                height:'10em',
+                ob_type:'place'
+                //layout:'fit'
             }]
         }] 
     }

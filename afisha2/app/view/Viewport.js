@@ -10,6 +10,8 @@ Ext.define('Afisha.view.Viewport',{
                 xtype:'imgfullview'
             },{
                 xtype:'placeview'
+            },{
+                xtype:'eventview'
             }
         ],
         fullscreen:true,

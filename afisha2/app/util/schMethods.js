@@ -82,7 +82,6 @@ Ext.define('Afisha.util.schMethods', {
             var schStore = Ext.getStore('Schedule');
             var placesStore = Ext.getStore('Places');
             var eventsStore = Ext.getStore('Events');
-            console.log(cId)
             //if (!store.schedule)
             //    return [];
             var result = {

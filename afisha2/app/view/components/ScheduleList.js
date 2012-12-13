@@ -2,7 +2,7 @@ Ext.define('Afisha.view.components.ScheduleList',{
     extend:'Ext.dataview.List',
     xtype:'schedulelist',
     config:{
-        scrollable:false,
+        ob_type:'',
         grouped : true,
         cls:'myDisclosure scheduleList',
         itemCls:'scheduleItem',
@@ -32,7 +32,14 @@ Ext.define('Afisha.view.components.ScheduleList',{
                 groupFn: Afisha.schMethods.getGroupString,
                 sortProperty: 'date'
             }
-        })
+        }),
+        listeners:{
+            itemtap:function(a,b,s,record,e){
+                var ob_type = this.getOb_type();
+                //Afisha.app.getController('AfishaC.EventView')
+                Afisha.app.fireEvent('showItem', (ob_type == 'place' ? 'event' : 'place') + 'view',record.get('ep'), true);
+            }
+        }
     },
     /*
      * @param {String} id идентификатор event\place, для которого показывать расписание
@@ -40,13 +47,13 @@ Ext.define('Afisha.view.components.ScheduleList',{
      * @param {Date} date дата для показа расписания. чтобы вывести все возможное, нужно передать null
      * 
      **/
-    bindScheduleData:function(id,date){
-        var scheduleData = Afisha.schMethods.getSchedule(null, id, date);
+    bindScheduleData:function(id, date, isEvent){
+        var scheduleData = Afisha.schMethods.getSchedule(null, id, isEvent);
         var byDate = Afisha.schMethods.getScheduleByDate(scheduleData,date);
         this.getStore().setData(byDate);
         if (this.isHidden())
             this.show();
         //this.doComponentLayout();
         return scheduleData.length;
-    },
+    }
 });

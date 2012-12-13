@@ -1,59 +1,26 @@
-Ext.define('Afisha.controller.AfishaC.PlaceView', {
+Ext.define('Afisha.controller.AfishaC.EventView', {
     extend: 'Ext.app.Controller',
 
     config: {
         refs: {
             viewport: 'aviewport',
-            header:'aviewport placeview panel#pv_header',
-            buttons:'aviewport placeview panel#pv_buttons',
-            photogallery: 'aviewport placeview photogallery',
-            schList: 'schedulelist'
+            header:'aviewport eventview panel#ev_header',
+            buttons:'aviewport eventview panel#ev_buttons',
+            photogallery: 'aviewport eventview photogallery',
+            schList: 'aviewport eventview schedulelist'
         },
     },
     initView:function(record){
         this.getHeader().setRecord(record);
         this.checkButtonsFields(record);
         this.collectImages(record);
-        this.getSchList().bindScheduleData(record.get('id'),null,false);
+        this.getSchList().bindScheduleData(record.get('id'),null,true);
     },
     checkButtonsFields:function(record){
         var buttonsPanel = this.getButtons();
         buttonsPanel.removeAll();
-        var lat = record.get('lat')
-        var lng = record.get('lng');
-        var address = record.get('address');
-        if (lat && lng){
-            buttonsPanel.add({
-                id:'mapBtn',
-                xtype:'clickbutton',
-                data:{
-                    value:address
-                }
-            })
-        }
-        var phone = record.get('phone');
-        if (phone){
-            phone = phone.split(',');
-            for(var i = 0; i < phone.length; i++)
-                buttonsPanel.add({
-                    xtype:'hrefbutton',
-                    data:{
-                        type:'phone',
-                        value:phone[i]
-                    }
-                })
-        }
-        var site = record.get('url');
-        if (site){
-            buttonsPanel.add({
-                xtype:'urlbutton',
-                data:{
-                    value:site
-                }
-            })
-        }
         buttonsPanel.add({
-            id:'pv_commentsBtn',
+            id:'ev_commentsBtn',
             xtype:'clickbutton',
             style:'border-top:0;',
             data:{
