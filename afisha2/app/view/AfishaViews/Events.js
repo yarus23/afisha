@@ -120,7 +120,19 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 align:'right',
                 id:'filterButton'
             }]
-        },        
+        },{
+            xtype:'fieldset',
+            docked:'top',
+            id:'sortPanel',
+            items:[{
+                    xtype: 'textfield',
+                    label: 'Поиск',
+                    name: 'searchVal'
+                }
+            ],
+            margin:0,
+            hidden:true
+        },  
         {
             xtype: 'tabpanel',
             tabBar : {

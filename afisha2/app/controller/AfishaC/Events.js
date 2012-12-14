@@ -13,9 +13,14 @@ Ext.define('Afisha.controller.AfishaC.Events', {
             placesList: 'events tabpanel #placesList',
             filterButton: 'events titlebar #filterButton',
             searchButton: 'events titlebar #searchButton',
-            sortButton: 'events titlebar #sortButton'
+            sortButton: 'events titlebar #sortButton',
+            searchEdit: 'events fieldset textfield',
+            searchPanel: 'events fieldset'
         },
         control: {
+            tabpanel:{
+                activeitemchange: 'onSwitch'
+            },
             placesList:{
                 itemtap:'onPlacesListItemTap'
             },
@@ -24,11 +29,49 @@ Ext.define('Afisha.controller.AfishaC.Events', {
             },
             sortButton:{
                 tap: 'onSortButtonPress'
+            },
+            searchButton:{
+                tap: 'onSearchButtonPress'
+            },
+            searchEdit:{
+                keyup: 'onSearchKeyUp',
+                clearicontap:'onSearchClear'
             }
         }
     },
     initView:function(opt){
         this.setupDialog(opt.name, opt.eventsName,opt.placesName, opt.onlyPlaces, opt.filter);
+    },
+    onSwitch: function(){
+        var me = this;
+        setTimeout(function() { me.onSearchClear(); }, 300);
+        this.getSearchPanel().setHidden(true);
+    },
+    onSearchKeyUp: function(field) {
+        var value = field.getValue();
+        var store = this.getTabpanel().getActiveItem().getStore();
+        if(value){
+           var match = '(' + value.replace(/ /g,'|') + ')';
+           store.filter('name',new RegExp(match,'gi'));
+        } else
+           store.clearFilter();
+    },
+    onSearchClear: function() {
+        this.getPlacesList().getStore().clearFilter();
+        this.getEventsList().getStore().clearFilter();
+        this.getSearchEdit().setValue('');
+    },
+    onSearchButtonPress: function() {
+        var doShow = this.getSearchPanel().getHidden();
+        
+        if( !doShow ) {
+            // сбросить фильтры
+            this.onSearchClear();
+        } else {
+            this.getSearchEdit().setValue('');
+            this.getSearchEdit().focus();
+        }
+        this.getSearchPanel().setHidden(!doShow);
     },
     onSortButtonPress: function() {
         var popoverpanel = new Ext.Panel({
@@ -77,6 +120,10 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         // спрячем ненужное
         this.getFilterButton().setHidden(filter == null);
         this.getSortButton().setHidden(filter != null);
+        
+        this.onSearchClear();
+        this.getSearchPanel().setHidden(true);
+        
     },
     
     goBack: function() {
