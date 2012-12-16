@@ -1,4 +1,3 @@
-Ext.require('Afisha.view.components.PopupList');
 
 Ext.define('Afisha.controller.AfishaC.Events', {
     extend: 'Ext.app.Controller',
@@ -77,8 +76,7 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         this.getSearchPanel().setHidden(!doShow);
     },
     onSortButtonPress: function() {
-        var popoverpanel = Ext.create('widget.popuplist');
-        Ext.Viewport.add(popoverpanel);
+        var popoverpanel = Ext.create('widget.popuplist', { options: [{name:'1', value:'2'}]});
         popoverpanel.showBy(this.getSortButton());
     },
     onPlacesListItemTap:function(me,idx,target,record){
@@ -109,7 +107,7 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         
         // спрячем ненужное
         this.getFilterButton().setHidden(filter == null);
-        this.getSortButton().setHidden(filter != null);
+        //this.getSortButton().setHidden(filter != null);
         
         this.onSearchClear();
         this.getSearchPanel().setHidden(true);

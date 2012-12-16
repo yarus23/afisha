@@ -93,7 +93,7 @@ Afisha.eventsTpl = new Ext.XTemplate(
 Ext.define('Afisha.view.AfishaViews.Events',{
     extend:'Ext.Container',
     xtype:'events',
-    requires:['Afisha.view.components.BackButton'],
+    requires:['Afisha.view.components.BackButton', 'Afisha.view.components.PopupList'],
     config:{
         controllerName:'AfishaC.Events',
         layout:'fit',
