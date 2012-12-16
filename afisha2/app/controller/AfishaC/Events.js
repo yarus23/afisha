@@ -1,6 +1,9 @@
+Ext.require('Afisha.view.components.PopupList');
+
 Ext.define('Afisha.controller.AfishaC.Events', {
     extend: 'Ext.app.Controller',
-
+    
+    
     config: {
         //чтобы при переходе назад на этот экран был открыт таб с которого пришли
         lastTabNum:0,
@@ -74,22 +77,9 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         this.getSearchPanel().setHidden(!doShow);
     },
     onSortButtonPress: function() {
-        var popoverpanel = new Ext.Panel({
-            modal:true,
-            left:'10%',
-            top:'10%',
-            width:'80%',
-            height:'80%',
-            hideOnMaskTap: true,
-            scroll: 'vertical',
-            items:[{
-                xtype: 'list',
-                itemTpl: '{name}',
-                flex: 1
-            }]
-    });
-    Ext.Viewport.add(popoverpanel);
-    popoverpanel.showBy(this.getSortButton());
+        var popoverpanel = Ext.create('widget.popuplist');
+        Ext.Viewport.add(popoverpanel);
+        popoverpanel.showBy(this.getSortButton());
     },
     onPlacesListItemTap:function(me,idx,target,record){
         this.setLastTabNum(1);

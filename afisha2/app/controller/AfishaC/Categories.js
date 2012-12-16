@@ -66,15 +66,16 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         return false;
     },
     
-    loadJsonP: function(type, callback) {	        
+    loadJsonP: function(type, callback) {
+        // todo: перевести на json можно оптимизировать не делать encode	        
         Ext.data.JsonP.request({
             url : 'http://query.yahooapis.com/v1/public/yql',
             params: {format:'json', q: 'select * from json where url="' +
                                       'www.tula.rodgor.ru/nafisha/export_json.php?type=' + type + '"'},
-            //url: Global.server_url,//'http://afisha.mikhelev.ru/app/testbase',
-            //params:{
-            //    type: type
-            //},
+            url: Global.server_url,
+            params:{
+                type: type
+            },
             callbackKey: 'callback',
             scope:this,
             callback: callback
@@ -86,7 +87,8 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             if (success){
                 //check that fields not undefined
                 //var data_str = Ext.encode(response.root);
-                var data_str = Ext.encode(response.query.results.json.root);
+
+                var data_str = Ext.encode(response.root);
                 if( recNo >= 0 ) {
                     var rec = cache.getById(type);
                     rec.set('data', data_str);
@@ -130,30 +132,26 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             return false;
         }
 
-        for (var i = 0; i < data.length; i++){
-            for (var name in data[i]){
-                if (!name)
-                    continue;
-                switch (name){
+        for (var i in data){
+                 switch (i){
                     case 'schedule':{
                         // раньше у разных type были разные поля в schedule, исправляем это, чтобы не лепить еще больше костылей
-                        schStore.setData(Afisha.gf.unifySchedule(data[i][name]));
+                        schStore.setData(Afisha.gf.unifySchedule(data[i]));
                         schStore.setCurrentType(type);
                         break;
                     }
                     case 'films':
                     case 'events':{
-                        eventsStore.setData(data[i][name]);
+                        eventsStore.setData(data[i]);
                         eventsStore.setCurrentType(type);   
                         break;
                     }
                     case 'places':{
-                        placesStore.setData(data[i][name]);
+                        placesStore.setData(data[i]);
                         placesStore.setCurrentType(type);   
                         break;
                     }
                 }
-            }
         }
         console.log('loaded schedule ' + schStore.getCount());
         console.log('loaded places ' + placesStore.getCount());
