@@ -153,7 +153,7 @@ Ext.application({
     requires:['Ext.DateExtras', 'Afisha.util.gf','Afisha.util.schMethods'],
     views:['Viewport','ImgFullView','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView','AfishaViews.EventView'],
     models:['AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList'],
-    stores:['AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule'],
+    stores:['AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule','AfishaStores.Dictionary'],
     controllers:['Navigation','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','AfishaC.EventView','ImgFullView'],
     launch: function() {
         //компенсируем изменения сенчи
