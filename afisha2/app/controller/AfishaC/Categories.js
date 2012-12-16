@@ -69,9 +69,9 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
     loadJsonP: function(type, callback) {
         // todo: перевести на json можно оптимизировать не делать encode	        
         Ext.data.JsonP.request({
-            url : 'http://query.yahooapis.com/v1/public/yql',
-            params: {format:'json', q: 'select * from json where url="' +
-                                      'www.tula.rodgor.ru/nafisha/export_json.php?type=' + type + '"'},
+//            url : 'http://query.yahooapis.com/v1/public/yql',
+//            params: {format:'json', q: 'select * from json where url="' +
+//                                      'www.tula.rodgor.ru/nafisha/export_json.php?type=' + type + '"'},
             url: Global.server_url,
             params:{
                 type: type
@@ -86,9 +86,9 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         var callback = function(success,response){
             if (success){
                 //check that fields not undefined
-                //var data_str = Ext.encode(response.root);
 
                 var data_str = Ext.encode(response.root);
+                //var data_str = Ext.encode(response.query.results.json.root);
                 if( recNo >= 0 ) {
                     var rec = cache.getById(type);
                     rec.set('data', data_str);
@@ -127,13 +127,14 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         var schStore = Ext.getStore('Schedule');
         var placesStore = Ext.getStore('Places');
         var eventsStore = Ext.getStore('Events');
+        var dictStore = Ext.getStore('Dictionary');
         if(!schStore || !placesStore || !eventsStore){
             console.log('Ошибка загрузки store!');
             return false;
         }
 
         for (var i in data){
-                 switch (i){
+                  switch (i){
                     case 'schedule':{
                         // раньше у разных type были разные поля в schedule, исправляем это, чтобы не лепить еще больше костылей
                         schStore.setData(Afisha.gf.unifySchedule(data[i]));
@@ -151,15 +152,27 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                         placesStore.setCurrentType(type);   
                         break;
                     }
+                    default:{
+                        var idx = dictStore.find('type',i);
+                        if ( idx == -1){
+                            dictStore.add({type:i, data:data[i]})
+                        } else {
+                            var record = dictStore.getAt(idx);
+                            record.set('data',data[i])
+                        }
+                        break;
+                    }
                 }
-        }
+            }
         console.log('loaded schedule ' + schStore.getCount());
         console.log('loaded places ' + placesStore.getCount());
         console.log('loaded events ' + eventsStore.getCount());
+        console.log('loaded dictionaries ' + dictStore.getCount());
         //debugger;
         
         this.currentCategory = type;
         this.switchToEvents();
         return true;
     }
-});
+}
+);
