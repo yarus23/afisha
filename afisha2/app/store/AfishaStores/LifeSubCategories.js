@@ -8,21 +8,21 @@ Ext.define('Afisha.store.AfishaStores.LifeSubCategories', {
             rootProperty: 'root'
         },
         data:[
-            { id: 'beauty', name: 'Салоны красоты', type: 'beauty',
-                left: { name: 'Услуги', store: null,/*Afisha.stores.beautyFilmsStore,*/ id: 'beautyevent' },
-                right: {name: 'Салоны красоты', store: null,/*Afisha.stores.beautyPlacesStore,*/ id: 'beauty' }
+            { id: 'beauty', name: 'Салоны красоты', type: 'beauty',options:{schType:'service'},
+                left: { name: 'Услуги',  id: 'beautyevent' },
+                right: {name: 'Салоны красоты', id: 'beauty' }
             },
-            { id: 'fitnes', name: 'Спорт', type: 'fitnes', 
-                left: { name: 'Услуги', store: null,/*Afisha.stores.fitnesFilmsStore,*/ id: 'fitnesevent' },
-                right: {name: 'Спорт', store: null,/*Afisha.stores.fitnesPlacesStore,*/ id: 'fitnes' }
+            { id: 'fitnes', name: 'Спорт', type: 'fitnes', options:{schType:'service'},
+                left: { name: 'Услуги', id: 'fitnesevent' },
+                right: {name: 'Спорт',  id: 'fitnes' }
             },
-            { id: 'medic', name: 'Медцентры', type: 'medic',
-                left: { name: 'Услуги', store: null,/*Afisha.stores.medicFilmsStore,*/ id: 'medicevent' },
-                right: {name: 'Медцентры', store: null,/*Afisha.stores.medicPlacesStore,*/ id: 'medic' }
+            { id: 'medic', name: 'Медцентры', type: 'medic',options:{schType:'service'},
+                left: { name: 'Услуги', id: 'medicevent' },
+                right: {name: 'Медцентры', id: 'medic' }
             },
-            { id: 'stomotolog', name: 'Стоматология', type: 'stomotolog',
-                left: { name: 'Услуги', store: null,/*Afisha.stores.stomotologFilmsStore,*/ id: 'stomotologevent' },
-                right: {name: 'Стоматология', store: null,/*Afisha.stores.stomotologPlacesStore,*/ id: 'stomotolog' }
+            { id: 'stomotolog', name: 'Стоматология', type: 'stomotolog',options:{schType:'service'},
+                left: { name: 'Услуги', id: 'stomotologevent' },
+                right: {name: 'Стоматология', id: 'stomotolog' }
             } 
         ]
         

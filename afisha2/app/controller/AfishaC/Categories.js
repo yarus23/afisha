@@ -132,7 +132,10 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             console.log('Ошибка загрузки store!');
             return false;
         }
-
+        schStore.clearData();
+        placesStore.clearData();
+        eventsStore.clearData();
+        
         for (var i in data){
                   switch (i){
                     case 'schedule':{

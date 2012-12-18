@@ -9,7 +9,8 @@ Ext.define('Afisha.model.AfishaModels.Categories', {
             { name: 'filter', type: 'auto', defaultValue:null }, // показывать ли диалог фильтра
             { name: 'left', type: 'auto', defaultValue:null },
             { name: 'right', type: 'auto', defaultValue:null },
-            { name: 'subcategories', type: 'string', defaultValue:null }
+            { name: 'subcategories', type: 'string', defaultValue:null },
+            { name: 'options', type: 'auto', defaultValue:null },
         ]
     }
 });

@@ -12,6 +12,8 @@ Ext.define('Afisha.view.Viewport',{
                 xtype:'placeview'
             },{
                 xtype:'eventview'
+            },{
+                xtype:'mapview'
             }
         ],
         fullscreen:true,

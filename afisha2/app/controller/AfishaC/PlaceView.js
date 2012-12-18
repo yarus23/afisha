@@ -2,21 +2,83 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
     extend: 'Ext.app.Controller',
 
     config: {
+        currentType:'',
         refs: {
             viewport: 'aviewport',
+            selectfield:'aviewport placeview toolbar selectfield',
             title:'aviewport placeview panel#pv_header panel#pv_title',
             rateCount:'aviewport placeview panel#pv_header panel#pv_rate_count',
             rateImg:'aviewport placeview panel#pv_header img',
             buttons:'aviewport placeview panel#pv_buttons',
             photogallery: 'aviewport placeview photogallery',
-            schList: 'schedulelist'
+            schList: 'aviewport placeview schedulelist',
+            footer: 'aviewport placeview panel#pv_footer'
         },
     },
     initView:function(record){
-        this.setupHeader(record)
+        var type = Ext.getStore('Places').getCurrentType();
+        this.setCurrentType(type);
+        //изврат с обходом подкатегорий, чтобы вытащить опции. пригодится в избранном
+        var options;
+        var filter;
+        var categoriesStore = Ext.getStore('Categories');
+        var catStore = categoriesStore.getById(type);//LifeSubCategories
+        if (!catStore){
+            categoriesStore.findBy(function(rec){
+                var sub = rec.get('subcategories');
+                if (!sub)
+                    return false;
+                var res = Ext.getStore(sub).getById(type);
+                if (res){
+                    options = res.get('options');
+                    filter = res.get('filter')
+                }
+                else
+                    return false;
+            })
+        } else {
+            options = catStore.get('options');
+            filter = catStore.get('filter')
+        } 
+        this.setSelectConfig(record, options);
+        this.setupHeader(record);
         this.checkButtonsFields(record);
         this.collectImages(record);
-        this.getSchList().bindScheduleData(record.get('id'),null,false);
+        record.set('type',type);
+        this.getFooter().setRecord(record);
+        //this.getSchList().bindScheduleData(record.get('id'),null,false);
+    },
+    setSelectConfig:function(record, options){
+        var select = this.getSelectfield();
+        var schList = this.getSchList();
+        if (!options || options.schType == 'none'){
+            select.hide();
+            schList.hide();
+            return;
+        }
+        else{
+            schList.show()
+        }
+        var cnt = 0;
+        if (options.schType == 'service'){
+            this.getSchList().bindScheduleData(record.get('id'),null,false);
+            cnt = 1;
+        } else if (options.schSelectDefType == null){
+            cnt = this.getSchList().bindScheduleData(record.get('id'),null,false);
+            select.setValue('full')
+        } else if (options.schSelectDefType == 'week'){
+            cnt = this.getSchList().bindScheduleData(record.get('id'),'week',false);
+            select.setValue('week')
+        } else {
+            cnt = this.getSchList().bindScheduleData(record.get('id'),new Date(),false);
+            select.setValue(0)
+        }
+        if (cnt < 2)
+            select.hide()
+        else
+            select.show();
+        //this.getSchList().bindScheduleData(record.get('id'),null,true);
+        //debugger;
     },
     setupHeader:function(record){
         var name = record.get('name');
@@ -39,7 +101,12 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
                 id:'mapBtn',
                 xtype:'clickbutton',
                 data:{
-                    value:address
+                    value:address,
+                    latitude:lng,
+                    longitude:lat
+                },
+                handler:function(){
+                    Afisha.app.fireEvent('showItem', 'mapview',this.getData());
                 }
             })
         }

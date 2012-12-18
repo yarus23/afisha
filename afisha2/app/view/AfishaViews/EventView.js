@@ -7,10 +7,23 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
         cls:'detailsView',
         layout:'fit',
         items:[{
-            xtype:'titlebar',
+            xtype:'toolbar',
             docked:'top',
             items: [{
                 xtype:'backbutton',
+            },{
+                xtype:'spacer'
+            },{
+                xtype:'selectfield',
+                options:[
+                    {text:'Сегодня',value:0},
+                    {text:'Завтра',value:1},
+                    {text:'Текущая неделя',value:'week'},
+                    {text:'Следующая неделя',value:'nextweek'},
+                    {text:'Все дни', value:'full'}],
+                name:'options',
+                width:'60%',
+                itemId:'selectDate',
             }]
         },{
             xtype:'panel',
@@ -64,13 +77,44 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
                     disabled: true
                 },
                 height:'10em',
-                ob_type:'event'
+                ob_type:'event',
                 //layout:'fit'
             },{
                 xtype:'panel',
                 id:'ev_buttons',
                 layout:'vbox',
-                style:'margin-top:0.5em; border-top-color: #999;'
+                style:'margin-top:0.5em; border-top-color: #999 !important;'
+            },{
+                xtype:'panel',
+                id:'ev_footer',
+                layout:'fit',
+                //baseCls:'x-list',
+                cls:'detailsFooter',
+                tpl:new Ext.XTemplate(
+
+                    '<tpl if="description.length"><div class="description">{description}</div></tpl>',      //event
+                    '<tpl if="description.length"><div class="separator"></div></tpl>',      //both
+                    '<tpl if="text.length"><div class="separator"></div></tpl>',      //both
+                    '<div class="info"><tpl if="country.length"><b>{country}&nbsp;</b></tpl><tpl if="year.length && year &gt;  &quot;0&quot; "><b>{year}</b></tpl></div>',//event
+                    '<tpl if="director.length"><div class="info"><b>Режиссер:</b>&nbsp;{director}</div></tpl>',//event
+                    '<tpl if="cast.length"><div class="info"><b>В ролях:</b>&nbsp;{cast}</div></tpl>',       //event
+                    '<tpl if="country.length || director.length || cast.length"><div class="separator"></div></tpl>',
+                    {
+                        getPriceDescription:function(type){
+                            return 'Цена билета';
+                        },
+                        getDataByIdList:function(idList, type){
+                            var res = [];
+                            var dict = Ext.getStore('Dictionary');
+                            var idx = dict.find('type',type);
+                            var data = dict.getAt(idx).get('data');
+                            for (var i = 0; i< idList.length; i++){
+                                res.push(data[idList[i]])
+                            }
+                            return res.join(', ');
+                        }
+                    }
+                )
             }]
         }] 
     }
