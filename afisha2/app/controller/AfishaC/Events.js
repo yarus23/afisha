@@ -1,3 +1,4 @@
+// todo: при поиске сбрасывать фильтры
 
 Ext.define('Afisha.controller.AfishaC.Events', {
     extend: 'Ext.app.Controller',
@@ -42,9 +43,25 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         }
     },
     initView:function(opt){
-        this.sortType = {};
-        this.sortType[this.getEventsList().id] = 'alphabet';
-        this.sortType[this.getPlacesList().id] = 'alphabet';
+        this.getEventsList().sortConfig = { 
+            type: 'filterAllDays', 
+            caption: 'Выбрать за',
+            data: [
+                    { name:'Сегодня', value:'filterCurrentDay' },
+                    { name:'Завтра', value:'filterNextDay' },
+                    { name:'Текущая неделя', value:'filterCurrentWeek' },
+                    { name:'Следущая неделя', value:'filterNextWeek' },
+                    { name:'Все', value:'filterAllDays' }
+                ] };
+        this.getPlacesList().sortConfig = { 
+            type: 'alphabet', 
+            caption: 'Сортировать по',
+            data: [
+                    { name:'Алфавиту', value:'alphabet' },
+                    { name:'Рейтингу', value:'rating' },
+                    { name:'Расстоянию', value:'distance' }
+
+                ] };
         this.setupDialog(opt.name, opt.eventsName,opt.placesName, opt.onlyPlaces, opt.filter);
     },
     onSwitch: function(){
@@ -79,36 +96,21 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         this.getSearchPanel().setHidden(!doShow);
     },
     onSortMenuItemPress: function(val) {
-        this.sortType[this.getTabpanel().getActiveItem().id] = val;
+        this.getTabpanel().getActiveItem().sortConfig.type = val;
         console.log('pressed ' + val);
     },
     onSortButtonPress: function() {
         if( !this.sortpopup )
             this.sortpopup = Ext.create('widget.popuplist');
         
-        var data;
         var activeItem = this.getTabpanel().getActiveItem();
         
-        if( activeItem === this.getEventsList() )
-            data = [
-                    { name:'Алфавиту', value:'alphabet' },
-                    { name:'Рейтингу', value:'rating' }
-
-                ]
-            else
-            data = [
-                    { name:'Алфавиту', value:'alphabet' },
-                    { name:'Рейтингу', value:'rating' },
-                    { name:'Расстоянию', value:'distance' }
-
-                ];
-        
         if( this.sortpopup.lastPanel != activeItem ) {
-            this.sortpopup.setTitle('Сортировать по');
+            this.sortpopup.setTitle(activeItem.sortConfig.caption);
             this.sortpopup.setFn({ Fn: this.onSortMenuItemPress, scope: this});
-            this.sortpopup.setData(data);
+            this.sortpopup.setData(activeItem.sortConfig.data);
             this.sortpopup.lastPanel = activeItem;
-            this.sortpopup.select(this.sortType[activeItem.id]);
+            this.sortpopup.select(activeItem.sortConfig.type);
         }
 
         this.sortpopup.showBy(this.getSortButton());
