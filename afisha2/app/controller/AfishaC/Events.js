@@ -42,6 +42,9 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         }
     },
     initView:function(opt){
+        this.sortType = {};
+        this.sortType[this.getEventsList().id] = 'alphabet';
+        this.sortType[this.getPlacesList().id] = 'alphabet';
         this.setupDialog(opt.name, opt.eventsName,opt.placesName, opt.onlyPlaces, opt.filter);
     },
     onSwitch: function(){
@@ -75,9 +78,40 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         }
         this.getSearchPanel().setHidden(!doShow);
     },
+    onSortMenuItemPress: function(val) {
+        this.sortType[this.getTabpanel().getActiveItem().id] = val;
+        console.log('pressed ' + val);
+    },
     onSortButtonPress: function() {
-        var popoverpanel = Ext.create('widget.popuplist', { options: [{name:'1', value:'2'}]});
-        popoverpanel.showBy(this.getSortButton());
+        if( !this.sortpopup )
+            this.sortpopup = Ext.create('widget.popuplist');
+        
+        var data;
+        var activeItem = this.getTabpanel().getActiveItem();
+        
+        if( activeItem === this.getEventsList() )
+            data = [
+                    { name:'Алфавиту', value:'alphabet' },
+                    { name:'Рейтингу', value:'rating' }
+
+                ]
+            else
+            data = [
+                    { name:'Алфавиту', value:'alphabet' },
+                    { name:'Рейтингу', value:'rating' },
+                    { name:'Расстоянию', value:'distance' }
+
+                ];
+        
+        if( this.sortpopup.lastPanel != activeItem ) {
+            this.sortpopup.setTitle('Сортировать по');
+            this.sortpopup.setFn({ Fn: this.onSortMenuItemPress, scope: this});
+            this.sortpopup.setData(data);
+            this.sortpopup.lastPanel = activeItem;
+            this.sortpopup.select(this.sortType[activeItem.id]);
+        }
+
+        this.sortpopup.showBy(this.getSortButton());
     },
     onPlacesListItemTap:function(me,idx,target,record){
         this.setLastTabNum(1);
@@ -115,6 +149,15 @@ Ext.define('Afisha.controller.AfishaC.Events', {
     },
     
     goBack: function() {
+        if( !this.sortpopup.getHidden() ) {
+            this.sortpopup.hide();
+            return true;
+        }
+        if( !this.getSearchPanel().getHidden() ) {
+            this.onSearchClear();
+            this.getSearchPanel().setHidden(true);  
+            return true;          
+        }
         return false;
     }
 })

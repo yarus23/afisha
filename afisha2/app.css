@@ -493,6 +493,10 @@ form#optionsView #authReset {
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #0c0c35), color-stop(2%, #0c0c35), color-stop(100%, #0c0c35));
 }
 
+.x-item-selected {
+//border:1px solid red;
+}
+
 //* {
 //    font-family: "Tahoma";
 //}
