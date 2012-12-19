@@ -1,4 +1,5 @@
 // todo: при поиске сбрасывать фильтры
+// todo: посмотреть как большой список в landscape
 
 Ext.define('Afisha.controller.AfishaC.Events', {
     extend: 'Ext.app.Controller',
@@ -132,7 +133,7 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         tabPanel.getTabBar().getAt(1).setTitle(placesName);
         
         // переключим на places если нужно
-       tabPanel.setActiveItem(onlyPlaces ? 1 : 0)
+        tabPanel.setActiveItem(onlyPlaces ? 1 : 0)
         
         // скроем тулбар если нужно
         tabPanel.getTabBar().setHidden(onlyPlaces);
@@ -143,7 +144,7 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         
         // спрячем ненужное
         this.getFilterButton().setHidden(filter == null);
-        //this.getSortButton().setHidden(filter != null);
+        this.getSortButton().setHidden(filter != null);
         
         this.onSearchClear();
         this.getSearchPanel().setHidden(true);
@@ -151,7 +152,7 @@ Ext.define('Afisha.controller.AfishaC.Events', {
     },
     
     goBack: function() {
-        if( !this.sortpopup.getHidden() ) {
+        if( this.sortpopup && !this.sortpopup.getHidden() ) {
             this.sortpopup.hide();
             return true;
         }
