@@ -14,7 +14,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     },
     
     onAfishaPressed: function(){
-        Ext.Viewport.getAt(0).setActiveItem(1);
+        Ext.Viewport.getAt(0).animateActiveItem(1, {type: 'slide', direction: 'left'});
     },
     
     // здесь я дергаю view который дергает controller который вызывает то что 
