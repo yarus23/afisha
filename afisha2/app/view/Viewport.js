@@ -1,8 +1,11 @@
+// todo: убрать aviewport поместить все в Ext.Viewport
 Ext.define('Afisha.view.Viewport',{
     extend:'Ext.Container',
     xtype:'aviewport',
     config:{
         items:[{
+                xtype:'tiles'
+            },{
                 xtype:'categories'
             }, {
                 xtype: 'events'

@@ -497,6 +497,27 @@ form#optionsView #authReset {
 //border:1px solid red;
 }
 
+div.tilerow {
+    
+}
+div.tilebutton {
+    margin:0.2em;
+    opacity: 0.7;
+    border-radius: 0.3em;
+    background-color: gray;
+    box-shadow:2px 2px 3px 0px rgba(119, 119, 119, 0.75);
+}
+
+div.tilebutton div.tileTitle {
+    padding-left:0.5em;
+    padding-top:0.5em;
+    color: white
+}
+div.tilebutton div.tileDescr {
+    font-size: small;
+    padding-left:0.5em;
+}
+
 //* {
 //    font-family: "Tahoma";
 //}

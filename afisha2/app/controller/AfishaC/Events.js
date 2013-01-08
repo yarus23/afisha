@@ -50,8 +50,8 @@ Ext.define('Afisha.controller.AfishaC.Events', {
             data: [
                     { name:'Сегодня', value:'filterCurrentDay' },
                     { name:'Завтра', value:'filterNextDay' },
-                    { name:'Текущая неделя', value:'filterCurrentWeek' },
-                    { name:'Следущая неделя', value:'filterNextWeek' },
+                    { name:'Текущую неделю', value:'filterCurrentWeek' },
+                    { name:'Следущую неделю', value:'filterNextWeek' },
                     { name:'Все', value:'filterAllDays' }
                 ] };
         this.getPlacesList().sortConfig = { 
