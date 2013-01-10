@@ -151,10 +151,10 @@ Afisha.ckeckByDate = function(event_id, date, end_date, val_field){
 Ext.application({
     name: 'Afisha',
     requires:['Ext.DateExtras', 'Afisha.util.gf','Afisha.util.schMethods'],
-    views:['Viewport','ImgFullView','MapView','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView','AfishaViews.EventView', 'AfishaViews.TileView'],
-    models:['AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList'],
-    stores:['AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule','AfishaStores.Dictionary'],
-    controllers:['Navigation','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','AfishaC.EventView','ImgFullView','MapView', 'AfishaC.TilesView'],
+    views:['Viewport','ImgFullView','MapView','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView','AfishaViews.EventView', 'AfishaViews.TileView','News.NewsList'],
+    models:['AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList','News.NewsList'],
+    stores:['AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule','AfishaStores.Dictionary','News.NewsList'],
+    controllers:['Navigation','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','AfishaC.EventView','ImgFullView','MapView', 'AfishaC.TilesView','News.NewsList'],
     launch: function() {
         //компенсируем изменения сенчи
         Date.prototype.format = function(format){
