@@ -135,9 +135,10 @@ Ext.define('Afisha.view.AfishaViews.Events',{
         },  
         {
             xtype: 'tabpanel',
+            layout: { animation: false },
             tabBar : {
                layout : { 
-                  pack : 'center' 
+                  pack : 'center'
                },
                cls:'eventsTabBar',
                height:'2.2em'

@@ -26,18 +26,35 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
     launch: function(){
         this.getApplication().on({
             switchToEvents: this.switchToEvents,
+            switchTo: this.switchTo,
             scope: this});
             
     },
-
+    // методы с возможностью загружать данные торчат наружу
+    switchTo: function(id) {
+       var me = this;
+       this.loadCategory(id, function() { me.showEventsDialog(id) });        
+    },
     switchToEvents: function() {
-        this.getApplication().fireEvent('showItem', 'events',{
-            name: this.selectedItem.get('name'),
-            eventsName: this.selectedItem.get('left') ? this.selectedItem.get('left').name : '',
-            placesName: this.selectedItem.get('right').name,
-            onlyPlaces: this.selectedItem.get('hiddenToolbar'),
-            filter: this.selectedItem.get('filter')
-        });
+        this.switchTo(this.selectedItem.get('id'));
+    },
+    
+    // программно переключаемся на какой хотим
+    showEventsDialog: function(name) {
+         var catStore = Ext.getStore(this.defaultStore);
+         var res = catStore.find('id', name);
+         if( res < 0 )
+            alert('Нет такой категории');
+         else {
+            var record = catStore.getAt(res);
+            this.getApplication().fireEvent('showItem', 'events',{
+                name: record.get('name'),
+                eventsName: record.get('left') ? record.get('left').name : '',
+                placesName: record.get('right').name,
+                onlyPlaces: record.get('hiddenToolbar'),
+                filter: record.get('filter')
+            });
+        }
     },
     
     onCatListItemTap:function(me,idx,target,record){
@@ -50,8 +67,8 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             this.currentSubStore = subCategoriesStore;
             return;
         }
-        this.loadCategory(record.get('type'));
-        //this.switchToEvents();
+        var me = this;
+        this.loadCategory(record.get('type'), function() { me.showEventsDialog(record.get('id')) });
     },
     reInitCategoryList:function(){
         this.getCatList().setStore(this.defaultStore)
@@ -82,7 +99,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         });
 	},
 			
-    loadCategory:function(type){
+    loadCategory:function(type, user_callback){
         var callback = function(success,response){
             if (success){
                 //check that fields not undefined
@@ -96,7 +113,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                 }
                 else
                     cache.insert(0, { id: type, data: data_str, timestamp: Ext.Date.now() });
-                this.fillStores(data_str,type)
+                this.fillStores(data_str,type, user_callback)
             } else {
                 Afisha.gf.alert('Не удалось загрузить данные. Проверьте интернет соединение.');
                 console.log("Не удалось загрузить данные")                
@@ -111,9 +128,9 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         if( recNo >= 0 && (Ext.Date.now() - cache.getAt(recNo).get('timestamp')) < (1000 * 60 * 60)) {
             console.log('loading ' + type + ' from cache');
             if( this.currentCategory == type )
-                this.switchToEvents();
+                user_callback();
             else
-                this.fillStores(cache.getAt(recNo).get('data'),type);
+                this.fillStores(cache.getAt(recNo).get('data'),type, user_callback);
         }
         else {
             Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
@@ -121,7 +138,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         }
     },
     
-    fillStores:function(data_str, type){
+    fillStores:function(data_str, type, user_callback){
 	    var data = Ext.decode(data_str);
         
         var schStore = Ext.getStore('Schedule');
@@ -174,7 +191,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         //debugger;
         
         this.currentCategory = type;
-        this.switchToEvents();
+        user_callback();
         return true;
     }
 }

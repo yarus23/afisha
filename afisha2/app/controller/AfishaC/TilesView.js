@@ -9,7 +9,8 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
         control: {
             view: {
                 afishaPressed: 'onAfishaPressed',
-                newsPressed:'onNewsPressed'
+                newsPressed:'onNewsPressed',
+                cinemaPressed: 'onCinemaPressed'
             }
         }
     },
@@ -19,6 +20,9 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     },
     onNewsPressed:function(){
         this.getApplication().fireEvent('showItem', 'newslist');
+    },
+    onCinemaPressed: function() {
+        this.getApplication().fireEvent('switchTo', 'cinema');
     },
     
     // здесь я дергаю view который дергает controller который вызывает то что 
@@ -32,7 +36,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                 items: [ 
                     { title: 'Клубы', id: 'clubs'}, 
                     { title: 'Новости', id: 'news', handler:'newsPressed' }, 
-                    { title: 'Кино', id: 'cinema' }]
+                    { title: 'Кино', id: 'cinema', handler: 'cinemaPressed' }]
             }, {
                 items: [
                     { title: 'Скидки', id: 'discounts' }, 

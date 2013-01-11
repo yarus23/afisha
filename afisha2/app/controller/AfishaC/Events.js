@@ -1,5 +1,6 @@
 // todo: при поиске сбрасывать фильтры
 // todo: посмотреть как большой список в landscape
+// todo: при показанном поиске кнопка назад сначала отключает поиск
 
 Ext.define('Afisha.controller.AfishaC.Events', {
     extend: 'Ext.app.Controller',
