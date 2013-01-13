@@ -52,7 +52,8 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                 eventsName: record.get('left') ? record.get('left').name : '',
                 placesName: record.get('right').name,
                 onlyPlaces: record.get('hiddenToolbar'),
-                filter: record.get('filter')
+                filter: record.get('filter'),
+                id: name
             });
         }
     },
@@ -173,12 +174,9 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                         break;
                     }
                     default:{
-                        var idx = dictStore.find('type',i);
+                        var idx = dictStore.find('id',i);
                         if ( idx == -1){
-                            dictStore.add({type:i, data:data[i]})
-                        } else {
-                            var record = dictStore.getAt(idx);
-                            record.set('data',data[i])
+                            dictStore.add({id:i, data:data[i]})
                         }
                         break;
                     }

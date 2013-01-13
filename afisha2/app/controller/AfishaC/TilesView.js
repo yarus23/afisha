@@ -10,7 +10,10 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
             view: {
                 afishaPressed: 'onAfishaPressed',
                 newsPressed:'onNewsPressed',
-                cinemaPressed: 'onCinemaPressed'
+                cinemaPressed: 'onCinemaPressed',
+                clubsPressed: 'onClubsPressed',
+                concertPressed: 'onConcertPressed',
+                restaurantPressed:'onRestaurantPressed'
             }
         }
     },
@@ -24,7 +27,15 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     onCinemaPressed: function() {
         this.getApplication().fireEvent('switchTo', 'cinema');
     },
-    
+    onClubsPressed: function() {
+        this.getApplication().fireEvent('switchTo', 'club');
+    },
+    onConcertPressed: function() {
+        this.getApplication().fireEvent('switchTo', 'concert');
+    },
+    onRestaurantPressed: function() {
+        this.getApplication().fireEvent('switchTo', 'restaurant');
+    },
     // здесь я дергаю view который дергает controller который вызывает то что 
     // написано в handler в описании айтемов, напрямую пробиться к методам controller'a не смог
     launch: function() {
@@ -34,17 +45,17 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                     { title: 'Настройки', iconCls: 'home', bg: 'green', color: 'black', id: 'settings'}]
             }, {
                 items: [ 
-                    { title: 'Клубы', id: 'clubs'}, 
+                    { title: 'Клубы', id: 'clubs', handler: 'clubsPressed'}, 
                     { title: 'Новости', id: 'news', handler:'newsPressed' }, 
                     { title: 'Кино', id: 'cinema', handler: 'cinemaPressed' }]
             }, {
                 items: [
                     { title: 'Скидки', id: 'discounts' }, 
-                    { title: 'Бары', flex: 2, text: 'Заказать столик в любом из баров Улан-Удэ. Узнать отзывы посетителей', id: 'pubs'}]
+                    { title: 'Бары', flex: 2, handler: 'restaurantPressed', text: 'Заказать столик в любом из баров Улан-Удэ. Узнать отзывы посетителей', id: 'pubs'}]
             }, {
                 items: [
                     { title: 'Услуги', id: 'help'}, 
-                    { title: 'Концерты', id: 'concert'}, 
+                    { title: 'Концерты', id: 'concert', handler: 'concertPressed'}, 
                     { title: 'Избранное', id: 'favorites' }]
             }];
         for( var v in def ) {

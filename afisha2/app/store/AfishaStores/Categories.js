@@ -12,7 +12,10 @@ Ext.define('Afisha.store.AfishaStores.Categories', {
                 left: { name: 'Фильмы',id: 'film' },
                 right: {name: 'Кинотеатры', id: 'kino' }
             },
-            { id: 'restaurant', name: 'Рестораны', type: 'restaurant', hiddenToolbar:true, filter: { items: ['kitchen', 'genre', 'district']},
+            { id: 'restaurant', name: 'Рестораны', type: 'restaurant', hiddenToolbar:true, 
+                filter: { items: [ { id: 'kitchen', name:'Кухня'},
+                                   { id: 'genre', name: 'Тип'},
+                                   { id: 'district', name: 'Район'}]},
                 options:{schType:'none'},
                 right: {id: 'restaurant' }
             },

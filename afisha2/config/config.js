@@ -1,7 +1,7 @@
 ﻿var Global = {
 	//
 	debug: false,
-	server_url: 'http://afisha.mikhelev.ru/app/testbase',//'http://afishache.co.cc/administrator/',
+	server_url: 'http://afisha.mikhelev.ru/app/ulanude',//'http://afishache.co.cc/administrator/',
 	db_name: 'afishache2',
 	//
 	app_name: 'Афиша Челябинска',

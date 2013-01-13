@@ -5,13 +5,13 @@
 Ext.define('Afisha.controller.AfishaC.Events', {
     extend: 'Ext.app.Controller',
     
-    
     config: {
         //чтобы при переходе назад на этот экран был открыт таб с которого пришли
         lastTabNum:0,
-        
+        categoryId: '', // текущая выбранная категория
         refs: {
             viewport: 'aviewport',
+            view:'events',
             toolbar: 'events titlebar',
             tabpanel: 'events tabpanel',
             eventsList: 'events tabpanel #eventsList',
@@ -23,6 +23,9 @@ Ext.define('Afisha.controller.AfishaC.Events', {
             searchPanel: 'events fieldset'
         },
         control: {
+            view: {
+                setFilter: 'OnSetFilter'
+            },
             tabpanel:{
                 activeitemchange: 'onSwitch'
             },
@@ -38,11 +41,18 @@ Ext.define('Afisha.controller.AfishaC.Events', {
             searchButton:{
                 tap: 'onSearchButtonPress'
             },
-            searchEdit:{
-                keyup: 'onSearchKeyUp',
-                clearicontap:'onSearchClear'
+            filterButton:{
+                tap: 'onFilterButtonPress'
             }
         }
+    },
+    init:function() {
+        this.control({
+            searchEdit: {
+                keyup: Ext.Function.createBuffered(this.onSearchKeyUp, 400, this),
+                clearicontap:'onSearchClear'
+            }
+        });        
     },
     initView:function(opt){
         this.getEventsList().sortConfig = { 
@@ -64,15 +74,29 @@ Ext.define('Afisha.controller.AfishaC.Events', {
                     { name:'Расстоянию', value:'distance' }
 
                 ] };
-        this.setupDialog(opt.name, opt.eventsName,opt.placesName, opt.onlyPlaces, opt.filter);
+        this.setupDialog(opt.name, opt.eventsName,opt.placesName, opt.onlyPlaces, opt.filter, opt.id);
+    },
+    onFilterButtonPress:function(){
+        var dialog = Ext.create('widget.filterview');
+        dialog.show();
+        dialog.fireEvent('construct', this.getCategoryId());
+    },
+    OnSetFilter: function(params) {
+        var f = [];
+        for( var i in params ) {
+            if( params[i] )
+                f.push({ property: i, value: params[i]});
+        }
+        debugger;
+        this.getPlacesList().getStore().filter(f);
     },
     onSwitch: function(){
         var me = this;
         setTimeout(function() { me.onSearchClear(); }, 300);
         this.getSearchPanel().setHidden(true);
     },
-    onSearchKeyUp: function(field) {
-        var value = field.getValue();
+    onSearchKeyUp: function() {
+        var value = this.getSearchEdit().getValue();
         var store = this.getTabpanel().getActiveItem().getStore();
         if(value){
            var match = '(' + value.replace(/ /g,'|') + ')';
@@ -125,7 +149,10 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         this.setLastTabNum(0);
         this.getApplication().fireEvent('showItem', 'eventview',record, true);
     },
-    setupDialog: function(name, eventsName, placesName, onlyPlaces, filter) {
+    setupDialog: function(name, eventsName, placesName, onlyPlaces, filter, id) {
+        
+        this.setCategoryId(id);
+        
         var tabPanel = this.getTabpanel();
         // имя диалога
         this.getToolbar().setTitle(name);
