@@ -22,7 +22,7 @@ Ext.define('Afisha.controller.AfishaC.FilterView', {
     onOK:function(){
         var v = this.getView().getValues();
         this.getEventView().fireEvent('setFilter', v);
-        this.getView().setHidden(true);
+        Ext.Viewport.remove(this.getView());
     },
     onConstruct:function(categoryId) {
         var catStore = Ext.getStore('Categories');
@@ -45,7 +45,7 @@ Ext.define('Afisha.controller.AfishaC.FilterView', {
                     label:filter[i].name,
                     options:options,
                     autoSelect:false,
-                    value:null });
+                    value:0 });
                 this.getFieldset().add(widget);
             }
          }

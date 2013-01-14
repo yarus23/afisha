@@ -76,18 +76,19 @@ Ext.define('Afisha.controller.AfishaC.Events', {
                 ] };
         this.setupDialog(opt.name, opt.eventsName,opt.placesName, opt.onlyPlaces, opt.filter, opt.id);
     },
-    onFilterButtonPress:function(){
-        var dialog = Ext.create('widget.filterview');
-        dialog.show();
-        dialog.fireEvent('construct', this.getCategoryId());
+    onFilterButtonPress:function(){          
+        this.dialog = Ext.create('widget.filterview');
+        this.dialog.show();
+        this.dialog.fireEvent('construct', this.getCategoryId());
     },
     OnSetFilter: function(params) {
         var f = [];
         for( var i in params ) {
-            if( params[i] )
+            if( params[i] && params[i] > 0 )
                 f.push({ property: i, value: params[i]});
         }
-        debugger;
+        //debugger;
+        this.getPlacesList().getStore().clearFilter(true);
         this.getPlacesList().getStore().filter(f);
     },
     onSwitch: function(){
