@@ -19,6 +19,8 @@ Ext.define('Afisha.view.Viewport',{
                 xtype:'mapview'
             },{
                 xtype:'newslist'
+            },{
+                xtype:'pageview'
             }
         ],
         fullscreen:true,

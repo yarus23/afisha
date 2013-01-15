@@ -24,16 +24,16 @@ Ext.define('News.view.viewer.Body', {
             swipe: {
                 element: 'element',
                 fn: function(evt, node,ops,eOpts) {
-                    News.app.dispatch({action:'onBodySwipe',controller:'Main',args:[evt.direction]},false)
+                    //News.app.dispatch({action:'onBodySwipe',controller:'Main',args:[evt.direction]},false)
                 }
             },
             tap: {
                 element: 'element',
                 fn: function(el) {
-                    if (el.target.tagName.toUpperCase() != "A")
-                        News.app.dispatch({action:'onBodyTap',controller:'Main'},false)
-                    else if (el.target.className == 'internalLink')
-                        News.app.dispatch({action:'onInternalHrefTap',controller:'Main',args:[el.target.getAttribute('type'),el.target.getAttribute('rid')]},false)
+//                    if (el.target.tagName.toUpperCase() != "A")
+//                        News.app.dispatch({action:'onBodyTap',controller:'Main'},false)
+                    //else if (el.target.className == 'internalLink')
+                    //    News.app.dispatch({action:'onInternalHrefTap',controller:'Main',args:[el.target.getAttribute('type'),el.target.getAttribute('rid')]},false)
                 }
             }
         }
