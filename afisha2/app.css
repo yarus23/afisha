@@ -536,6 +536,7 @@ div.newslist div.newslistitem:nth-child(even){
     height: 4em;*/
     margin-right: .3em;
     background-position-y: center;
+	background-repeat: no-repeat;
     /*border: 1px solid #d4d6e1;
     border-radius: 0.4em;
     //-webkit-border-radius: 0.4em;
@@ -574,127 +575,70 @@ div.newslist div.ListItemInfo{
     //text-overflow: ellipsis;
     color:#999;
 }
-div.pageview div.body-container div.viewer-body div.date-time{
+div.pageview  div.viewer-body div.date-time{
     font-size: 0.6em;
     color:#4d4d4d;
 }
-div.pageview div.body-container div.viewer-body div.header h1{
+div.pageview  div.viewer-body div.header h1{
     font-size:1.3em;
     font-weight: bold;
 }
 
-div.pageview div.body-container div.body-load div.x-mask,
-div.pageview div.body-container div.body-load div.x-mask div.x-mask-inner{
+div.pageview  div.body-load div.x-mask,
+div.pageview div.body-load div.x-mask div.x-mask-inner{
     background: none;
 }
-div.pageview div.body-container div.body-load div.x-mask div.x-mask-inner div.x-loading-spinner-outer{
+div.pageview  div.body-load div.x-mask div.x-mask-inner div.x-loading-spinner-outer{
     height:4.5em;
 }
-div.pageview div.body-container div.body-load div.x-mask div.x-mask-inner div.x-mask-message{
+div.pageview  div.body-load div.x-mask div.x-mask-inner div.x-mask-message{
     text-shadow:none;
     color:#4d4d4d;
 }
-div.pageview div.backButton{
-	width: 4.5em;
-}
-div.pageview div.backButton span.x-button-label{
-	font-size: 0.9em;
-}
-div.pageview div#swipeControlPanel div#recordsCounter{
-    line-height: 2.6em;
-    color: white;
-    font-size: 1em;
-    padding-right: 0.5em;
-}
-div.pageview div#swipeControlPanel div.top-toolbar-buttons{
-    margin-top: 0.2em;
-	margin-bottom: 0.2em;
-}
-div.pageview div.page-view-buttons-bar div#addFav span.favorites{
-    background-image: none;
-    background-color: white;
-}
-div.pageview div.page-view-buttons-bar div#addFav span.gold{
-     background-color: gold;
-     background-image: none;
-}
-div.pageview div.page-view-buttons-bar div.x-button.toolbar-button{
-    height: 2.6em;
-    margin-top: 0.2em;
-    width: 3em;
-}
-div.pageview div.page-view-buttons-bar div.x-button.toolbar-button{
-    height: 2.6em;
-    margin-top: 0.2em;
-    width: 3em;
-}
 
-div.pageview div.page-view-buttons-bar div.segmented-left{
-    width: 3em;
-    margin-right: 0;
-    border-right: 0;
-    -webkit-border-top-right-radius: 0;
-    border-top-right-radius: 0;
-    -webkit-border-bottom-right-radius: 0;
-    border-bottom-right-radius: 0;
-}
-div.pageview div.page-view-buttons-bar div.segmented-right{
-    width: 3em;
-    margin-left: 0;
-    -webkit-border-top-left-radius: 0;
-    border-top-left-radius: 0;
-    -webkit-border-bottom-left-radius: 0;
-    border-bottom-left-radius: 0; 
-}
-div.pageview div.page-view-buttons-bar div#minusFont{
-    height: 2.6em;
-}
-div.pageview div.page-view-buttons-bar div#plusFont{
-    height: 2.6em;
-}
 div.pageview div.page-view-buttons-bar .x-button .x-button-icon.x-icon-mask {
     width: 1.8em;
     height: 1.8em;
     -webkit-mask-size: 1.8em;
 }
-div.pageview div.body-container div.viewer-body div.x-html.x-innerhtml{
+div.pageview div.viewer-body div.x-html.x-innerhtml{
     padding: 0em;
     line-height: 1.3em;
     font-size: 0.8em;
 }
-div.pageview div.body-container div.viewer-body div.x-html div.header p{
+div.pageview div.viewer-body div.x-html div.header p{
     margin: 0 0 0.2em;
 }
-div.pageview div.body-container div.viewer-body div.x-html div.footer p{
+div.pageview div.viewer-body div.x-html div.footer p{
     margin: 0 0 0.5em;
 }
-/*div.pageview div.body-container div.viewer-body div.x-html div.footer > p{
+/*div.pageview div.viewer-body div.x-html div.footer > p{
     text-indent: 1em;
 }*/
-div.pageview div.body-container div.viewer-body div.footer,
-div.pageview div.body-container div.viewer-body div.header{
+div.pageview div.viewer-body div.footer,
+div.pageview div.viewer-body div.header{
     padding: 0.3em 1em 0.3em 0.5em;
 }
-div.pageview div.body-container div.viewer-body *{
+div.pageview div.viewer-body *{
     max-width:100%;
 }
-div.pageview div.body-container div.viewer-body div.footer img{
+div.pageview div.viewer-body div.footer img{
     //display:none;
     max-width:100%;
 }
-div.pageview div.body-container div.viewer-body div.footer p[align=center]>strong{
+div.pageview div.viewer-body div.footer p[align=center]>strong{
     color:#4d4d4d;
     font-size:0.9em;
 }
-div.pageview div.body-container div.viewer-body div.footer object,
-div.pageview div.body-container div.viewer-body div.footer embed,
-div.pageview div.body-container div.viewer-body div.footer iframe{
+div.pageview div.viewer-body div.footer object,
+div.pageview div.viewer-body div.footer embed,
+div.pageview div.viewer-body div.footer iframe{
     display:none;
 }
-div.pageview div.body-container div.viewer-body div.footer a.internalLink{
+div.pageview div.viewer-body div.footer a.internalLink{
     color:#911119 !important;
 }
-div.pageview div.body-container div.viewer-body div.footer a{
+div.pageview div.viewer-body div.footer a{
     color:#06C !important;
     padding-top: 0.4em;
     padding-bottom: 0.4em;

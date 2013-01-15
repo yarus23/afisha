@@ -189,33 +189,11 @@ Ext.define('Afisha.controller.News.NewsList', {
             return;
         rec_id = record.get('rid');
         type = record.get('type');
-        store = Ext.getStore('PageView');
+//        store = Ext.getStore('PageView');
         //body = this.getBody();
-        store.getProxy().setExtraParam('type',type);
-        store.getProxy().setExtraParam('id',rec_id);
         this.getApplication().fireEvent('showItem', 'pageview',{
-            list:   list,
-            store:  list ? list.getStore() : null,
-            index:  index,
-            record: record,
-            reInit: list ? false : true //если перешли по ссылке, до данных для избранного о статье нету, и надо их заполнить из загруженной статьи
+            type:type,
+            rec_id:rec_id
         });
-        return;
-        body.setBodyOptions({
-            list:   list,
-            store:  list ? list.getStore() : null,
-            index:  index,
-            record: record,
-            reInit: list ? false : true //если перешли по ссылке, до данных для избранного о статье нету, и надо их заполнить из загруженной статьи
-        });
-        body.parent.setActiveItem(1);
-        this.getViewport().setActiveItem(1);
-        if (!store.isLoaded){//first-time load. 
-            var me = this;
-            setTimeout(function(){
-                store.load(me.bindData, me);
-            },500);
-        } else
-            store.load(this.bindData, this);
     }
 });

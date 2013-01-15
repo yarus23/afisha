@@ -13,7 +13,8 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                 cinemaPressed: 'onCinemaPressed',
                 clubsPressed: 'onClubsPressed',
                 concertPressed: 'onConcertPressed',
-                restaurantPressed:'onRestaurantPressed'
+                restaurantPressed:'onRestaurantPressed',
+                favPressed:'onFavPressed'
             }
         }
     },
@@ -36,6 +37,9 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     onRestaurantPressed: function() {
         this.getApplication().fireEvent('switchTo', 'restaurant');
     },
+    onFavPressed: function(){
+        this.getApplication().fireEvent('showItem', 'favcontent');
+    },
     // здесь я дергаю view который дергает controller который вызывает то что 
     // написано в handler в описании айтемов, напрямую пробиться к методам controller'a не смог
     launch: function() {
@@ -56,7 +60,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                 items: [
                     { title: 'Услуги', id: 'help'}, 
                     { title: 'Концерты', id: 'concert', handler: 'concertPressed'}, 
-                    { title: 'Избранное', id: 'favorites' }]
+                    { title: 'Избранное', id: 'favorites', handler:'favPressed' }]
             }];
         for( var v in def ) {
             var row = Ext.create('Ext.Container', 

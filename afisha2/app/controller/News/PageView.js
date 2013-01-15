@@ -13,9 +13,10 @@ Ext.define('Afisha.controller.News.PageView', {
 //            favoritesList:'favcontent newslist',
 //            pageView: 'pageview',
             body:'pageview #body',
+            favBtn:'pageview favbutton'
 //            recordsCounter:'pageview toolbar panel#recordsCounter',
 //            swipeControlPanel:'pageview toolbar panel#swipeControlPanel',
-            sb:'segmentedbutton#catlist',
+
 //            favButton:'pageview toolbar #addFav',
 //            minusFontButton:'pageview toolbar #minusFont',
 //            plusFontButton:'pageview toolbar #plusFont',
@@ -23,14 +24,30 @@ Ext.define('Afisha.controller.News.PageView', {
         },
 
         control: {
-
+            favBtn:{
+                tap:'onFavBtnTap'
+            }
         }
+    },
+    onFavBtnTap:function(){
+        var params = {};
+        var store = Ext.getStore('PageView');
+        var favStore = Ext.getStore('Favorites');
+        params.type = store.getProxy().getExtraParams().type;
+        var record = this.getBody().getRecord();
+        params.rid = record.get('rid');
+        params.title = record.get('title');
+        params.descr = record.get('descr');
+        favStore.setFav(params);
     },
     initView:function(opt){
         var store = Ext.getStore('PageView');
         var body = this.getBody();
+        store.getProxy().setExtraParam('type',opt.type);
+        store.getProxy().setExtraParam('id',opt.rec_id);
         //body.setBodyOptions(opt);
-        body.parent.setActiveItem(1);
+        //body.parent.setActiveItem(1);
+        body.setMasked({});
         if (!store.isLoaded){//first-time load. 
             var me = this;
             setTimeout(function(){
@@ -294,6 +311,8 @@ Ext.define('Afisha.controller.News.PageView', {
 //            this.getRecordsCounter().setData({index:opts.index + 1,count:opts.list.getStore().getCount()});
 //        }
         //console.log(records[0]);
-        body.parent.setActiveItem(0);
+//        body.parent.setActiveItem(0);
+        body.setMasked(null);
+//        debugger;
     }
 });

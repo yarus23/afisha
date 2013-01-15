@@ -1,25 +1,29 @@
 Ext.define('Afisha.view.News.PageView', {
     extend: 'Ext.Container',
     xtype:'pageview',
-    requires:['Afisha.view.components.TopToolbar'],
+    requires:['Afisha.view.components.BackButton'],
     config: {
         controllerName:'News.PageView',
         layout:'vbox',
         cls:'pageview',
         items:[{
-            xtype:'toptoolbar',
-            title:'Новости'
-            },{
-            xtype:'container',
-            cls:'body-container',
-            layout:'card',
-            flex:1,
+            xtype:'titlebar',
+            title:'Новости',
             items:[{
+                xtype:'backbutton'   
+            },{
+                xtype:'favbutton'
+            }]
+            },{
                 xtype:'panel',
                 id:'body',
-                layout:'fit',
+                flex:1,
+                //layout:'fit',
                 bodyOptions: null,
-                masked:false,
+                //masked:false,
+                scrollable: {
+                    direction: 'vertical'
+                },
                 cls:'viewer-body',
                 styleHtmlContent:true,
                 tpl: new Ext.XTemplate(
@@ -35,22 +39,7 @@ Ext.define('Afisha.view.News.PageView', {
                                 return true;
                         }
                     }
-                ),
-                //flex:1,
-                scrollable: {
-                    direction: 'vertical',
-//                    directionLock: true
-                },
-            },{
-                xtype:'panel',
-                cls:'body-load',
-                scrollable:false,
-                masked:{
-                    xtype:'loadmask',
-                    message:'Загрузка...'
-                }
-                
-            }]
+                )
         }]
     }
 });

@@ -12,6 +12,20 @@ Ext.define('Afisha.view.components.BackButton', {
             align:'left'
 	}
 });
+Ext.define('Afisha.view.components.FavButton', {
+	extend: 'Ext.Button',
+	xtype: 'favbutton',
+	config: {
+            height:'2.2em',
+            //text: 'Назад',
+            ui: 'default',
+            iconCls: 'favorites',
+            iconMask: true,
+            iconAlign: 'center',
+//            cls: 'maintoolbar-back-btn',
+            align:'right'
+	}
+});
 Ext.define('Afisha.view.components.HrefBtn', {
 	extend: 'Ext.Button',
 	xtype: 'hrefbutton',
