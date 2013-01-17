@@ -24,6 +24,8 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
                 name:'options',
                 width:'60%',
                 itemId:'selectDate',
+            },{
+                xtype:'favbutton'
             }]
         },{
             xtype:'panel',

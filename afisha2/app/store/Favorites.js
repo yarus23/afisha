@@ -10,9 +10,25 @@ Ext.define('Afisha.store.Favorites', {
         }*/
     },
     isRecordInFav: function(type, rid){
-        debugger;
+        return this.findBy(function(rec,idx){
+            if (rec.get('type') == type && rec.get('rid') == rid)
+                return true;
+            return false;
+        })
     },
+    ///return true - added, false - removed
     setFav:function(opts){
-        debugger;
+        var idx = this.isRecordInFav(opts.type, opts.rid);
+        if (idx == -1){
+            var model = this.getModel();
+            var rec = new model(opts);
+            this.add(rec);
+            this.sync();
+            return true;
+        } else {
+            this.removeAt(idx);
+            this.sync();
+            return false;
+        }
     }
 });

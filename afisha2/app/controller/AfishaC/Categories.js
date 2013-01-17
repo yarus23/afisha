@@ -27,6 +27,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         this.getApplication().on({
             switchToEvents: this.switchToEvents,
             switchTo: this.switchTo,
+            switchToPlaceView:this.switchToPlaceView,
             scope: this});
             
     },
@@ -38,7 +39,20 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
     switchToEvents: function() {
         this.switchTo(this.selectedItem.get('id'));
     },
-    
+    switchToPlaceView:function(opts){
+        this.loadCategory(opts.type, function() {
+            var placesStore = Ext.getStore('Places');
+            var rec = placesStore.getById(opts.rid);
+            if (rec == null){
+                //del from favorites
+                var favStore = Ext.getStore('Favorites');
+                favStore.setFav(opts);
+                Afisha.gf.alert("Место больше недоступно и будет удалено из избранного!");
+                return;
+            }
+            Afisha.app.getApplication().fireEvent('showItem', 'placeview',rec, true);
+        });        
+    },
     // программно переключаемся на какой хотим
     showEventsDialog: function(name) {
          var catStore = Ext.getStore(this.defaultStore);

@@ -1,3 +1,7 @@
+div.x-button.favBtn.gold span.x-button-icon{
+    background-color: gold !important;
+    background-image: none !important;
+}
 div#splash {
     z-index	: 999;
     position	: absolute;

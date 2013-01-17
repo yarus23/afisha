@@ -38,13 +38,16 @@ Ext.define('Afisha.controller.News.PageView', {
         params.rid = record.get('rid');
         params.title = record.get('title');
         params.descr = record.get('descr');
-        favStore.setFav(params);
+        //params.type = 'news';
+        this.getFavBtn().setState(favStore.setFav(params));
     },
     initView:function(opt){
         var store = Ext.getStore('PageView');
         var body = this.getBody();
         store.getProxy().setExtraParam('type',opt.type);
         store.getProxy().setExtraParam('id',opt.rec_id);
+        var favStore = Ext.getStore('Favorites');
+        this.getFavBtn().setState(favStore.isRecordInFav(opt.type, opt.rec_id));
         //body.setBodyOptions(opt);
         //body.parent.setActiveItem(1);
         body.setMasked({});
@@ -71,6 +74,7 @@ Ext.define('Afisha.controller.News.PageView', {
 //        this.getBody().element.setStyle('font-size',size + 'em');
 //    },
     addToFavorites:function(){
+        debugger;
         //todo: проверка по type
         var opts,
             favStore,

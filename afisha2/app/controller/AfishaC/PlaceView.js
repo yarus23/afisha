@@ -3,6 +3,7 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
 
     config: {
         currentType:'',
+        currentRecord:null,
         refs: {
             viewport: 'aviewport',
             selectfield:'aviewport placeview toolbar selectfield',
@@ -12,12 +13,19 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
             buttons:'aviewport placeview panel#pv_buttons',
             photogallery: 'aviewport placeview photogallery',
             schList: 'aviewport placeview schedulelist',
-            footer: 'aviewport placeview panel#pv_footer'
+            footer: 'aviewport placeview panel#pv_footer',
+            favBtn:' aviewport placeview favbutton'
         },
+        control: {
+            favBtn:{
+                tap:'onFavBtnTap'
+            }
+        }
     },
     initView:function(record){
         var type = Ext.getStore('Places').getCurrentType();
         this.setCurrentType(type);
+        this.setCurrentRecord(record);
         //изврат с обходом подкатегорий, чтобы вытащить опции. пригодится в избранном
         var options;
         var filter;
@@ -46,7 +54,23 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         this.collectImages(record);
         record.set('type',type);
         this.getFooter().setRecord(record);
+        var favStore = Ext.getStore('Favorites');
+        this.getFavBtn().setState(favStore.isRecordInFav(type, record.get('id')));
         //this.getSchList().bindScheduleData(record.get('id'),null,false);
+    },
+    onFavBtnTap:function(){
+        var record = this.getCurrentRecord();
+        var params = {};
+        var favStore = Ext.getStore('Favorites');
+        params.type = this.getCurrentType();
+        params.rid = record.get('id');
+        params.title = record.get('name');
+        params.descr = record.get('address');
+        var res = favStore.setFav(params);
+        this.getFavBtn().setState(res);
+        if (res){
+            Afisha.gf.alert("Место добавлено в избранное!");
+        }
     },
     setSelectConfig:function(record, options){
         var select = this.getSelectfield();
