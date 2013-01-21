@@ -45,28 +45,28 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     launch: function() {
         var def = [{
                 items: [ 
-                    { title: 'Афиша', bg: 'blue', flex: 2, handler: 'afishaPressed', text: 'Все актуальные события в городе. Кинопремьеры, анонсы концертов', id: 'afisha' },
-                    { title: 'Настройки', iconCls: 'home', bg: 'green', color: 'black', id: 'settings'}]
+                    { title: 'Афиша', icon:'6w', bg: '#00bce2', flex: 2, handler: 'afishaPressed', text: 'Все актуальные события в городе. Кинопремьеры, анонсы концертов', id: 'afisha' },
+                    { title: 'Настройки', icon:'2w', bg: '#1ba456', color: 'white', id: 'settings'}]
             }, {
                 items: [ 
-                    { title: 'Клубы', id: 'clubs', handler: 'clubsPressed'}, 
-                    { title: 'Новости', id: 'news', handler:'newsPressed' }, 
-                    { title: 'Кино', id: 'cinema', handler: 'cinemaPressed' }]
+                    { title: 'Клубы', icon:'4w', bg:'#202020', id: 'clubs', handler: 'clubsPressed'}, 
+                    { title: 'Новости', icon:'5w', bg:'#cf274b', id: 'news', handler:'newsPressed' }, 
+                    { title: 'Кино', icon:'9', bg:'#c0df05', color:'black', id: 'cinema', handler: 'cinemaPressed' }]
             }, {
                 items: [
-                    { title: 'Скидки', id: 'discounts' }, 
-                    { title: 'Бары', flex: 2, handler: 'restaurantPressed', text: 'Заказать столик в любом из баров Улан-Удэ. Узнать отзывы посетителей', id: 'pubs'}]
+                    { title: 'Скидки', icon:'3', bg:'#e8e8e8', color:'black', id: 'discounts' }, 
+                    { title: 'Бары', icon:'10w', bg:'#74331d', descrColor: 'white', flex: 2, handler: 'restaurantPressed', text: 'Заказать столик в любом из баров Улан-Удэ. Узнать отзывы посетителей', id: 'pubs'}]
             }, {
                 items: [
-                    { title: 'Услуги', id: 'help'}, 
-                    { title: 'Концерты', id: 'concert', handler: 'concertPressed'}, 
-                    { title: 'Избранное', id: 'favorites', handler:'favPressed' }]
+                    { title: 'Услуги', icon:'8w', bg:'#202020', id: 'help'}, 
+                    { title: 'Концерты', icon:'7w', bg:'#00bce2', id: 'concert', handler: 'concertPressed'}, 
+                    { title: 'Избранное', icon:'1w', bg:'#e66021', id: 'favorites', handler:'favPressed' }]
             }];
         for( var v in def ) {
             var row = Ext.create('Ext.Container', 
                 { 
                     cls: 'tilerow',
-                    layout: { type: 'hbox', align: 'stretch'},
+                    layout: { type: 'hbox', align: 'stretch' },
                     flex: 1,
                     defaults: { flex: 1}
                 });
@@ -81,7 +81,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                 var tile = (function(handler) {
                  return Ext.create('Ext.Panel', Ext.apply(rowDef[i], {
                     cls: 'tilebutton',
-                    layout: { type: 'hbox', align: 'stretch'},
+                    layout: 'fit',
                     style: style,
                     listeners: {
                         element: 'element',
@@ -101,7 +101,8 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                                 type: 'hbox',
                                 align: 'stretch'
                             },
-                            items:[{ html: rowDef[i].text, flex: 2, cls: 'tileDescr'}, {flex: 1}]
+                            items:[{ html: rowDef[i].text, flex: rowDef[i].text ? 3 : 1, cls: 'tileDescr', style: rowDef[i].descrColor ? 'color: ' + rowDef[i].descrColor : ''}, 
+                            {flex: 1, style: rowDef[i].icon ? 'height:3.2em; background-position:10% bottom; background-repeat: no-repeat; background-image: url("resources/icons/' + rowDef[i].icon + '.png")' : ''}]
                         }]
                 });
                 tile.add(tileInner);

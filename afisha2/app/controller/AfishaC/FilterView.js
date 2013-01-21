@@ -35,10 +35,11 @@ Ext.define('Afisha.controller.AfishaC.FilterView', {
             for(var i in filter) {
                 var k = dictStore.find('id', filter[i].id);
                 if( k < 0 ) continue; // не нашли фильтр
-                var dictItem = dictStore.getAt(k).get('data');
+                var dictItem = dictStore.getAt(k);
+                var itemData = dictItem.get('data');
                 var options = [];
-                for(var d in dictItem) {
-                    options.push( { text: dictItem[d], value: d });
+                for(var d in itemData) {
+                    options.push( { text: itemData[d], value: d });
                 }
                 var widget = Ext.create('widget.selectfield', {
                     name:filter[i].id,

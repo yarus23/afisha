@@ -4,7 +4,8 @@ Ext.define('Afisha.model.AfishaModels.Dictionary', {
     config:{
         fields: [
         {name:'id',type:'string'},
-        {name:'data', type:'auto'}
+        {name:'data', type:'auto'},
+        {name:'name', type:'string'}
 	]
     }
 });	

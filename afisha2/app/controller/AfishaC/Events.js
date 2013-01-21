@@ -1,6 +1,7 @@
-// todo: при поиске сбрасывать фильтры
 // todo: посмотреть как большой список в landscape
 // todo: при показанном поиске кнопка назад сначала отключает поиск
+// todo: баг с remove и popup окном
+// todo: сортировку в фильтры
 
 Ext.define('Afisha.controller.AfishaC.Events', {
     extend: 'Ext.app.Controller',
@@ -76,10 +77,10 @@ Ext.define('Afisha.controller.AfishaC.Events', {
                 ] };
         this.setupDialog(opt.name, opt.eventsName,opt.placesName, opt.onlyPlaces, opt.filter, opt.id);
     },
-    onFilterButtonPress:function(){          
-        this.dialog = Ext.create('widget.filterview');
-        this.dialog.show();
-        this.dialog.fireEvent('construct', this.getCategoryId());
+    onFilterButtonPress:function(){
+       var dialog = Ext.create('widget.filterview');
+       dialog.show();
+       dialog.fireEvent('construct', this.getCategoryId());
     },
     OnSetFilter: function(params) {
         var f = [];

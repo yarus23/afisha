@@ -6,7 +6,7 @@ Ext.define('Afisha.view.AfishaViews.FilterView',{
         fullscreen: true,
         layout: {
             type:'vbox',
-            align:'center'
+            align:'left'
         },
         items:[ {
             xtype:'titlebar',
@@ -17,10 +17,20 @@ Ext.define('Afisha.view.AfishaViews.FilterView',{
                     tap: function() { Ext.Viewport.remove(this.up('filterview'));}
                 }
             }]
-            },{
-            xtype: 'fieldset',
-            title: 'Фильтр',
-            instructions: 'Выберите объект по параметрам' 
+            }, { html:'Сортировать', margin: '0.5em .5em', baseCls: '.x-title', style: 'font-weight:bold; color: #333'},
+            { 
+                xtype: 'segmentedbutton',
+                items:[
+                    { text: 'По алфавиту' },
+                    { text: 'По рейтингу' },
+                    { text: 'По расстоянию' }
+                ],
+                style:'font-size:small'
+            },
+            {
+                xtype: 'fieldset',
+                title: 'Фильтр',
+                instructions: 'Выберите объект по параметрам' 
             },{
                 xtype:'button',
                 text: 'Выбрать',
