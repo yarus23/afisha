@@ -22,9 +22,17 @@ Ext.define('Afisha.view.components.FavButton', {
             iconCls: 'favorites',
             iconMask: true,
             iconAlign: 'center',
+            cls:'favBtn',
 //            cls: 'maintoolbar-back-btn',
             align:'right'
-	}
+	},
+        setState:function(state){
+            if (state ==-1 || state === false){
+               this.removeCls('gold');
+            } else {
+                this.addCls('gold');                
+            }
+        }
 });
 Ext.define('Afisha.view.components.HrefBtn', {
 	extend: 'Ext.Button',

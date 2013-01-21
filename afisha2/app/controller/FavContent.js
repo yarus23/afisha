@@ -3,16 +3,31 @@ Ext.define('Afisha.controller.FavContent', {
 
     config: {
         refs: {
-
+            list: 'favcontent dataview'
         },
 
         control: {
-
+            list:{
+                itemtap:'onFavItemTap'
+            }
         }
     },
     initView:function(opt){
-
+        
     },
+    onFavItemTap:function(me,idx,el,record,e){
+        if (record.get('type') == 'news'){
+            this.getApplication().fireEvent('showItem', 'pageview',{
+                type:record.get('type'),
+                rec_id:record.get('rid')
+            });
+        } else {
+            this.getApplication().fireEvent('switchToPlaceView',{
+                type:record.get('type'),
+                rid:record.get('rid')
+            });
+        }
+    }
 /*
         if (!Afisha.gf.isOnline(true))
             return;
