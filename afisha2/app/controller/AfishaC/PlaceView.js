@@ -19,10 +19,28 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         control: {
             favBtn:{
                 tap:'onFavBtnTap'
+            },
+            placeview:{
+                show:'onPVShov'
             }
         }
     },
+    onPVShov:function(){
+        //нужны нормальные данные для дебага. пока что у андрея баг с расписанием
+        var list = this.getSchList();
+        var items = list.element.query('.x-list-item');
+        if (items.length == 0){
+            var header = list.element.down('.x-list-header');
+            if (header)
+                list.setHeight(header.getHeight());
+//            console.log(list.getHeight())
+//            console.log(list.element.getHeight())
+        }
+//        debugger;
+        list.removeCls('getsize');//x-list-item
+    },
     initView:function(record){
+//        console.log(record.data)
         var type = Ext.getStore('Places').getCurrentType();
         this.setCurrentType(type);
         this.setCurrentRecord(record);
@@ -167,9 +185,10 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
     collectImages:function(record){
         var pictureList = [];
         //var cat = record.category?record.category:record.type;
-        var urlBody = Global.server_url;
+        var urlBody = Global.img_url;
         //image
         var tmp = record.get('image');
+        //old version?
         if (tmp && (tmp.image instanceof Array) && tmp.length)
         {
             for (var idx = 0; idx < tmp.length; idx++)
@@ -179,9 +198,14 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
                 else
                     pictureList.push(urlBody + tmp[idx][0]);
             }
+        } else
+        //new version
+        for (var i = 0; i< tmp.length; i++){
+            pictureList.push(urlBody + tmp[i][0]);
         }
+    //console.log(pictureList);
         ///////////debug!!!!
-        pictureList.push("http://img.lenta.ru/news/2012/12/12/recognize/picture.jpg","http://img.lenta.ru/news/2012/11/13/backs/picture.jpg");
+        //pictureList.push("http://img.lenta.ru/news/2012/12/12/recognize/picture.jpg","http://img.lenta.ru/news/2012/11/13/backs/picture.jpg");
         ///////////////
         var pg = this.getPhotogallery();
         pg.loadPictureList(pictureList);

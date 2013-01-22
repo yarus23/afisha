@@ -1,14 +1,23 @@
-/*---detailsHeader View---*/
+div.scheduleList.getsize{
+	position:absolute;
+	y: -1000px;
+}
+/*---detailsHeader View---
 div.detailsView div.detailsHeader
 {
     margin-bottom:-0.5em;
-}
+}*/
 div.detailsView div.detailsHeader div.title
 {
     font-size: 1.2em;
     font-weight: bold;
     padding-top: 0.2em;
     padding-left: 0.3em;
+}
+div.detailsView div.smallgraytext {
+    font-size:0.7em;
+    color: slategray;
+	padding-left: 0.4em;
 }
 
 div.detailsView div.detailsHeader div.infoblock

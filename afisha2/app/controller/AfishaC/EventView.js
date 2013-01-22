@@ -7,6 +7,7 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
             viewport: 'aviewport',
             selectfield:'aviewport eventview toolbar selectfield',
             title:'aviewport eventview panel#ev_header panel#ev_title',
+            genre:'aviewport eventview panel#ev_genre',
             rateCount:'aviewport eventview panel#ev_header panel#ev_rate_count',
             rateImg:'aviewport eventview panel#ev_header img',
             buttons:'aviewport eventview panel#ev_buttons',
@@ -14,8 +15,29 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
             schList: 'aviewport eventview schedulelist',
             footer: 'aviewport eventview panel#ev_footer'
         },
+        control:{
+            eventview:{
+                show:'onEVShow'
+            }
+        }
+    },
+    onEVShow:function(){
+        //нужны нормальные данные для дебага. пока что у андрея баг с расписанием
+        var list = this.getSchList();
+        var items = list.element.query('.x-list-item');
+        if (items.length == 0){
+            var header = list.element.down('.x-list-header');
+            if (header)
+                list.setHeight(header.getHeight());
+//            console.log(list.getHeight())
+//            console.log(list.element.getHeight())
+        }
+//        debugger;
+        list.removeCls('getsize');//x-list-item
     },
     initView:function(record){
+        Ext.getStore('Settings').load();
+        console.log(record);
         var type = Ext.getStore('Places').getCurrentType();
         this.setCurrentType(type);
         //изврат с обходом подкатегорий, чтобы вытащить опции. пригодится в избранном
@@ -89,6 +111,14 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
         rate = Math.floor(rate + 0.499);
         this.getRateImg().setSrc('resources/star-' + rate + '.png');
         this.getRateCount().setHtml(record.get('num_votes'))
+        //genre
+        var genre_el = this.getGenre();
+        genre_el.setHtml('');
+        var genre = record.get('genre');
+        var runtime = record.get('runtime');
+        var res = genre ? genre : '';
+        res += runtime ? (' ' + runtime + ' мин.') : '';
+        genre_el.setHtml(res);
     },
     checkButtonsFields:function(record){
         var buttonsPanel = this.getButtons();
@@ -107,7 +137,7 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
         //var cat = record.category?record.category:record.type;
         var urlBody = Global.server_url;
         //image
-        var tmp = record.get('image');
+        var tmp = record.get('poster');
         if (tmp && (tmp.image instanceof Array) && tmp.length)
         {
             for (var idx = 0; idx < tmp.length; idx++)
@@ -117,9 +147,13 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
                 else
                     pictureList.push(urlBody + tmp[idx][0]);
             }
+        } else
+        //new version
+        for (var i = 0; i< tmp.length; i++){
+            pictureList.push(urlBody + tmp[i][0]);
         }
         ///////////debug!!!!
-        pictureList.push("http://img.lenta.ru/news/2012/12/12/recognize/picture.jpg","http://img.lenta.ru/news/2012/11/13/backs/picture.jpg");
+//        pictureList.push("http://img.lenta.ru/news/2012/12/12/recognize/picture.jpg","http://img.lenta.ru/news/2012/11/13/backs/picture.jpg");
         ///////////////
         var pg = this.getPhotogallery();
         pg.loadPictureList(pictureList);

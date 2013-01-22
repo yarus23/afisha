@@ -58,15 +58,8 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
                 }]
             },{
                 xtype:'panel',
-                layout:'hbox',
-//                items:[{
-//                    xtype:'panel',
-//                    html:'1 qweqwe qweqwe qweqwe qwe qwe  qweqwe qwe qwe qwe '
-//                },{
-//                    xtype:'panel',
-//                    html:'2',
-//                    flex:1
-//                }]
+                id:'ev_genre',
+                cls:'smallgraytext'
             },{
                 xtype:'photogallery',
                 id:'ev_gallery'
@@ -90,11 +83,10 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
                 layout:'fit',
                 //baseCls:'x-list',
                 cls:'detailsFooter',
+                styleHtmlContent:true,
                 tpl:new Ext.XTemplate(
-
                     '<tpl if="description.length"><div class="description">{description}</div></tpl>',      //event
                     '<tpl if="description.length"><div class="separator"></div></tpl>',      //both
-                    '<tpl if="text.length"><div class="separator"></div></tpl>',      //both
                     '<div class="info"><tpl if="country.length"><b>{country}&nbsp;</b></tpl><tpl if="year.length && year &gt;  &quot;0&quot; "><b>{year}</b></tpl></div>',//event
                     '<tpl if="director.length"><div class="info"><b>Режиссер:</b>&nbsp;{director}</div></tpl>',//event
                     '<tpl if="cast.length"><div class="info"><b>В ролях:</b>&nbsp;{cast}</div></tpl>',       //event

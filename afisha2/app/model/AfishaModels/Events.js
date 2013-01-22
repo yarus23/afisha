@@ -8,7 +8,9 @@ Ext.define('Afisha.model.AfishaModels.Events', {
         {name:'poster',type:'auto'},//array of url
         {name:'trailer',type:'auto'},//array of trailers???
         {name:'screenshot',type:'auto'},//array of url???
+        {name:'image',type:'auto'},//array of url???
         {name:'description',type:'string'},
+        {name:'text',type:'string'},
         {name:'genre',type:'string'},
         {name:'original',type:'string'},
         {name:'aka',type:'string'},

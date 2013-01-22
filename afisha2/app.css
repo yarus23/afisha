@@ -1,3 +1,13 @@
+@font-face {
+        font-family: "Roboto";
+        font-style: normal;
+        src: local("Roboto-BoldCondensed"), url("Roboto-BoldCondensed.ttf") format("truetype"); /* non-IE */
+}
+@font-face {
+        font-family: "Lobster";
+        font-style: normal;
+        src: local("Lobster"), url("Lobster.ttf") format("truetype"); /* non-IE */
+}
 div.x-button.favBtn.gold span.x-button-icon{
     background-color: gold !important;
     background-image: none !important;

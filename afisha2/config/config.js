@@ -2,6 +2,7 @@
 	//
 	debug: false,
 	server_url: 'http://afisha.mikhelev.ru/app/ulanude',//'http://afishache.co.cc/administrator/',
+        img_url:'http://afisha.mikhelev.ru/',
 	db_name: 'afishache2',
 	//
 	app_name: 'Афиша Челябинска',

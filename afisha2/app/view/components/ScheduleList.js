@@ -12,7 +12,7 @@ Ext.define('Afisha.view.components.ScheduleList',{
         style:'border:1px solid red',
         itemTpl: new Ext.XTemplate(
             '<div class="list-item-title boldTitle">',
-                '<tpl if="ep.data.name.length">{ep.data.name}</tpl><tpl if="!ep.data.name.length">{ep.data.aka}</tpl>',//list of places
+                '<tpl if="ep && ep.data && ep.data.name.length">{ep.data.name}</tpl><tpl if="ep && ep.data && !ep.data.name.length">{ep.data.aka}</tpl>',//list of places
             '</div>',
             '<tpl if="isSchedule">',
                 '<div class="list-item-content schedule"><tpl for="schedule">',
@@ -38,6 +38,9 @@ Ext.define('Afisha.view.components.ScheduleList',{
                 var ob_type = this.getOb_type();
                 //Afisha.app.getController('AfishaC.EventView')
                 Afisha.app.fireEvent('showItem', (ob_type == 'place' ? 'event' : 'place') + 'view',record.get('ep'), true);
+            },
+            show:function(){
+                this.addCls('getsize');
             }
         }
     },
@@ -50,10 +53,12 @@ Ext.define('Afisha.view.components.ScheduleList',{
     bindScheduleData:function(id, date, isEvent){
         var scheduleData = Afisha.schMethods.getSchedule(null, id, isEvent);
         var byDate = Afisha.schMethods.getScheduleByDate(scheduleData,date);
+        //debugger;
         this.getStore().setData(byDate);
         if (this.isHidden())
             this.show();
         //this.doComponentLayout();
+        //debugger;
         return scheduleData.length;
     }
 });

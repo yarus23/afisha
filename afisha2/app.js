@@ -152,10 +152,12 @@ Ext.application({
     name: 'Afisha',
     requires:['Ext.DateExtras', 'Afisha.util.gf','Afisha.util.schMethods'],
     views:['Viewport','FavContent','ImgFullView','MapView','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView','AfishaViews.EventView', 'AfishaViews.TileView','News.NewsList', 'AfishaViews.FilterView','News.PageView'],
-    models:['Favorites','AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList','News.NewsList','News.PageView'],
-    stores:['Favorites','AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule','AfishaStores.Dictionary','News.NewsList','News.PageView'],
+    models:['Settings','Favorites','AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList','News.NewsList','News.PageView'],
+    stores:['Settings','Favorites','AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule','AfishaStores.Dictionary','News.NewsList','News.PageView'],
     controllers:['Navigation','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','AfishaC.EventView','ImgFullView','MapView', 'AfishaC.TilesView','News.NewsList', 'AfishaC.FilterView','News.PageView','FavContent'],
     launch: function() {
+        var splash = window.document.getElementById('splash');
+        splash.style.display = "none";
         //компенсируем изменения сенчи
         Date.prototype.format = function(format){
             return Ext.DateExtras.format(this, format);

@@ -189,10 +189,9 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                     }
                     default:{
                         var idx = dictStore.find('id',i);
+                        data[i][0] = 'Не выбрано';
                         if ( idx == -1){
-                            var name = data[i][0];
-                            data[i][0] = 'Не выбрано';
-                            dictStore.add({id:i, data:data[i], name: name});
+                            dictStore.add({id:i, data:data[i]})
                         }
                         break;
                     }
