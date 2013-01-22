@@ -742,6 +742,42 @@ div.tilebutton div.tileDescr {
     background-image: url('resources/icons/6w.png');
 }
 
+
+.x-toolbar {
+    background-image:url('resources/header.png');
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;
+    border:none;
+}
+.x-toolbar.x-docked-top {
+    border-bottom:none;
+}
+
+.x-backbutton,
+.x-toolbutton {
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+        
+    width:2em;
+    height:2em;
+}
+
+.x-backbutton {
+    background-image:url('resources/backbutton.png');
+    margin-left:0.3em;
+    margin-top:-0.2em;
+}
+
+.x-toolbutton#searchButton {
+    background-image:url('resources/searchbutton.png');
+}
+.x-toolbutton#sortButton {
+    background-image:url('resources/sortbutton.png');
+}
+.x-toolbutton#filterButton {
+    background-image:url('resources/filterbutton.png');
+}
 //* {
 //    font-family: "Tahoma";
 //}

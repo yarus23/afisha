@@ -2,16 +2,32 @@ Ext.define('Afisha.view.components.BackButton', {
 	extend: 'Ext.Button',
 	xtype: 'backbutton',
 	config: {
-            height:'2.2em',
+            // нам нужны функции кнопки но не нужен css
+            baseCls: Ext.baseCSSPrefix + 'backbutton',
+            width:'2em',
+            height:'2em'
+            /*height:'2.2em',
             text: 'Назад',
             ui: 'default',
             iconCls: 'arrow_left',
             iconMask: true,
             iconAlign: 'center',
             cls: 'maintoolbar-back-btn',
-            align:'left'
+            align:'left'*/
 	}
 });
+
+Ext.define('Afisha.view.components.ToolButton', {
+	extend: 'Ext.Button',
+	xtype: 'toolbutton',
+	config: {
+            // нам нужны функции кнопки но не нужен css
+            baseCls: Ext.baseCSSPrefix + 'toolbutton',
+            width:'2em',
+            height:'2em'
+	}
+});
+
 Ext.define('Afisha.view.components.FavButton', {
 	extend: 'Ext.Button',
 	xtype: 'favbutton',
