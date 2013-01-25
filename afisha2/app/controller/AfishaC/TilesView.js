@@ -14,7 +14,8 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                 clubsPressed: 'onClubsPressed',
                 concertPressed: 'onConcertPressed',
                 restaurantPressed:'onRestaurantPressed',
-                favPressed:'onFavPressed'
+                favPressed:'onFavPressed',
+                settingsPressed:'onSettingsPressed'
             }
         }
     },
@@ -40,13 +41,16 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     onFavPressed: function(){
         this.getApplication().fireEvent('showItem', 'favcontent');
     },
+    onSettingsPressed: function(){
+        this.getApplication().fireEvent('showItem', 'mainsettings');
+    },
     // здесь я дергаю view который дергает controller который вызывает то что 
     // написано в handler в описании айтемов, напрямую пробиться к методам controller'a не смог
     launch: function() {
         var def = [{
                 items: [ 
                     { title: 'Афиша', icon:'6w', bg: '#00bce2', flex: 2, handler: 'afishaPressed', text: 'Все актуальные события в городе. Кинопремьеры, анонсы концертов', id: 'afisha' },
-                    { title: 'Настройки', icon:'2w', bg: '#1ba456', color: 'white', id: 'settings'}]
+                    { title: 'Настройки', icon:'2w', bg: '#1ba456', color: 'white', id: 'settings', handler:'settingsPressed'}]
             }, {
                 items: [ 
                     { title: 'Клубы', icon:'4w', bg:'#202020', id: 'clubs', handler: 'clubsPressed'}, 

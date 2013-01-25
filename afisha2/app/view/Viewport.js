@@ -23,6 +23,8 @@ Ext.define('Afisha.view.Viewport',{
                 xtype:'pageview'
             },{
                 xtype:'favcontent'
+            },{
+                xtype:'mainsettings'
             }
         ],
         fullscreen:true,

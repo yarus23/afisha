@@ -24,7 +24,7 @@ Ext.define('Afisha.view.News.PageView', {
                 scrollable: {
                     direction: 'vertical'
                 },
-                cls:'viewer-body',
+                cls:'viewer-body fontSized',
                 styleHtmlContent:true,
                 tpl: new Ext.XTemplate(
                     '<div class="header"><h1>{title}</h1>',

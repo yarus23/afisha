@@ -639,9 +639,13 @@ div.pageview div.viewer-body div.footer a{
 }
 
 div.categories-list{
-    height: 1.7em;
-    background-color: #ccc;
-    border-bottom: 1px solid black;
+	border-bottom: 1px solid white;
+    height: 2em;
+    background-color: #58585A;
+    //border-bottom: 1px solid black;
+}
+div.categories-list div.x-img.img-border{
+	background-repeat: repeat-x;
 }
 div.categories-list div.x-button{
     border-bottom: none;
@@ -649,8 +653,9 @@ div.categories-list div.x-button{
     border-left: none;
     border-right: 1px solid #999;
     background-color: transparent;
-    min-height:1.5em;
-    padding: 0.1em .6em;
+    height: 1.3em;
+	min-height: 1.3em;
+    padding: 0.0em .6em;
     background-image:  none;
 }
 div.categories-list div.x-button span.x-button-label{

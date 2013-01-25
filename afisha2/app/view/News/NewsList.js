@@ -19,6 +19,20 @@ Ext.define('Afisha.view.News.NewsList', {
                 indicators: false
             },            
             items:[{
+                    xtype:'img',
+                    height:'0.3em',
+                    src:'resources/catl_i.png',
+                    cls:'img-border',
+                    //style:'border 1 px solid red; height:1em;',
+                    docked:'top'
+            },{
+                    xtype:'img',
+                    height:'0.3em',
+                    src:'resources/catl.png',
+                    cls:'img-border',
+                    style:'margin-bottom: -0.1em;',
+                    docked:'bottom'
+            },{
                 text:'Все',
                 pressed:true,
                 rub_id:0

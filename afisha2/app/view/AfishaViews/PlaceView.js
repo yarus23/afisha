@@ -82,7 +82,7 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
                 layout:'fit',
                 //baseCls:'x-list',
                 styleHtmlContent:true,
-                cls:'detailsFooter',
+                cls:'detailsFooter fontSized',
                 tpl:new Ext.XTemplate(
                     '<tpl if="time_start.length"><div class="info"><b>Время работы: </b>{time_start} - {time_end}</div></tpl>',      //place
                     '<tpl if="price.length"><div class="info"><b>{[this.getPriceDescription(values.type)]}: </b>{price}</div></tpl>',    //place
