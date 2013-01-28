@@ -8,9 +8,8 @@
         font-style: normal;
         src: local("Lobster"), url("Lobster.ttf") format("truetype"); /* non-IE */
 }
-div.x-button.favBtn.gold span.x-button-icon{
+div.x-img.gold{
     background-color: gold !important;
-    background-image: none !important;
 }
 div#splash {
     z-index	: 999;
@@ -644,7 +643,7 @@ div.categories-list{
     background-color: #58585A;
     //border-bottom: 1px solid black;
 }
-div.categories-list div.x-img.img-border{
+div.x-img.img-border{
 	background-repeat: repeat-x;
 }
 div.categories-list div.x-button{

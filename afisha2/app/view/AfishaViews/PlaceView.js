@@ -24,8 +24,6 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
                 name:'options',
                 width:'60%',
                 itemId:'selectDate',
-            },{
-                xtype:'favbutton'
             }]
         },{
             xtype:'panel',
@@ -44,8 +42,14 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
                 style:'padding-top:0.2em;',
                 cls:'detailsHeader',
                 items:[{
+                    xtype:'favbutton',
+                    id:'favImg',
+                    cls:'fav-img'
+                },{
                     xtype:'img',
+                    id:'rateImg',
                     src:'resources/star-0.png',
+                    style:'margin-top: 0.1em;',
                     height:'1em',
                     width:'5em',
                     docked:'right'
@@ -53,20 +57,22 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
                     xtype:'panel',
                     docked:'right',
                     id:'pv_rate_count',
-                    style:'font-size:0.8em'
+                    style:'font-size:0.8em;margin-right: 0.1em;margin-top: 0.2em;'
                 },{
                     xtype:'panel',
                     id:'pv_title',
                     style:'font-size: 1.2em; font-weight: bold;padding-left:0.3em;'
                 }]
             },{
-                xtype:'panel',
-                id:'pv_buttons',
-                layout:'vbox',
-                style:'margin-top:0.5em; border-top-color: #999;'
+                    xtype:'mapbutton'
             },{
                 xtype:'photogallery',
                 id:'pv_gallery'
+            },{
+                xtype:'panel',
+                id:'pv_buttons',
+                layout:'vbox',
+                style:'margin-top:0; border-top-color: #999;'
             },{
                 xtype:'schedulelist',
                 id: 'pv_schedulelist',

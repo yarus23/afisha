@@ -5,7 +5,7 @@ Ext.define('Afisha.view.components.PhotoGallery',{
         data:[],
         layout:'hbox',
         cls:'photogallery',
-        style:'margin-top:1em;',
+        style:'margin-top:0;',
         items:[{
             xtype:'img',
             src:'resources/arr_left.png',
@@ -41,7 +41,7 @@ Ext.define('Afisha.view.components.PhotoGallery',{
             carousel.add([{
                 xtype:'img',
                 html:'<div style="margin-top:5em; text-align:center;"> Загрузка<br/>изображения...</div>',
-                style:'background-size:contain;',
+                style:'background-size:contain;top: -1px;',
                 src:null,
                 preview: true,
                 img:data[i]

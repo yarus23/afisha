@@ -7,6 +7,9 @@ div.detailsView div.detailsHeader
 {
     margin-bottom:-0.5em;
 }*/
+div.detailsView{
+	background-color: white;
+}
 div.detailsView div.detailsHeader div.title
 {
     font-size: 1.2em;
@@ -47,8 +50,27 @@ div.detailsView div.detailsHeader span.small-gray-text
     color: slategray;
 }
 /*===companyInfo style*/
+div.detailsView div.mapBtn.x-button{
+	//margin:0;
+    border-radius: 0;
+    background-image: none;
+    background-color: #58585A !important;
+	//color:white !important;
+    border: none;
+    -webkit-box-pack: initial;
+    box-pack: initial;
+    padding:0;
+}
+div.detailsView div.mapBtn.x-button span.x-button-label{
+	color:white !important;
+	font-weight: normal;
+	font-size: 0.7em;
+	text-align:left;
+}
 div.listBtn{
     border-radius: 0;
+	border: none;
+	border:0;
     background-image: none;
     background-color: transparent;
     border-right: none;
@@ -56,7 +78,6 @@ div.listBtn{
     -webkit-box-pack: initial;
     box-pack: initial;
     padding:0;
-
 }
 div.listBtn .x-innerhtml{
     width:100%;
@@ -259,6 +280,12 @@ div.detailsView div.buttonsList div.x-list-item img.x-icon-mask
   margin-right: 0.5em;
 }
 /*---scheduleList---*/
+div.detailsView div.scheduleList div.x-list-header{
+	background-color: #FEECE6;
+	background-image: none;
+	border: 0;
+	color:black;
+}
 div.detailsView div.scheduleList h3.x-list-header,
 div#fullScheduleView div.scheduleList h3.x-list-header
 {

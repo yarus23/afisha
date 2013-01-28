@@ -9,8 +9,10 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
             selectfield:'aviewport placeview toolbar selectfield',
             title:'aviewport placeview panel#pv_header panel#pv_title',
             rateCount:'aviewport placeview panel#pv_header panel#pv_rate_count',
-            rateImg:'aviewport placeview panel#pv_header img',
+            rateImg:'aviewport placeview panel#pv_header img#rateImg',
             buttons:'aviewport placeview panel#pv_buttons',
+            mapBtn:'aviewport placeview mapbutton button',
+            mapEl:'aviewport placeview mapbutton',
             photogallery: 'aviewport placeview photogallery',
             schList: 'aviewport placeview schedulelist',
             footer: 'aviewport placeview panel#pv_footer',
@@ -22,6 +24,9 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
             },
             placeview:{
                 show:'onPVShov'
+            },
+            mapBtn:{
+                tap:'onMapButtonTap'
             }
         }
     },
@@ -132,6 +137,9 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         this.getRateImg().setSrc('resources/star-' + rate + '.png');
         this.getRateCount().setHtml(record.get('num_votes'))
     },
+    onMapButtonTap:function(){
+        Afisha.app.fireEvent('showItem', 'mapview',this.getMapBtn().getData());
+    },
     checkButtonsFields:function(record){
         var buttonsPanel = this.getButtons();
         buttonsPanel.removeAll();
@@ -139,24 +147,21 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         var lng = record.get('lng');
         var address = record.get('address');
         if (lat && lng){
-            buttonsPanel.add({
-                id:'mapBtn',
-                xtype:'clickbutton',
-                data:{
+            this.getMapBtn().setData({
                     value:address,
                     latitude:lng,
                     longitude:lat
-                },
-                handler:function(){
-                    Afisha.app.fireEvent('showItem', 'mapview',this.getData());
-                }
-            })
+                });
+            this.getMapEl().show();
+        } else{
+            this.getMapEl().hide();
         }
+        var el_cache = [];
         var phone = record.get('phone');
         if (phone){
             phone = phone.split(',');
             for(var i = 0; i < phone.length; i++)
-                buttonsPanel.add({
+                el_cache.push({
                     xtype:'hrefbutton',
                     data:{
                         type:'phone',
@@ -166,14 +171,14 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         }
         var site = record.get('url');
         if (site){
-            buttonsPanel.add({
+            el_cache.push({
                 xtype:'urlbutton',
                 data:{
                     value:site
                 }
             })
         }
-        buttonsPanel.add({
+        el_cache.push({
             id:'pv_commentsBtn',
             xtype:'clickbutton',
             style:'border-top:0;',
@@ -181,6 +186,18 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
                 value:'Добавить/Читать отзывы (' + record.get('com_count') + ')'
             }
         })
+        for (var idx = 0; idx < el_cache.length; idx++){
+            buttonsPanel.add(el_cache[idx]);
+            if (idx != el_cache.length - 1){
+                buttonsPanel.add({
+                    xtype:'img',
+                    height:'0.21em',
+                    src:'resources/wave.png',
+                    cls:'img-border'
+                })
+            }
+        }
+        //buttonsPanel.add
     },
     collectImages:function(record){
         var pictureList = [];
