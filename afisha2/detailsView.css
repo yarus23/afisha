@@ -2,6 +2,10 @@ div.scheduleList.getsize{
 	position:absolute;
 	y: -1000px;
 }
+div.select-picker div.x-list-item.x-item-selected div.x-stretched{
+	background-image:none;
+	background-color:#CF1A09;
+}
 /*---detailsHeader View---
 div.detailsView div.detailsHeader
 {
@@ -22,7 +26,11 @@ div.detailsView div.smallgraytext {
     color: slategray;
 	padding-left: 0.4em;
 }
-
+div.detailsView div.x-field.x-field-select div.x-component-outer{
+	background-image: none;
+	background-color: #CF1A09;
+	border:1px solid #981E0D;
+}
 div.detailsView div.detailsHeader div.infoblock
 {
     height:16px;
@@ -210,12 +218,13 @@ div#fullScheduleView div.myDisclosure div.x-list-item .x-list-disclosure
 {
     -webkit-mask: none;
     -webkit-mask-size: 0;
+	margin:0;
     background-color:transparent;
-    background-image: url('../resources/icons/9_r.png');
-    background-size: 0.6em 1.3em;
+    background-image: url('resources/disclosure.png');
+    background-size: 02em 1.8em;
     background-position: center;
     background-repeat:no-repeat;
-    width: 0.6em;
+    width: 2em;
     height: auto;
 }
 /*---buttonsList---*/
@@ -280,6 +289,9 @@ div.detailsView div.buttonsList div.x-list-item img.x-icon-mask
   margin-right: 0.5em;
 }
 /*---scheduleList---*/
+div.detailsView div.scheduleList div.x-list-item-body{
+	padding:0.35em 0.1em;
+}
 div.detailsView div.scheduleList div.x-list-header{
 	background-color: #FEECE6;
 	background-image: none;

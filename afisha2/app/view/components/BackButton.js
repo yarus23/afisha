@@ -47,7 +47,6 @@ Ext.define('Afisha.view.components.FavButton', {
 //            align:'right'
 	},
         setState:function(state){
-            console.log(state)
             if (state ==-1 || state === false){
                this.removeCls('gold');
             } else {

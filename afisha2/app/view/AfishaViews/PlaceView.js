@@ -23,6 +23,21 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
                     {text:'Все дни', value:'full'}],
                 name:'options',
                 width:'60%',
+                usePicker:false,
+                defaultPhonePickerConfig:{
+                    cls:'select-picker',
+                    height:'13.1em',
+                    scrollable: {
+                        disabled: true
+                    },
+                },
+                defaultTabletPickerConfig:{
+                    cls:'select-picker',
+                    height:'13.1em',
+                    scrollable: {
+                        disabled: true
+                    },
+                },
                 itemId:'selectDate',
             }]
         },{

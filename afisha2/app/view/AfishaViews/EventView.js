@@ -23,6 +23,21 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
                     {text:'Все дни', value:'full'}],
                 name:'options',
                 width:'60%',
+                usePicker:false,
+                defaultPhonePickerConfig:{
+                    cls:'select-picker',
+                    height:'13.1em',
+                    scrollable: {
+                        disabled: true
+                    },
+                },
+                defaultTabletPickerConfig:{
+                    cls:'select-picker',
+                    height:'13.1em',
+                    scrollable: {
+                        disabled: true
+                    },
+                },
                 itemId:'selectDate',
             }]
         },{
@@ -69,7 +84,7 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
                 scrollable: {
                     disabled: true
                 },
-                height:'10em',
+                //height:'10em',
                 ob_type:'event',
                 //layout:'fit'
             },{
@@ -97,9 +112,13 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
                         },
                         getDataByIdList:function(idList, type){
                             var res = [];
-                            var dict = Ext.getStore('Dictionary');
-                            var idx = dict.find('type',type);
-                            var data = dict.getAt(idx).get('data');
+                            this.dict = Ext.getStore('Dictionary');
+                            var rec = this.dict.getById(type);
+                            if (!rec == null){
+                                return "";
+                            }
+                            var data = rec.get('data');
+                            
                             for (var i = 0; i< idList.length; i++){
                                 res.push(data[idList[i]])
                             }

@@ -3,6 +3,7 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
 
     config: {
         currentType:'',
+        currentRecord:null,
         refs: {
             viewport: 'aviewport',
             selectfield:'aviewport eventview toolbar selectfield',
@@ -16,30 +17,75 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
             footer: 'aviewport eventview panel#ev_footer'
         },
         control:{
+            selectfield:{
+                change:'onSelectChange'
+            },
             eventview:{
-                show:'onEVShow'
+                show:'onEVShowTimeOut'
             }
         }
+    },
+    onSelectChange:function(me, newVal,oldVal){
+        var date;
+        switch (newVal){
+            case 0:{
+                date = new Date();
+                break;
+            }
+            case 1:{
+                    date = new Date();
+                    date.nextDay();
+                    break;
+            }
+            case 'full':{
+                    date = null;
+                    break;
+            }
+            default:{
+                    date = newVal;
+                    break;
+            }
+        }
+        this.getSchList().bindScheduleData(this.getCurrentRecord().get('id'),date,true);
+        this.onEVShow();
+    },
+    onEVShowTimeOut:function(){
+        var me = this;
+        setTimeout(function(){
+            me.onEVShow();
+        },200)
     },
     onEVShow:function(){
         //нужны нормальные данные для дебага. пока что у андрея баг с расписанием
         var list = this.getSchList();
-        var items = list.element.query('.x-list-item');
-        if (items.length == 0){
-            var header = list.element.down('.x-list-header');
+        var items = list.element.query('.scheduleItem');
+        var height = 0;
+        if (items.length == 0 || list.onlyHeader){
+            var header = list.element.down('.x-list-header');//.x-list-header
             if (header)
                 list.setHeight(header.getHeight());
 //            console.log(list.getHeight())
 //            console.log(list.element.getHeight())
+        } else {
+            for (var i = 0; i < items.length; i++){
+                var css = items[i].style["-webkit-transform"];
+                if ((items[i].textContent.trim() != "") && (!css || (css && css.indexOf("-10000px") == -1))){//костыль
+                    height += items[i].offsetHeight;
+                    //debugger;
+                    //console.log(items[i].textContent)
+                }
+            }
+            list.setHeight(height);
         }
 //        debugger;
         list.removeCls('getsize');//x-list-item
     },
     initView:function(record){
-        Ext.getStore('Settings').load();
-        console.log(record);
+        //Ext.getStore('Settings').load();
+//        console.log(record);
         var type = Ext.getStore('Places').getCurrentType();
         this.setCurrentType(type);
+        this.setCurrentRecord(record);
         //изврат с обходом подкатегорий, чтобы вытащить опции. пригодится в избранном
         var options;
         var filter;
@@ -117,7 +163,7 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
         var genre = record.get('genre');
         var runtime = record.get('runtime');
         var res = genre ? genre : '';
-        res += runtime ? (' ' + runtime + ' мин.') : '';
+        res += runtime ? (' (' + runtime + ' мин.)') : '';
         genre_el.setHtml(res);
     },
     checkButtonsFields:function(record){

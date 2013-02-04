@@ -19,27 +19,71 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
             favBtn:' aviewport placeview favbutton'
         },
         control: {
+            selectfield:{
+                change:'onSelectChange'
+            },
             favBtn:{
                 tap:'onFavBtnTap'
             },
             placeview:{
-                show:'onPVShov'
+                show:'onPVShowTimeOut'
             },
             mapBtn:{
                 tap:'onMapButtonTap'
             }
         }
     },
-    onPVShov:function(){
+    onSelectChange:function(me, newVal,oldVal){
+        var date;
+        switch (newVal){
+            case 0:{
+                date = new Date();
+                break;
+            }
+            case 1:{
+                    date = new Date();
+                    date.nextDay();
+                    break;
+            }
+            case 'full':{
+                    date = null;
+                    break;
+            }
+            default:{
+                    date = newVal;
+                    break;
+            }
+        }
+        this.getSchList().bindScheduleData(this.getCurrentRecord().get('id'),date,false);
+        this.onPVShow();
+    },
+    onPVShowTimeOut:function(){
+        var me = this;
+        setTimeout(function(){
+            me.onPVShow();
+        },200)
+    },
+    onPVShow:function(){
         //нужны нормальные данные для дебага. пока что у андрея баг с расписанием
         var list = this.getSchList();
-        var items = list.element.query('.x-list-item');
-        if (items.length == 0){
-            var header = list.element.down('.x-list-header');
+        var items = list.element.query('.scheduleItem');
+        var height = 0;
+        if (items.length == 0 || list.onlyHeader){
+            var header = list.element.down('.x-list-header');//.x-list-header
             if (header)
                 list.setHeight(header.getHeight());
 //            console.log(list.getHeight())
 //            console.log(list.element.getHeight())
+        } else {
+            for (var i = 0; i < items.length; i++){
+                var css = items[i].style["-webkit-transform"];
+                if ((items[i].textContent.trim() != "") && (!css || (css && css.indexOf("-10000px") == -1))){//костыль
+                    height += items[i].offsetHeight;
+                    //debugger;
+                    //console.log(items[i].textContent)
+                }
+            }
+            list.setHeight(height);
         }
 //        debugger;
         list.removeCls('getsize');//x-list-item

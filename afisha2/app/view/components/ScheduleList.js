@@ -9,7 +9,7 @@ Ext.define('Afisha.view.components.ScheduleList',{
         indexBar: false,
         onItemDisclosure: true,
         disableSelection:true,
-        style:'border:1px solid red',
+        //style:'border:1px solid red',
         itemTpl: new Ext.XTemplate(
             '<div class="list-item-title boldTitle">',
                 '<tpl if="ep && ep.data && ep.data.name.length">{ep.data.name}</tpl><tpl if="ep && ep.data && !ep.data.name.length">{ep.data.aka}</tpl>',//list of places
@@ -53,7 +53,11 @@ Ext.define('Afisha.view.components.ScheduleList',{
     bindScheduleData:function(id, date, isEvent){
         var scheduleData = Afisha.schMethods.getSchedule(null, id, isEvent);
         var byDate = Afisha.schMethods.getScheduleByDate(scheduleData,date);
-        //debugger;
+        if (byDate.length == 1 && byDate[0].date == null){
+            this.onlyHeader = true;
+        } else {
+            this.onlyHeader = false;
+        }
         this.getStore().setData(byDate);
         if (this.isHidden())
             this.show();
