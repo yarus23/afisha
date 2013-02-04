@@ -125,6 +125,7 @@ Ext.define('Afisha.util.schMethods', {
 //            }
 //            else
                 schStore.each(function(record){
+                    //console.log(record)
                     if ((record.data[cfi] == this.id) && 
                         ((record.data.start_date > tDate.format('Y-m-d')) || 
                             ((record.data.start_date == tDate.format('Y-m-d')) && (record.data.start_time >= tDate.format('H:i')))  || 
@@ -164,6 +165,7 @@ Ext.define('Afisha.util.schMethods', {
         },
         getScheduleByDate: function (schedule, cDate) {
             var result = [];
+            //debugger;
             if ( !schedule.length )
             {
                 result.push({
@@ -176,7 +178,7 @@ Ext.define('Afisha.util.schMethods', {
                 return schedule;
             }
             schedule.forEach(function(el){
-                if (compareDates(cDate,el.date, el.finish_date))
+                if (Afisha.schMethods.compareDates(cDate,el.date, el.finish_date))
                     result.push(el);
             })
             if (!result.length && cDate && (cDate != 'week') && (cDate != 'nextweek'))
@@ -302,7 +304,8 @@ Ext.define('Afisha.util.schMethods', {
                 fdate = fdate.split('-')
             if (date.length != 3)
                 return '';
-            if (!record.data.schedule.length)
+//            debugger;
+            if (!record.data.schedule || !record.data.schedule.length)
                 return (date[2][0]=='0'?date[2][1]:date[2]) + Afisha.schMethods.getMonthName(date[1]) + ' событий нет';
             else
                 return fdate?

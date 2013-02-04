@@ -29,18 +29,22 @@ Ext.define('Afisha.view.components.ToolButton', {
 });
 
 Ext.define('Afisha.view.components.FavButton', {
-	extend: 'Ext.Button',
+	extend: 'Ext.Img',
 	xtype: 'favbutton',
 	config: {
-            height:'2.2em',
+            style:'margin-left: 0.5em;',
+            src:'resources/fav-1.png',
+            height:'1.7em',
+            width:'1em',
+            docked:'left'
             //text: 'Назад',
-            ui: 'default',
-            iconCls: 'favorites',
-            iconMask: true,
-            iconAlign: 'center',
-            cls:'favBtn',
+//            ui: 'default',
+//            iconCls: 'favorites',
+            //iconMask: true,
+//            iconAlign: 'center',
+//            cls:'favBtn',
 //            cls: 'maintoolbar-back-btn',
-            align:'right'
+//            align:'right'
 	},
         setState:function(state){
             if (state ==-1 || state === false){
@@ -98,5 +102,25 @@ Ext.define('Afisha.view.components.ClickBtn', {
                 cls:'listBtn',
 		tpl: new Ext.XTemplate('<span class="x-button-label custom-label" style="color:black; text-decoration: none; padding: .3em .6em;">{value}',
                 '</span>')
+	}
+});
+Ext.define('Afisha.view.components.MapBtn', {
+	extend: 'Ext.Panel',
+	xtype: 'mapbutton',
+	config: {
+            style:'margin-top:0.5em;',
+            items:[{
+                xtype:'img',
+                height:'0.35em',
+                src:'resources/catl_i.png',
+                cls:'img-border',
+            },{
+                xtype:'button',
+		//iconMask: true,
+		//iconAlign: 'left',
+                cls:'mapBtn',
+		tpl: new Ext.XTemplate('<span class="x-button-label custom-label" style="color:black; text-decoration: none; padding: .3em .6em;">{value}',
+                '</span>')
+            }]
 	}
 });

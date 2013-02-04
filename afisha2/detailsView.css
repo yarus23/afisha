@@ -2,11 +2,18 @@ div.scheduleList.getsize{
 	position:absolute;
 	y: -1000px;
 }
+div.select-picker div.x-list-item.x-item-selected div.x-stretched{
+	background-image:none;
+	background-color:#CF1A09;
+}
 /*---detailsHeader View---
 div.detailsView div.detailsHeader
 {
     margin-bottom:-0.5em;
 }*/
+div.detailsView{
+	background-color: white;
+}
 div.detailsView div.detailsHeader div.title
 {
     font-size: 1.2em;
@@ -19,7 +26,11 @@ div.detailsView div.smallgraytext {
     color: slategray;
 	padding-left: 0.4em;
 }
-
+div.detailsView div.x-field.x-field-select div.x-component-outer{
+	background-image: none;
+	background-color: #CF1A09;
+	border:1px solid #981E0D;
+}
 div.detailsView div.detailsHeader div.infoblock
 {
     height:16px;
@@ -47,8 +58,27 @@ div.detailsView div.detailsHeader span.small-gray-text
     color: slategray;
 }
 /*===companyInfo style*/
+div.detailsView div.mapBtn.x-button{
+	//margin:0;
+    border-radius: 0;
+    background-image: none;
+    background-color: #58585A !important;
+	//color:white !important;
+    border: none;
+    -webkit-box-pack: initial;
+    box-pack: initial;
+    padding:0;
+}
+div.detailsView div.mapBtn.x-button span.x-button-label{
+	color:white !important;
+	font-weight: normal;
+	font-size: 0.7em;
+	text-align:left;
+}
 div.listBtn{
     border-radius: 0;
+	border: none;
+	border:0;
     background-image: none;
     background-color: transparent;
     border-right: none;
@@ -56,7 +86,6 @@ div.listBtn{
     -webkit-box-pack: initial;
     box-pack: initial;
     padding:0;
-
 }
 div.listBtn .x-innerhtml{
     width:100%;
@@ -189,12 +218,13 @@ div#fullScheduleView div.myDisclosure div.x-list-item .x-list-disclosure
 {
     -webkit-mask: none;
     -webkit-mask-size: 0;
+	margin:0;
     background-color:transparent;
-    background-image: url('../resources/icons/9_r.png');
-    background-size: 0.6em 1.3em;
+    background-image: url('resources/disclosure.png');
+    background-size: 02em 1.8em;
     background-position: center;
     background-repeat:no-repeat;
-    width: 0.6em;
+    width: 2em;
     height: auto;
 }
 /*---buttonsList---*/
@@ -259,6 +289,15 @@ div.detailsView div.buttonsList div.x-list-item img.x-icon-mask
   margin-right: 0.5em;
 }
 /*---scheduleList---*/
+div.detailsView div.scheduleList div.x-list-item-body{
+	padding:0.35em 0.1em;
+}
+div.detailsView div.scheduleList div.x-list-header{
+	background-color: #FEECE6;
+	background-image: none;
+	border: 0;
+	color:black;
+}
 div.detailsView div.scheduleList h3.x-list-header,
 div#fullScheduleView div.scheduleList h3.x-list-header
 {
