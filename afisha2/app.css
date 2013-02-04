@@ -113,44 +113,31 @@ div.sortbtn.x-button {
 div.eventsTabBar.x-docked-top {
     background-image:none;
     background-color:white;
-    border-color:lightgrey;
-    background-image: -webkit-gradient(
-        linear,
-        left bottom,
-        left top,
-        color-stop(0.01, rgb(222,222,222)),
-        color-stop(0.61, rgb(232,232,232)),
-        color-stop(0.92, rgb(242,242,242))
-        );
 }
 
 div.eventsTabBar.x-docked-top .x-tab {
-    -webkit-border-radius:0px;
-    -webkit-border-top-left-radius:0.3em;
-    -webkit-border-top-right-radius:0.3em;
-    -webkit-border-bottom-right-radius:0px;
-    -webkit-border-bottom-left-radius:0px;
-
     height:1.9em;
-    width:47%;
+    width:50%;
     color:black;
 
     background-color: white;
-    background-image:none;
     -webkit-box-shadow:none;
 
     position:absolute;
     bottom:-1px;
     margin:0;
-
-    background-color:transparent;
+    border-style:none;
+    border-radius:0;
+    -webkit-border-radius:0;
+    background-repeat:no-repeat;
+    background-size:100% 100%;
 }
 div.x-list-normal .x-list-item:nth-child(2) .x-dock-horizontal {
     border-top-style:none;
 }
 
 div.eventsTabBar.x-docked-top .x-tab:nth-child(2) {
-    right:0.8em;
+    right:0;
 }
 
 div.eventsTabBar.x-docked-top .x-tab span {
@@ -163,8 +150,9 @@ div.eventsTabBar.x-docked-top {
 
 div.eventsTabBar.x-docked-top .x-tab.x-tab-active {
     background-color: #F7F7F7;
-    border:1px solid gray;
     border-bottom-style:none;
+    background-image: url('/resources/Black-line.png') !important;
+    color: white;
 }
 
 
