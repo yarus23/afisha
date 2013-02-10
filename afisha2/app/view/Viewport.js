@@ -25,6 +25,8 @@ Ext.define('Afisha.view.Viewport',{
                 xtype:'favcontent'
             },{
                 xtype:'mainsettings'
+            },{
+                xtype:'discview'
             }
         ],
         fullscreen:true,

@@ -164,10 +164,10 @@ Afisha.ckeckByDate = function(event_id, date, end_date, val_field){
 Ext.application({
     name: 'Afisha',
     requires:['Ext.DateExtras', 'Afisha.util.gf','Afisha.util.schMethods','Afisha.util.Settings'],
-    views:['Viewport','FavContent','ImgFullView','MapView','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView','AfishaViews.EventView', 'AfishaViews.TileView','News.NewsList', 'AfishaViews.FilterView','News.PageView','Settings'],
-    models:['Settings','Favorites','AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList','News.NewsList','News.PageView'],
-    stores:['Settings','Favorites','AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule','AfishaStores.Dictionary','News.NewsList','News.PageView'],
-    controllers:['Navigation','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','AfishaC.EventView','ImgFullView','MapView', 'AfishaC.TilesView','News.NewsList', 'AfishaC.FilterView','News.PageView','FavContent','Settings'],
+    views:['Viewport','FavContent','ImgFullView','MapView','Discount.DiscView','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView','AfishaViews.EventView', 'AfishaViews.TileView','News.NewsList', 'AfishaViews.FilterView','News.PageView','Settings'],
+    models:['Settings','Favorites','AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList','News.NewsList','News.PageView','Discount.DiscView'],
+    stores:['Settings','Favorites','AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule','AfishaStores.Dictionary','News.NewsList','News.PageView','Discount.DiscView'],
+    controllers:['Navigation','Discount.DiscView','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','AfishaC.EventView','ImgFullView','MapView', 'AfishaC.TilesView','News.NewsList', 'AfishaC.FilterView','News.PageView','FavContent','Settings'],
     launch: function() {
         this.Settings = Ext.create('Afisha.util.Settings',{});
         var splash = window.document.getElementById('splash');

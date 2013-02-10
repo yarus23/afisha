@@ -11,35 +11,55 @@ Ext.define('Afisha.view.News.PageView', {
             title:'Новости',
             items:[{
                 xtype:'backbutton'   
-            },{
-                xtype:'favbutton'
             }]
             },{
                 xtype:'panel',
-                id:'body',
+                id:'bodyContainer',
                 flex:1,
-                //layout:'fit',
-                bodyOptions: null,
-                //masked:false,
+                style:'background-color:white',
                 scrollable: {
                     direction: 'vertical'
                 },
-                cls:'viewer-body fontSized',
-                styleHtmlContent:true,
-                tpl: new Ext.XTemplate(
-                    '<div class="header"><h1>{title}</h1>',
-                    '<tpl if="image && this.isNews(values.image)"><p align="center"><img style="display:none;" onload="this.style.setProperty(\'display\',\'block\');" class="title-img" src="http://www.tula.rodgor.ru/pictures/news/{rid}/picture-{[this.bodyWidth]}h.jpg"></img></p></tpl>',
-                    '<div class="date-time">{date:date("j.n.Y H:i")}</div></div>',
-                    '<div class="footer">{body}</div>',
-                    {
-                        isNews:function(image){
-                            if (image.search('gazeta') != -1)
-                                return false;
-                            else
-                                return true;
-                        }
-                    }
-                )
-        }]
+                items:[{
+                        xtype:'panel',
+                        id:'nv_header',
+                        //style:'padding-top:0.2em;',
+                        cls:'viewer-body fontSized',
+                        items:[{
+                            xtype:'favbutton',
+                            id:'favImg',
+                            cls:'fav-img'
+                        },{
+                            xtype:'panel',
+                            id:'nv_title',
+                            tpl: new Ext.XTemplate('<div class="header"><h1>{title}</h1>')
+                            //style:'font-size: 1.2em; font-weight: bold;padding-left:0.3em;'
+                        }]
+                    },{
+                        xtype:'panel',
+                        id:'body',
+                        
+                        //layout:'fit',
+                        bodyOptions: null,
+                        //masked:false,
+
+                        cls:'viewer-body fontSized',
+                        styleHtmlContent:true,
+                        tpl: new Ext.XTemplate(
+                            //'<div class="header"><h1>{title}</h1>',
+                            '<tpl if="image && this.isNews(values.image)"><p align="center"><img style="display:none;" onload="this.style.setProperty(\'display\',\'block\');" class="title-img" src="http://www.tula.rodgor.ru/pictures/news/{rid}/picture-{[this.bodyWidth]}h.jpg"></img></p></tpl>',
+                            '<div class="date-time">{date:date("j.n.Y H:i")}</div></div>',
+                            '<div class="footer">{body}</div>',
+                            {
+                                isNews:function(image){
+                                    if (image.search('gazeta') != -1)
+                                        return false;
+                                    else
+                                        return true;
+                                }
+                            }
+                        )
+                }]
+            }]
     }
 });

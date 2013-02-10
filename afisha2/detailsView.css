@@ -1,3 +1,60 @@
+/*=discountView*/
+div.discountView div#disc_buttons_cont{
+	border-bottom:2px solid #949494;
+	border-top:2px solid #949494;
+	padding-bottom:0.3em;
+	padding-top:0.3em;
+	margin-bottom: 1em;
+	margin-top: 0;
+}
+div.discountView div#disc_buttons_cont div.discount_button{
+	background-color:white;
+	background-image:none;
+	border:0;
+	border-radius:0;
+}
+div.discountView div#disc_buttons_cont div.discount_button span.x-button-label{
+	font-weight: normal;
+	white-space: normal;
+	text-align:left;
+}
+div.discountView div#disc_buttons_cont div.discount_button span.map-mask{
+    -webkit-mask-image:url('resources/locate4.png');
+    background-color: #494949 !important;
+	-webkit-mask-size: 2em;
+	-webkit-mask-repeat: no-repeat;
+}
+div.discountView div#disc_buttons_cont div.discount_button span.phone-mask{
+    -webkit-mask-image:url('resources/phone1.png');
+    background-color: #494949 !important;
+	-webkit-mask-size: 2em;
+	-webkit-mask-repeat: no-repeat;	
+}
+
+div.discountView div#disc_price,
+div.discountView div#disc_disc,
+div.discountView div#disc_save{
+	margin-left:0.5em;
+	margin-right:0.5em;
+}
+div.discountView div#disc_price div.x-img,
+div.discountView div#disc_disc div.x-img,
+div.discountView div#disc_save div.x-img{
+	background-repeat: repeat-x;
+	margin-left:0.1em;
+	margin-right:0.1em;
+}
+div.discountView div#disc_timeout.x-img{
+	background-size: contain;
+	margin: 0.5em;
+	margin-top:1em;
+}
+div.discountView div#disc_timeout div.x-innerhtml{
+	text-align: center;
+	line-height: 0.6em;
+	margin-top:1em;
+}
+/*=====*/
 div.scheduleList.getsize{
 	position:absolute;
 	y: -1000px;

@@ -75,7 +75,20 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
     // программно переключаемся на какой хотим
     showEventsDialog: function(name) {
          var catStore = Ext.getStore(this.defaultStore);
+         var catSubStore = Ext.getStore('LifeSubCategories');
          var res = catStore.find('id', name);
+         var subres = catSubStore.find('id', name);
+         if (subres >= 0){
+            var record = catSubStore.getAt(subres);
+            this.getApplication().fireEvent('showItem', 'events',{
+                name: record.get('name'),
+                eventsName: record.get('left') ? record.get('left').name : '',
+                placesName: record.get('right').name,
+                onlyPlaces: record.get('hiddenToolbar'),
+                filter: record.get('filter'),
+                id: name
+            });
+         } else 
          if( res < 0 )
             alert('Нет такой категории');
          else {

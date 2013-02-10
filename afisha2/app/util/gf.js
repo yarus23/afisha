@@ -8,6 +8,23 @@ Ext.define('Afisha.util.gf', {
     },
     statics: {
         //public
+        share:function(title,url){
+            if (!window.plugins || !window.plugins.share && !window.plugins.shareKit)
+                    return;
+
+            //try EXTRA_TITLE
+            if (window.plugins.share) { //Android
+                    window.plugins.share.show({
+                                    subject: title,
+                                    text:    title + '\n' + url
+                            },
+                            Ext.emptyFn, // Success function
+                            Ext.emptyFn // Failure function
+                    );
+            } else if (window.plugins.shareKit) { //iOS
+                    window.plugins.shareKit.share(title + '\n' + url, url);
+            }
+        },
         //использовать так - MT.gf.alert('текст алерта')
         alert:function(message, fn, scope ){
             var title = Global.app_name;

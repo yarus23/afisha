@@ -10,6 +10,7 @@ Ext.define('Afisha.view.FavContent', {
                 title:'Избранное'
             },{
             xtype:'dataview',
+            style:'background-color: white;',
             cls:'newslist',
             allowDeselect: false,
             useComponents: false,
