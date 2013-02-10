@@ -7,10 +7,14 @@ Ext.define('Afisha.controller.AfishaC.FilterView', {
 			view:'filterview',
             eventView:'events',
             fieldset: 'filterview fieldset',
-            filterButton: 'filterview > button'
+            filterButton: 'filterview > button',
+            sortButton: 'filterview > segmentedbutton'
         },
 
         control: {
+            sortButton: {
+                toggle: 'onSortPressed'
+            },
             view:{
                 construct:'onConstruct'
             },
@@ -18,6 +22,10 @@ Ext.define('Afisha.controller.AfishaC.FilterView', {
                 tap: 'onOK'
             }
         }
+    },
+    onSortPressed: function(container, button, pressed) {
+        Ext.Viewport.remove(this.getView());
+        this.getEventView().fireEvent('sortBy', button.getId());
     },
     onOK:function(){
         var v = this.getView().getValues();

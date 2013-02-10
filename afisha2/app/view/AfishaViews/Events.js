@@ -49,11 +49,11 @@ Afisha.placesTpl = new Ext.XTemplate(
   '<tpl if="name">',
     '<div class="list-first-line">',
        '{[this.vote(values.vote, values.type, values.trailer)]}',
-       '<div class="list-item-title">{name}</div>',
+       '<div class="list-item-title" style="width:{[Afisha.titleWidth]}px">{name}</div>',
     '</div>',
     '<div class="list-second-line">',
        '<span class="distance">{[this.getDistanceStr(values)]}</span>',
-       '<div class="list-item-content">{address}</div>',
+       '<div class="list-item-content" style="width:{[Afisha.titleWidth]}px">{address}</div>',
     '</div>',
   '</tpl>',
  {
@@ -66,7 +66,7 @@ Afisha.eventsTpl = new Ext.XTemplate(
   '<tpl if="name">',
     '<div class="list-first-line">',
        '{[this.vote(values.vote, values.type, values.trailer)]}',
-       '<div class="list-item-title">{name}</div>',
+       '<div class="list-item-title" style="width:{[Afisha.titleWidth]}px">{name}</div>',
     '</div>',
     '<tpl if="this.ifcast(values)">',
         '<div class="list-second-line event-description"><div class="list-item-content">{genre} <tpl if="cast">({cast})</tpl></div></div>',
@@ -108,12 +108,13 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 align:'right',
                 id:'searchButton'
             }, {
-                xtype:'toolbutton',
+                xtype:'button',
+                text:'Сорт',
                 align:'right',
                 id:'sortButton'
             }, {
-                xtype:'toolbutton',
-                //text:'Фильтр',
+                xtype:'button',
+                text:'Фильтр',
                 align:'right',
                 id:'filterButton'
             }]
@@ -144,6 +145,7 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 title: 'Events',
                 xtype:'list',
                 id:'eventsList',
+                emptyText:'<div class="emptyText">Информация отсутствует</div>',
                 store:'Events',
                 disableSelection:true,
                 itemTpl: Afisha.eventsTpl
@@ -152,6 +154,7 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 title: 'Places',
                 xtype: 'list',
                 store: 'Places',
+                emptyText:'<div class="emptyText">Информация отсутствует</div>',
                 id: 'placesList',
                 disableSelection:true,
                 itemTpl: Afisha.placesTpl

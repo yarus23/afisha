@@ -122,6 +122,19 @@ Afisha.eventsGroupString = function(record) {
             return '';
     }
 }
+
+Afisha.getDistanceStr = function(data)
+    {
+        if (!Afisha.useGPS)
+            return '';
+        var lat = data.lat?data.lat:data.latitude;
+        var lng = data.lng?data.lng:data.longitude;
+        if( !Afisha.position || !lat || !lng) return '';
+        var d = Geo.dist(lat, lng, Afisha.position.coords.latitude, Afisha.position.coords.longitude);
+        if( d < 1 ) return (d * 1000).toFixed(1) + 'м'
+        else return d.toFixed(1) + 'км';
+    },
+    
 Afisha.ckeckByDate = function(event_id, date, end_date, val_field){
     if (!val_field)
         val_field = 'clubevent_id';
@@ -169,6 +182,17 @@ Ext.application({
                 xtype: 'aviewport'
         });
         Afisha.gf.isOnline(true);
+        // включаем watch
+        Afisha.geo = new Geo();
+        Afisha.geo.startFastWatch(function(position){
+            Afisha.position = position;
+        // если активна сортировка по расстоянию то сортируем
+        // todo:
+        }, function(err){
+            //debugger;
+            //alert('geo err')
+            });
+        
     },
 
 });

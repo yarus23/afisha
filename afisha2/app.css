@@ -37,11 +37,11 @@ div.x-list-item div.list-item-title
 {
     font-size:smaller;
     white-space: nowrap;
-    overflow: hidden;
     text-overflow: ellipsis;
     display:inline-block;
     font-weight:bold;
     padding:0;
+    overflow:hidden;
 }
 .x-item-selected .list-item-title
 {
@@ -129,10 +129,13 @@ div.eventsTabBar.x-docked-top .x-tab {
     border-radius:0;
     -webkit-border-radius:0;
     background-repeat:no-repeat;
-    background-size:100% 100%;
+    background-size:180% 100%;
 }
 div.x-list-normal .x-list-item:nth-child(2) .x-dock-horizontal {
     border-top-style:none;
+}
+div.eventsTabBar.x-docked-top .x-tab:nth-child(1) {
+    left:0;
 }
 
 div.eventsTabBar.x-docked-top .x-tab:nth-child(2) {
@@ -190,21 +193,22 @@ div.detailsHeader span.num-votes {
 
 div.detailsHeader img.teststar,
 div.x-list div.x-list-item img.teststar{
-    float:right;
+    position:absolute;
+    right:0.5em;
     margin-top:0.2em;
     height:0.8em;
     width:4em;
 }
+
 div.detailsHeader div.superstar,
 div.x-list div.x-list-item div.superstar {
-    float:right;
-    display:inline-block;
+    position:absolute;
+    right:0.5em;
     background-image:url('config/resources/icons/starfilled.png');
     background-repeat: repeat-x;
     width:3.9em;
     height:1em;
     background-size:0.8em 0.8em;
-    margin:0;
 }
 
 div.detailsHeader div.superstar.empty,
@@ -236,9 +240,8 @@ div.x-list div.x-list-item img.rating-star-filled {
 
 div.detailsHeader div.stars-set,
 div.x-list div.x-list-item div.stars-set {
-
-    display:inline-block;
-    float:right;
+    position:absolute;
+    right:0.5em;
 }
 
 
@@ -255,6 +258,9 @@ div.x-list div.x-list-item div.list-second-line.event-description{
 }
 div.x-list div.x-list-item div.list-second-line.event-description div.list-item-content{
     color: #3D4C5B;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    
 }
 div.x-list div.x-list-item div.list-second-line.event-description.schedule-description{
     text-overflow: none;
@@ -305,13 +311,14 @@ div.x-mask img.splash {
 
 div#FavList .x-list-item .x-list-item-body span.distance,
 div.x-list#placesList .x-list-item .x-list-item-body span.distance {
-    padding-top: 0.2em;
     padding-right:0.3em;
-    float:right;
     font-size:70%;
     color:slategray;
     font-style:italic;
-    clear:both;
+    position: absolute;
+    right: 0.5em;
+    width:auto;
+    text-align:right;
 }
 
 div#Home .x-list-disclosure {
@@ -770,6 +777,14 @@ div.tilebutton div.tileDescr {
 .x-toolbutton#filterButton {
     background-image:url('resources/filterbutton.png');
 }
+
+
+.emptyText {
+    text-align:center;
+    color: #999;
+    margin-top:3em;
+}
+
 //* {
 //    font-family: "Tahoma";
 //}

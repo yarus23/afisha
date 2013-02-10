@@ -23,11 +23,16 @@ Ext.define('Afisha.view.components.PopupList', {
             scrollable: {
                disabled: true
             },
-                itemTpl : '{name}',
+                itemTpl : '<tpl if="selectable==false">\
+                               <div style="color:gray">{name}</div>\
+                           <tpl else>\
+                               {name}\
+                           </tpl>',
                 store:{
                 fields:[
                     { name:'name', type:'string' },
-                    { name:'value', type:'string' }
+                    { name:'value', type:'string' },
+                    { name: 'selectable', type: 'bool' }
                 ],
                 data:[
                     { name:'data', value:'1' },
@@ -38,6 +43,19 @@ Ext.define('Afisha.view.components.PopupList', {
             }
         }],
         listeners:{
+            initialize: function(panel) {
+                // prevent some items from being selectable
+                var list = panel.getItems().getAt(1);
+                list.addBeforeListener('itemtap', function(list, index, target, record, options) {
+                    if (record.data.selectable === false) {
+                        list.up('popuplist').hide();
+                        return false;
+                    }
+                });
+                list.on('itemtap', function(list, index, target, rec, event) {
+                    this.hide();
+                }, this);          
+            },
             show: function(panel) {
                 var me = this;
                 var f = function() {
@@ -78,20 +96,19 @@ Ext.define('Afisha.view.components.PopupList', {
     },
     setFn: function(fn) {
         if( fn.Fn === this.fn ) return;
-        this.getItems().getAt(1).on('itemtap', function(list, index) {
-                var value = list.getStore().getAt(index).get('value');
-                this.hide();
+        this.getItems().getAt(1).on('select', function(list, record) {
+                var value = record.get('value');
                 fn.Fn.call(fn.scope, value);
-            }, this);
+            }, this); 
         this.fn = fn.Fn;
     },
     setTitle: function(text) {
         this.getItems().first().setHtml(text);
     },
-    select: function(value) {
+    select: function(value, keepExisting, supressEvent) {
         console.log('select ' + value);
         var store = this.getItems().getAt(1).getStore();
         var idx = store.findExact('value', value);
-        if( idx > -1 ) this.getItems().getAt(1).select(idx);
+        if( idx > -1 ) this.getItems().getAt(1).select(idx, keepExisting,  supressEvent);
     }
 });

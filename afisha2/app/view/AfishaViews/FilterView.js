@@ -21,9 +21,9 @@ Ext.define('Afisha.view.AfishaViews.FilterView',{
             { 
                 xtype: 'segmentedbutton',
                 items:[
-                    { text: 'По алфавиту' },
-                    { text: 'По рейтингу' },
-                    { text: 'По расстоянию' }
+                    { text: 'По алфавиту', id: 'alphabet' },
+                    { text: 'По рейтингу', id: 'rating' },
+                    { text: 'По расстоянию', id: 'distance' }
                 ],
                 style:'font-size:small'
             },

@@ -1,8 +1,36 @@
 // todo: посмотреть как большой список в landscape
 // todo: при показанном поиске кнопка назад сначала отключает поиск
 // todo: баг с remove и popup окном
-// todo: сортировку в фильтры
 
+
+// todo: в onsize пересчитать ellipsis
+// todo: описать все фильтры
+
+// todo: подпинать дизайн
+// todo: менее прозрачная load mask сначала
+// todo: все фильмы делить на категории в прокате и скоро
+// todo: есть ли смысл во всех показывать прошедшие фильмы сегодня?
+
+// done:
+// todo: ellipsis в спискtах
+// todo: не включать distance если нет gps
+// todo: первоначально сортировать
+// todo: выборку по дате
+// todo: сортировку в фильтрах
+
+var distanceSort = new Ext.util.Sorter({
+ 
+                sorterFn: function(l1, l2) {
+                    if( typeof l1.data.lat !== 'number' || 
+                        typeof l1.data.lng !== 'number' ||
+                        typeof l2.data.lat !== 'number' ||
+                        typeof l2.data.lng !== 'number' ) { return 1; }
+                    var d1 = Geo.dist(l1.data.lat, l1.data.lng, Afisha.position.coords.latitude, Afisha.position.coords.longitude);
+                    var d2 = Geo.dist(l2.data.lat, l2.data.lng, Afisha.position.coords.latitude, Afisha.position.coords.longitude);
+                    return d1 > d2 ? 1 : (d1 < d2 ? -1 : 0);
+                }
+            });
+            
 Ext.define('Afisha.controller.AfishaC.Events', {
     extend: 'Ext.app.Controller',
     
@@ -25,7 +53,8 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         },
         control: {
             view: {
-                setFilter: 'OnSetFilter'
+                setFilter: 'onSetFilter',
+                sortBy: 'onSortBy'
             },
             tabpanel:{
                 activeitemchange: 'onSwitch'
@@ -53,28 +82,34 @@ Ext.define('Afisha.controller.AfishaC.Events', {
                 keyup: Ext.Function.createBuffered(this.onSearchKeyUp, 400, this),
                 clearicontap:'onSearchClear'
             }
-        });        
+        });
+        
+        var allWidth = Ext.Viewport.getWindowWidth();
+        var emWidth = Number(getComputedStyle(document.body, "").fontSize.match(/(\d*(\.\d*)?)px/)[1]);
+        Afisha.titleWidth = allWidth - 5 * emWidth;        
     },
     initView:function(opt){
         this.getEventsList().sortConfig = { 
             type: 'filterAllDays', 
             caption: 'Выбрать за',
-            data: [
+            fn:this.onFilterByDatePressed,
+            getData: function() { return [
                     { name:'Сегодня', value:'filterCurrentDay' },
                     { name:'Завтра', value:'filterNextDay' },
                     { name:'Текущую неделю', value:'filterCurrentWeek' },
                     { name:'Следущую неделю', value:'filterNextWeek' },
                     { name:'Все', value:'filterAllDays' }
-                ] };
+                ]} };
         this.getPlacesList().sortConfig = { 
             type: 'alphabet', 
+            fn: this.onSortMenuItemPress,
             caption: 'Сортировать по',
-            data: [
+            getData: function() { return [
                     { name:'Алфавиту', value:'alphabet' },
                     { name:'Рейтингу', value:'rating' },
-                    { name:'Расстоянию', value:'distance' }
+                    { name:'Расстоянию', value:'distance', selectable: (Afisha.useGPS && Afisha.position) }
 
-                ] };
+                ] }};
         this.setupDialog(opt.name, opt.eventsName,opt.placesName, opt.onlyPlaces, opt.filter, opt.id);
     },
     onFilterButtonPress:function(){
@@ -82,7 +117,10 @@ Ext.define('Afisha.controller.AfishaC.Events', {
        dialog.show();
        dialog.fireEvent('construct', this.getCategoryId());
     },
-    OnSetFilter: function(params) {
+    onSortBy: function(type) {
+        this.onSortMenuItemPress(type);
+    },
+    onSetFilter: function(params) {
         var f = [];
         for( var i in params ) {
             if( params[i] && params[i] > 0 )
@@ -123,9 +161,82 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         }
         this.getSearchPanel().setHidden(!doShow);
     },
+    onFilterByDatePressed: function(val) {
+        this.getTabpanel().getActiveItem().sortConfig.type = val;
+        var store = this.getTabpanel().getActiveItem().getStore();
+        
+        var date = null;
+        switch(val) {
+            case 'filterCurrentDay':
+                date = new Date();
+                break;
+            case 'filterNextDay':
+                date = new Date();
+                date.nextDay();
+                break;
+            case 'filterCurrentWeek':
+                date = 'week';
+                break;
+            case 'filterNextWeek':
+                date = 'nextweek';
+                break;
+            default:
+                store.clearFilter();
+                return;
+        }
+        store.clearFilter();
+        store.filterBy(function(rec) {
+            // найдем в расписании
+            var schStore = Ext.getStore('Schedule');
+            var id = rec.data.id;
+            var start_date;
+            var start_time;
+            var end_date;
+            schStore.each(function(event){
+                if( event.data.event_id == id ) {
+                    if( !start_date && !end_date ) {
+                        start_date = end_date = event.data.start_date;
+                        start_time = event.data.start_time;
+                        return;
+                    }
+                    if( event.data.start_date <= start_date && event.data.start_time < start_time ) {
+                        start_date = event.data.start_date;
+                        start_time = event.data.start_time;
+                    }
+                    if( event.data.start_date > end_date )
+                        end_date = event.data.start_date; 
+                }
+            });
+            return Afisha.schMethods.compareDates(date, start_date, end_date) && 
+                 start_time >= new Date().format('H:i');
+        });
+    },
     onSortMenuItemPress: function(val) {
         this.getTabpanel().getActiveItem().sortConfig.type = val;
-        console.log('pressed ' + val);
+        var store = this.getTabpanel().getActiveItem().getStore();
+        
+        switch( val ) {
+            case 'alphabet':
+                store.sort([{
+                        property: 'sort',
+                        direction: 'DESC'}, 
+                        quotesSort]);
+                break;
+            case 'rating':
+                store.sort([{
+                        property: 'sort',
+                        direction: 'DESC', 
+                    }, {
+                        property: 'vote',
+                        direction: 'ASC'
+                    }]);
+                break;
+            case 'distance':
+                store.sort([{
+                        property: 'sort',
+                        direction: 'DESC', 
+                    }, distanceSort])
+        }
     },
     onSortButtonPress: function() {
         if( !this.sortpopup )
@@ -135,10 +246,10 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         
         if( this.sortpopup.lastPanel != activeItem ) {
             this.sortpopup.setTitle(activeItem.sortConfig.caption);
-            this.sortpopup.setFn({ Fn: this.onSortMenuItemPress, scope: this});
-            this.sortpopup.setData(activeItem.sortConfig.data);
+            this.sortpopup.setFn({ Fn: activeItem.sortConfig.fn, scope: this});
+            this.sortpopup.setData(activeItem.sortConfig.getData());
             this.sortpopup.lastPanel = activeItem;
-            this.sortpopup.select(activeItem.sortConfig.type);
+            this.sortpopup.select(activeItem.sortConfig.type, false, true);
         }
 
         this.sortpopup.showBy(this.getSortButton());

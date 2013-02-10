@@ -1,3 +1,22 @@
+var quotesSort = new Ext.util.Sorter({
+    direction:'ASC',
+    sorterFn: function( o1, o2){
+        function getPureString(s){
+            if( s.length && (s[0] === '\"' || s[0] === '\'' || s.charCodeAt(0) === 171)) {
+               return s.replace(/['"\u00BB\u00AB]/g,'').toLowerCase();
+            } else return s.toLowerCase();
+        };
+        if (!o1.data || !o2.data)
+            return 0;
+        s1 = getPureString(o1.data.name);
+        s2 = getPureString(o2.data.name);
+        
+        if( s1 === s2 ) return 0;
+        
+        return s1 < s2 ? -1 : 1;
+    }
+});
+
 Ext.define('Afisha.controller.AfishaC.Categories', {
     extend: 'Ext.app.Controller',
     
@@ -179,12 +198,16 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                     case 'films':
                     case 'events':{
                         eventsStore.setData(data[i]);
-                        eventsStore.setCurrentType(type);   
+                        eventsStore.setCurrentType(type);
                         break;
                     }
                     case 'places':{
                         placesStore.setData(data[i]);
                         placesStore.setCurrentType(type);   
+                        placesStore.sort([{
+                            property: 'sort',
+                            direction: 'DESC'}, 
+                            quotesSort]);
                         break;
                     }
                     default:{
