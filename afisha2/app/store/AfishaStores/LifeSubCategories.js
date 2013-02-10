@@ -16,14 +16,14 @@ Ext.define('Afisha.store.AfishaStores.LifeSubCategories', {
                 left: { name: 'Услуги', id: 'fitnesevent' },
                 right: {name: 'Спорт',  id: 'fitnes' }
             },
-            { id: 'medic', name: 'Медцентры', type: 'medic',options:{schType:'service'},
-                left: { name: 'Услуги', id: 'medicevent' },
-                right: {name: 'Медцентры', id: 'medic' }
-            },
-            { id: 'stomotolog', name: 'Стоматология', type: 'stomotolog',options:{schType:'service'},
-                left: { name: 'Услуги', id: 'stomotologevent' },
-                right: {name: 'Стоматология', id: 'stomotolog' }
-            } 
+//            { id: 'medic', name: 'Медцентры', type: 'medic',options:{schType:'service'},
+//                left: { name: 'Услуги', id: 'medicevent' },
+//                right: {name: 'Медцентры', id: 'medic' }
+//            },
+//            { id: 'stomotolog', name: 'Стоматология', type: 'stomotolog',options:{schType:'service'},
+//                left: { name: 'Услуги', id: 'stomotologevent' },
+//                right: {name: 'Стоматология', id: 'stomotolog' }
+//            } 
         ]
         
     },

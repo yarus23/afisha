@@ -568,6 +568,9 @@ div.newslist div.ListItemInfo{
     //text-overflow: ellipsis;
     color:#999;
 }
+div.pageview  div.viewer-body{
+	background-color:white;
+}
 div.pageview  div.viewer-body div.date-time{
     font-size: 0.6em;
     color:#4d4d4d;
@@ -647,6 +650,7 @@ div.x-img.img-border{
 	background-repeat: repeat-x;
 }
 div.categories-list div.x-button{
+	color:white;
     border-bottom: none;
     border-top: none;
     border-left: none;
@@ -674,10 +678,6 @@ div.categories-list div.x-button.x-last{
     border-top-right-radius:0;
     -webkit-border-bottom-right-radius:0;
     border-bottom-right-radius:0;
-}
-div.categories-list div.x-button.x-button-pressed{
-    color:white;//#FF0918;//#A8141D;
-    background-color: #4D090D;
 }
 div.categories-list div.x-button.x-button-pressed span.x-button-label{
     font-weight: bold;

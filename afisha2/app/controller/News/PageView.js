@@ -12,7 +12,9 @@ Ext.define('Afisha.controller.News.PageView', {
 //            articlesDatePanel:'articlescontent panel#articleDate',
 //            favoritesList:'favcontent newslist',
 //            pageView: 'pageview',
+            bodyContainer:'pageview #bodyContainer',
             body:'pageview #body',
+            title:'pageview panel#nv_title',
             favBtn:'pageview favbutton'
 //            recordsCounter:'pageview toolbar panel#recordsCounter',
 //            swipeControlPanel:'pageview toolbar panel#swipeControlPanel',
@@ -44,13 +46,14 @@ Ext.define('Afisha.controller.News.PageView', {
     initView:function(opt){
         var store = Ext.getStore('PageView');
         var body = this.getBody();
+        var bodyContainer = this.getBodyContainer();
         store.getProxy().setExtraParam('type',opt.type);
         store.getProxy().setExtraParam('id',opt.rec_id);
         var favStore = Ext.getStore('Favorites');
         this.getFavBtn().setState(favStore.isRecordInFav(opt.type, opt.rec_id));
         //body.setBodyOptions(opt);
         //body.parent.setActiveItem(1);
-        body.setMasked({});
+        //bodyContainer.setMasked({});
         if (!store.isLoaded){//first-time load. 
             var me = this;
             setTimeout(function(){
@@ -73,39 +76,6 @@ Ext.define('Afisha.controller.News.PageView', {
 //    setBodyFontSize:function(size){
 //        this.getBody().element.setStyle('font-size',size + 'em');
 //    },
-    addToFavorites:function(){
-        debugger;
-        //todo: проверка по type
-        var opts,
-            favStore,
-            model,
-            rec,
-            index,
-            ico;
-        opts = this.getBody().getBodyOptions();
-        if (!opts || opts.reInit)
-            return;
-        favStore = this.getFavoritesList().getStore();
-        model = favStore.getModel();
-
-        index = this.checkFavorites(opts.record.get('rid'), favStore);
-        if (index != -1) {
-            //remove record from favorites
-            favStore.removeAt(index);
-            favStore.sync();
-            this.setEnabledFavoritesIcon(false);
-            return;
-        }
-
-        delete opts.record.data.id
-        rec = new model(opts.record.data);
-
-        favStore.add(rec);
-        favStore.sync();
-        
-        this.setEnabledFavoritesIcon(true);
-        News.gf.alert('Статья добавлена в избранное! Чтобы удалить ее из избранного нажмите на звездочку еще раз.');
-    },
     //private
     checkFavorites:function(rid, favStore){
         return false;
@@ -150,50 +120,9 @@ Ext.define('Afisha.controller.News.PageView', {
 
     },
 
-    changeCategory:function(me, button, isPressed, e){
-        Afisha.gf.isOnline(true);
-        var store = this.getNewsList().getStore();
-        store.getProxy().setExtraParam('rub_id',button.config.rub_id);
-        //this.getNewsList().setMasked(true);
-        this.getNewsList().setLoadingText(' ');
-        store.currentPage = 1;
-        store.load(this.changeCategoryComplete,this);
-    },
-    changeCategoryComplete:function(){
-        this.getNewsList().setLoadingText(null)
-    },
-    onListItemTap: function(list, index, target, record){
-        var rec_id,
-            type,
-            store,
-            body;
-        if (!Afisha.gf.isOnline(true))
-            return;
-        rec_id = record.get('rid');
-        type = record.get('type');
-        store = Ext.getStore('PageView');
-        body = this.getBody();
-        store.getProxy().setExtraParam('type',type);
-        store.getProxy().setExtraParam('id',rec_id);
-        body.setBodyOptions({
-            list:   list,
-            store:  list ? list.getStore() : null,
-            index:  index,
-            record: record,
-            reInit: list ? false : true //если перешли по ссылке, до данных для избранного о статье нету, и надо их заполнить из загруженной статьи
-        });
-        body.parent.setActiveItem(1);
-        this.getViewport().setActiveItem(1);
-        if (!store.isLoaded){//first-time load. 
-            var me = this;
-            setTimeout(function(){
-                store.load(me.bindData, me);
-            },500);
-        } else
-            store.load(this.bindData, this);
-    },
     bindData:function(records){
         var body,
+            title,
             wElem,
             href,
             align,
@@ -203,7 +132,7 @@ Ext.define('Afisha.controller.News.PageView', {
             scroller,
             checkUrl,
             opts;
-            
+        var bodyContainer = this.getBodyContainer();
         if (!records.length){
             Afisha.gf.alert('Невозможно загрузить статью.');
             return;
@@ -231,8 +160,10 @@ Ext.define('Afisha.controller.News.PageView', {
             el.removeAttribute('href');
             return true;
         };
+        title = this.getTitle();
         body = this.getBody();
         body.setRecord(records[0]);
+        title.setRecord(records[0]);
         //приводим к нужному виду, чтобы статья открытая через ссылку нормально добавлялась в избранное
 //        opts = body.getBodyOptions();
 //        if (opts.reInit){
@@ -316,7 +247,7 @@ Ext.define('Afisha.controller.News.PageView', {
 //        }
         //console.log(records[0]);
 //        body.parent.setActiveItem(0);
-        body.setMasked(null);
+        bodyContainer.setMasked(null);
 //        debugger;
     }
 });

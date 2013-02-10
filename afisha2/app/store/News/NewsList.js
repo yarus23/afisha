@@ -9,12 +9,12 @@ Ext.define('Afisha.store.News.NewsList', {
         pageSize:20,
         proxy: {
             type: 'scripttag',
-            url : 'http://www.tula.rodgor.ru/incl/export_json.php',
+            url : 'http://www.tula.rodgor.ru/incl/export_json.php',//'/http://afisha.mikhelev.ru/app/ulanude/data/news',
             startParam:'offset',
             extraParams:{
                 type:'news',
                 rub_id:0,
-                //offset:0,
+                offset:0,
                 limit:20,
             },
             reader: {

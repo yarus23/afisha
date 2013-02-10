@@ -97,7 +97,7 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
                 id:'ev_footer',
                 layout:'fit',
                 //baseCls:'x-list',
-                cls:'detailsFooter',
+                cls:'detailsFooter fontSized',
                 styleHtmlContent:true,
                 tpl:new Ext.XTemplate(
                     '<tpl if="description.length"><div class="description">{description}</div></tpl>',      //event

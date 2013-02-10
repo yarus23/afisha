@@ -15,7 +15,8 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                 concertPressed: 'onConcertPressed',
                 restaurantPressed:'onRestaurantPressed',
                 favPressed:'onFavPressed',
-                settingsPressed:'onSettingsPressed'
+                settingsPressed:'onSettingsPressed',
+                discountsPressed:'onDiscountsPressed'
             }
         }
     },
@@ -44,6 +45,9 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     onSettingsPressed: function(){
         this.getApplication().fireEvent('showItem', 'mainsettings');
     },
+    onDiscountsPressed: function(){
+        this.getApplication().fireEvent('showItem', 'discview');
+    },
     // здесь я дергаю view который дергает controller который вызывает то что 
     // написано в handler в описании айтемов, напрямую пробиться к методам controller'a не смог
     launch: function() {
@@ -58,7 +62,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                     { title: 'Кино', icon:'9', bg:'#c0df05', color:'black', id: 'cinema', handler: 'cinemaPressed' }]
             }, {
                 items: [
-                    { title: 'Скидки', icon:'3', bg:'#e8e8e8', color:'black', id: 'discounts' }, 
+                    { title: 'Скидки', icon:'3', bg:'#e8e8e8', color:'black', id: 'discounts', handler: 'discountsPressed' }, 
                     { title: 'Бары', icon:'10w', bg:'#74331d', descrColor: 'white', flex: 2, handler: 'restaurantPressed', text: 'Заказать столик в любом из баров Улан-Удэ. Узнать отзывы посетителей', id: 'pubs'}]
             }, {
                 items: [

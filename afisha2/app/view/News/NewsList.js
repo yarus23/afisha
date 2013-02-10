@@ -78,6 +78,7 @@ Ext.define('Afisha.view.News.NewsList', {
             xtype:'dataview',
             id:'newslist',
             cls:'newslist',
+            style:'background-color:white',
             allowDeselect: false,
             useComponents: false,
             loadingText:' ',
