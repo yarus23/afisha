@@ -122,19 +122,18 @@ Afisha.eventsGroupString = function(record) {
             return '';
     }
 }
-
 Afisha.getDistanceStr = function(data)
-    {
-        if (!Afisha.useGPS)
-            return '';
-        var lat = data.lat?data.lat:data.latitude;
-        var lng = data.lng?data.lng:data.longitude;
-        if( !Afisha.position || !lat || !lng) return '';
-        var d = Geo.dist(lat, lng, Afisha.position.coords.latitude, Afisha.position.coords.longitude);
-        if( d < 1 ) return (d * 1000).toFixed(1) + 'м'
-        else return d.toFixed(1) + 'км';
-    },
-    
+{
+	if (!Afisha.useGPS)
+		return '';
+	var lat = data.lat?data.lat:data.latitude;
+	var lng = data.lng?data.lng:data.longitude;
+	if( !Afisha.position || !lat || !lng) return '';
+	var d = Geo.dist(lat, lng, Afisha.position.coords.latitude, Afisha.position.coords.longitude);
+	if( d < 1 ) return (d * 1000).toFixed(1) + 'м'
+	else return d.toFixed(1) + 'км';
+}
+
 Afisha.ckeckByDate = function(event_id, date, end_date, val_field){
     if (!val_field)
         val_field = 'clubevent_id';
@@ -164,10 +163,10 @@ Afisha.ckeckByDate = function(event_id, date, end_date, val_field){
 Ext.application({
     name: 'Afisha',
     requires:['Ext.DateExtras', 'Afisha.util.gf','Afisha.util.schMethods','Afisha.util.Settings'],
-    views:['Viewport','FavContent','ImgFullView','MapView','Discount.DiscView','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView','AfishaViews.EventView', 'AfishaViews.TileView','News.NewsList', 'AfishaViews.FilterView','News.PageView','Settings'],
-    models:['Settings','Favorites','AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList','News.NewsList','News.PageView','Discount.DiscView'],
-    stores:['Settings','Favorites','AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule','AfishaStores.Dictionary','News.NewsList','News.PageView','Discount.DiscView'],
-    controllers:['Navigation','Discount.DiscView','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','AfishaC.EventView','ImgFullView','MapView', 'AfishaC.TilesView','News.NewsList', 'AfishaC.FilterView','News.PageView','FavContent','Settings'],
+    views:['Viewport','FavContent','Adv','ImgFullView','MapView','Discount.DiscView','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView','AfishaViews.EventView', 'AfishaViews.TileView','News.NewsList', 'AfishaViews.FilterView','News.PageView','Settings'],
+    models:['Settings','Favorites','AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList','News.NewsList','News.PageView','Discount.DiscView','News.NewsRubric'],
+    stores:['Settings','Favorites','AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule','AfishaStores.Dictionary','News.NewsList','News.PageView','Discount.DiscView','News.NewsRubric'],
+    controllers:['Navigation','Adv','Discount.DiscView','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','AfishaC.EventView','ImgFullView','MapView', 'AfishaC.TilesView','News.NewsList', 'AfishaC.FilterView','News.PageView','FavContent','Settings'],
     launch: function() {
         this.Settings = Ext.create('Afisha.util.Settings',{});
         var splash = window.document.getElementById('splash');
@@ -178,9 +177,15 @@ Ext.application({
         }
         //Ext.fly('splash').destroy();
         //переносим всякий левак из regApplication
-        Ext.Viewport.add({
+        Ext.Viewport.add([{
                 xtype: 'aviewport'
-        });
+        },{
+            xtype:'adv'
+        },{
+            xtype:'actionsheet',
+            id:'advAS',
+            hidden: true
+        }]);
         Afisha.gf.isOnline(true);
         // включаем watch
         Afisha.geo = new Geo();
@@ -193,6 +198,7 @@ Ext.application({
             //alert('geo err')
             });
         
+
     },
 
 });

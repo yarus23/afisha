@@ -510,9 +510,9 @@ div.newslist  div.x-mask-inner{
     background: transparent;
 }
 div.newslist div.newslistitem{
-    display:-webkit-box;
+    //display:-webkit-box;
     padding: 0.3em;
-    background: #fff;
+    //background: #fff;
     //max-height:5em;
 }
 div.newslist div.newslistitem:nth-child(even){
@@ -530,12 +530,15 @@ div.newslist div.newslistitem:nth-child(even){
     //-webkit-border-radius: 0.4em;
     // -webkit-box-shadow: inset 0 2px 2px rgba(0,0,0,.3);*/
 }
+div.newslist div.newslistitem  div.x-list-item-body{
+	display:none !important
+}
  div.newslist div.newslistitem div.newsListTitle{
 	max-height: 2.3em;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
-    font-family: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif;
+    //font-family: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif;
     overflow: hidden;
     line-height:1.1em;
     font-size: 0.8em;

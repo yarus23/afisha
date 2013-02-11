@@ -27,7 +27,7 @@ Ext.define('Afisha.view.News.PageView', {
                         cls:'viewer-body fontSized',
                         items:[{
                             xtype:'favbutton',
-                            id:'favImg',
+                            id:'favImgNews',
                             cls:'fav-img'
                         },{
                             xtype:'panel',
