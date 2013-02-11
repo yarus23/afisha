@@ -112,6 +112,7 @@ div.sortbtn.x-button {
 div.eventsTabBar.x-docked-top {
     background-image:none;
     background-color:white;
+    font-size:smaller;
 }
 
 div.eventsTabBar.x-docked-top .x-tab {
@@ -143,7 +144,7 @@ div.eventsTabBar.x-docked-top .x-tab:nth-child(2) {
 }
 
 div.eventsTabBar.x-docked-top .x-tab span {
-    line-height:1.5em;
+    line-height:1.85em;
 }
 
 div.eventsTabBar.x-docked-top {
@@ -153,7 +154,7 @@ div.eventsTabBar.x-docked-top {
 div.eventsTabBar.x-docked-top .x-tab.x-tab-active {
     background-color: #F7F7F7;
     border-bottom-style:none;
-    background-image: url('/resources/Black-line.png') !important;
+    background-image: url('resources/Black-line.png') !important;
     color: white;
 }
 
@@ -736,11 +737,6 @@ div.tilebutton div.tileDescr {
     padding-left:0.5em;
     padding-top:1em;
 }
-
-.x-icon-mask.6w {
-    background-image: url('resources/icons/6w.png');
-}
-
 
 .x-toolbar {
     background-image:url('resources/header.png');

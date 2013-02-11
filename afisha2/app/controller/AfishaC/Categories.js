@@ -36,10 +36,16 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         },
 
         control: {
+            viewport:{
+                orientationchange: 'onOrientationchange'
+            },
             catList:{
                 itemtap:'onCatListItemTap'
             }
         }
+    },
+    onOrientationchange: function() {
+        Afisha.initListWidth();
     },
     
     launch: function(){

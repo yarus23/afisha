@@ -16,7 +16,8 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                 restaurantPressed:'onRestaurantPressed',
                 favPressed:'onFavPressed',
                 settingsPressed:'onSettingsPressed',
-                discountsPressed:'onDiscountsPressed'
+                discountsPressed:'onDiscountsPressed',
+                healthPressed:'onHealthPressed'
             }
         }
     },
@@ -48,6 +49,9 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     onDiscountsPressed: function(){
         this.getApplication().fireEvent('showItem', 'discview');
     },
+    onHealthPressed: function() {
+        this.getApplication().fireEvent('switchTo', 'beauty');
+    },
     // здесь я дергаю view который дергает controller который вызывает то что 
     // написано в handler в описании айтемов, напрямую пробиться к методам controller'a не смог
     launch: function() {
@@ -63,11 +67,11 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
             }, {
                 items: [
                     { title: 'Скидки', icon:'3', bg:'#e8e8e8', color:'black', id: 'discounts', handler: 'discountsPressed' }, 
-                    { title: 'Бары', icon:'10w', bg:'#74331d', descrColor: 'white', flex: 2, handler: 'restaurantPressed', text: 'Заказать столик в любом из баров Улан-Удэ. Узнать отзывы посетителей', id: 'pubs'}]
+                    { title: 'Рестораны', icon:'10w', bg:'#74331d', descrColor: 'white', flex: 2, handler: 'restaurantPressed', text: 'Заказать столик в любом из баров Улан-Удэ. Узнать отзывы посетителей', id: 'pubs'}]
             }, {
                 items: [
-                    { title: 'Услуги', icon:'8w', bg:'#202020', id: 'help'}, 
-                    { title: 'Концерты', icon:'7w', bg:'#00bce2', id: 'concert', handler: 'concertPressed'}, 
+                    { title: 'Красота', icon:'8w', bg:'#202020', id: 'health', handler: 'healthPressed'}, 
+                    { title: 'Доставка на дом', icon:'7w', bg:'#00bce2', id: 'concert', handler: 'concertPressed'}, 
                     { title: 'Избранное', icon:'1w', bg:'#e66021', id: 'favorites', handler:'favPressed' }]
             }];
         for( var v in def ) {
@@ -110,9 +114,14 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                                 align: 'stretch'
                             },
                             items:[{ html: rowDef[i].text, flex: rowDef[i].text ? 3 : 1, cls: 'tileDescr', style: rowDef[i].descrColor ? 'color: ' + rowDef[i].descrColor : ''}, 
-                            {flex: 1, style: rowDef[i].icon ? 'height:3.2em; background-position:10% bottom; background-repeat: no-repeat; background-image: url("resources/icons/' + rowDef[i].icon + '.png")' : ''}]
+                            {flex: 1, style: rowDef[i].icon ? 'height:3.2em;'  : ''}]
                         }]
                 });
+                if( rowDef[i].icon ) {
+        
+                    var t = Ext.create('Ext.Container', { style:'background-position: 95% 90%; position:absolute; background-repeat: no-repeat; background-image: url("resources/icons/' + rowDef[i].icon + '.png")'});
+                    tile.add(t);
+                }
                 tile.add(tileInner);
                                 
                 row.add(tile);

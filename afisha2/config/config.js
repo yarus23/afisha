@@ -5,7 +5,7 @@
         img_url:'http://afisha.mikhelev.ru/',
 	db_name: 'afishache2',
 	//
-	app_name: 'Афиша Челябинска',
+	app_name: 'Афиша Улан-Удэ',
 	email: 'gubernia74@gmail.com',
 	android_play: 'https://play.google.com/store/apps/details?id=com.afisha.che',
 	app_store: 'http://itunes.apple.com/us/app/id520794707',

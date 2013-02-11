@@ -139,6 +139,7 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                   pack : 'center'
                },
                cls:'eventsTabBar',
+               baseCls:'eventsTabBar', // чтобы не цеплять стили сенчи
                height:'2.2em'
             },
             items: [{

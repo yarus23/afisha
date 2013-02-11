@@ -102,7 +102,15 @@ Afisha.placesGroupString = function(record) {
       }
     else
       return 'Все'; 
-}
+};
+
+
+Afisha.initListWidth = function() {
+        var allWidth = Ext.Viewport.getWindowWidth();
+        var emWidth = Number(getComputedStyle(document.body, "").fontSize.match(/(\d*(\.\d*)?)px/)[1]);
+        Afisha.titleWidth = allWidth - 5 * emWidth; 
+};
+
 Afisha.eventsGroupString = function(record) {
     if (!this.showGroups)
         return '';

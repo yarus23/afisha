@@ -3,15 +3,21 @@
 // todo: баг с remove и popup окном
 
 
-// todo: в onsize пересчитать ellipsis
+
 // todo: описать все фильтры
 
 // todo: подпинать дизайн
+// todo: уважать настройку gps
+// todo: кнопки фильтра и сортировки
 // todo: менее прозрачная load mask сначала
 // todo: все фильмы делить на категории в прокате и скоро
 // todo: есть ли смысл во всех показывать прошедшие фильмы сегодня?
 
+// test: в onsize пересчитать ellipsis
+
 // done:
+// todo: в горизонтали иконки tileview уезжают
+// todo: при слайдинге видна черная полоса внизу
 // todo: ellipsis в спискtах
 // todo: не включать distance если нет gps
 // todo: первоначально сортировать
@@ -83,10 +89,7 @@ Ext.define('Afisha.controller.AfishaC.Events', {
                 clearicontap:'onSearchClear'
             }
         });
-        
-        var allWidth = Ext.Viewport.getWindowWidth();
-        var emWidth = Number(getComputedStyle(document.body, "").fontSize.match(/(\d*(\.\d*)?)px/)[1]);
-        Afisha.titleWidth = allWidth - 5 * emWidth;        
+        Afisha.initListWidth();       
     },
     initView:function(opt){
         this.getEventsList().sortConfig = { 
