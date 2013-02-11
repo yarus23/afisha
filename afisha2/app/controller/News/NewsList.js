@@ -53,6 +53,14 @@ Ext.define('Afisha.controller.News.NewsList', {
 //            }
         }
     },
+    addCategories:function(record){
+        var sb = this.getSb();
+        sb.add({
+            rub_id:record.get('id'),
+            text:record.get('name')
+        });
+        sb.show();
+    },
     initView:function(opt){
         var store = this.getNewsList().getStore();
         if(!store.isLoaded() && !store.isLoading()){
@@ -61,6 +69,19 @@ Ext.define('Afisha.controller.News.NewsList', {
             store.currentPage = 1;
             store.load(this.changeCategoryComplete,this);
         }
+        var q = Ext.getStore('NewsRubric');
+        q.load({
+            callback: function(records, operation, success) {
+                if (!success)
+                    return;
+                for(var i = 0; i< records.length; i++){
+                    this.addCategories(records[i]);
+                }
+                // the operation object contains all of the details of the load operation
+            },
+            scope: this
+        })
+        //debugger;
 //        console.log(123)
     },
 
