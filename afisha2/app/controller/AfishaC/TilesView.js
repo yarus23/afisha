@@ -67,11 +67,11 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
             }, {
                 items: [
                     { title: 'Скидки', icon:'3', bg:'#e8e8e8', color:'black', id: 'discounts', handler: 'discountsPressed' }, 
-                    { title: 'Рестораны', icon:'10w', bg:'#74331d', descrColor: 'white', flex: 2, handler: 'restaurantPressed', text: 'Заказать столик в любом из баров Улан-Удэ. Узнать отзывы посетителей', id: 'pubs'}]
+                    { title: 'Рестораны', icon:'10w', bg:'#74331d', descrColor: 'white', flex: 2, handler: 'restaurantPressed', text: 'Заказать столик в ресторане, узнать отзывы посетителей, заказать еду на дом', id: 'pubs'}]
             }, {
                 items: [
-                    { title: 'Красота', icon:'8w', bg:'#202020', id: 'health', handler: 'healthPressed'}, 
-                    { title: 'Доставка на дом', icon:'7w', bg:'#00bce2', id: 'concert', handler: 'concertPressed'}, 
+                    { title: 'Красота', icon:'8w', bg:'#202020', id: 'health', handler: 'healthPressed', descrColor:'white', text:'Салоны красоты, фитнес, сауны'}, 
+                    { title: 'Активный отдых', icon:'7w', bg:'#00bce2', id: 'concert', handler: 'concertPressed'}, 
                     { title: 'Избранное', icon:'1w', bg:'#e66021', id: 'favorites', handler:'favPressed' }]
             }];
         for( var v in def ) {
