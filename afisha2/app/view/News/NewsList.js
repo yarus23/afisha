@@ -41,7 +41,7 @@ Ext.define('Afisha.view.News.NewsList', {
             },{
                 text:'Все',
                 pressed:true,
-                rub_id:0
+                rub_id:"all"
             }]
         },{
             //defaultType:'newslistitem',

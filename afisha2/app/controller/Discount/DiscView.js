@@ -16,6 +16,7 @@ Ext.define('Afisha.controller.Discount.DiscView', {
             conditions:'aviewport discview panel#disc_conditions',
             timeOut:'aviewport discview img#disc_timeout',
             buttons:'aviewport discview panel#disc_buttons_cont',
+            favBtn:'aviewport discview favbutton'
         },
         control: {
 
@@ -96,18 +97,22 @@ Ext.define('Afisha.controller.Discount.DiscView', {
         return res;
         
     },
-    initView:function(){
-        var record = Ext.getStore('DiscView').getAt(0);
-        this.setCurrentRecord(record);
-        this.getHeader().setData(record.data);
-        this.getDescr().setData(record.data);
-        this.getPrice().setData(record.data);
-        this.getDiscount().setData(record.data);
-        this.getSave().setData(record.data);
-        this.checkButtons(record);
-        this.getTimeOut().setData(this.getTimeOutObj());
-        this.getText().setData(record.data);
-        this.getConditions().setData(record.data);
+    initView:function(opt){
+        var store = Ext.getStore('DiscView');
+        store.getProxy().setExtraParam('id',opt.rec_id);
+        var favStore = Ext.getStore('Favorites');
+        this.getFavBtn().setState(favStore.isRecordInFav('discount', opt.rec_id));
+        //body.setBodyOptions(opt);
+        //body.parent.setActiveItem(1);
+        //bodyContainer.setMasked({});
+        if (!store.isLoaded){//first-time load. 
+            var me = this;
+            setTimeout(function(){
+                store.load(me.bindData, me);
+            },500);
+        } else
+            store.load(this.bindData, this);
+       
         
 //        console.log(record.data)
 //        var type = Ext.getStore('Places').getCurrentType();
@@ -146,18 +151,33 @@ Ext.define('Afisha.controller.Discount.DiscView', {
         //this.getSchList().bindScheduleData(record.get('id'),null,false);
     },
     onFavBtnTap:function(){
-        var record = this.getCurrentRecord();
         var params = {};
+        var store = Ext.getStore('DiscView');
         var favStore = Ext.getStore('Favorites');
-        params.type = this.getCurrentType();
+        params.type = 'discount';
+        var record = this.getBody().getRecord();
         params.rid = record.get('id');
-        params.title = record.get('name');
-        params.descr = record.get('address');
-        var res = favStore.setFav(params);
-        this.getFavBtn().setState(res);
-        if (res){
-            Afisha.gf.alert("Место добавлено в избранное!");
+        params.title = record.get('title');
+        params.descr = record.get('description');
+        //params.type = 'news';
+        this.getFavBtn().setState(favStore.setFav(params));
+    },
+    bindData:function(records){
+        if (!records.length){
+            Afisha.gf.alert('Невозможно загрузить статью.');
+            return;
         }
+        var record = records[0];
+        this.setCurrentRecord(record);
+        this.getHeader().setData(record.data);
+        this.getDescr().setData(record.data);
+        this.getPrice().setData(record.data);
+        this.getDiscount().setData(record.data);
+        this.getSave().setData(record.data);
+        this.checkButtons(record);
+        this.getTimeOut().setData(this.getTimeOutObj());
+        this.getText().setData(record.data);
+        this.getConditions().setData(record.data);
     },
     goBack: function() {
         return false;

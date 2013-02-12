@@ -5,11 +5,11 @@ Ext.define('Afisha.store.News.PageView', {
         //autoLoad: true,
         proxy: {
             type: 'scripttag',
-            url : 'http://www.tula.rodgor.ru/incl/export_json.php',
+            url : 'http://afisha.mikhelev.ru/app/ulanude/data/news/getone/',//http://www.tula.rodgor.ru/incl/export_json.php',
             //callbackKey: 'callback',
             reader: {
                 type: 'json',
-                rootProperty: 'root'
+                //rootProperty: 'root'
             }
         }
     },

@@ -47,7 +47,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
         this.getApplication().fireEvent('showItem', 'mainsettings');
     },
     onDiscountsPressed: function(){
-        this.getApplication().fireEvent('showItem', 'discview');
+        this.getApplication().fireEvent('showItem', 'disclist');
     },
     onHealthPressed: function() {
         this.getApplication().fireEvent('switchTo', 'beauty');

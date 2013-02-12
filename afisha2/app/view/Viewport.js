@@ -27,6 +27,8 @@ Ext.define('Afisha.view.Viewport',{
                 xtype:'mainsettings'
             },{
                 xtype:'discview'
+            },{
+                xtype:'disclist'
             }
         ],
         fullscreen:true,

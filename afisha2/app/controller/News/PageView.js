@@ -37,9 +37,9 @@ Ext.define('Afisha.controller.News.PageView', {
         var favStore = Ext.getStore('Favorites');
         params.type = store.getProxy().getExtraParams().type;
         var record = this.getBody().getRecord();
-        params.rid = record.get('rid');
+        params.rid = record.get('id');
         params.title = record.get('title');
-        params.descr = record.get('descr');
+        params.descr = record.get('description');
         //params.type = 'news';
         this.getFavBtn().setState(favStore.setFav(params));
     },
@@ -47,7 +47,7 @@ Ext.define('Afisha.controller.News.PageView', {
         var store = Ext.getStore('PageView');
         var body = this.getBody();
         var bodyContainer = this.getBodyContainer();
-        store.getProxy().setExtraParam('type',opt.type);
+        //store.getProxy().setExtraParam('type',opt.type);
         store.getProxy().setExtraParam('id',opt.rec_id);
         var favStore = Ext.getStore('Favorites');
         this.getFavBtn().setState(favStore.isRecordInFav(opt.type, opt.rec_id));
@@ -211,9 +211,9 @@ Ext.define('Afisha.controller.News.PageView', {
         });
         src.forEach(function(el,idx){
             if(el.src.search('file://') != -1)
-                el.setAttribute('src',el.src.replace('file://','http://tula.rodgor.ru'));
+                el.setAttribute('src',el.src.replace('file://',Global.img_url));
             else if(el.src.search('localhost') != -1)
-                el.setAttribute('src',el.src.replace('localhost','tula.rodgor.ru'));
+                el.setAttribute('src',el.src.replace('localhost',Global.img_url));
         });
         
         wElem.forEach(function(el,idx){
@@ -237,7 +237,7 @@ Ext.define('Afisha.controller.News.PageView', {
             if (el.tagName == 'IMG')
                 el.style.setProperty('display','block');
         });
-        scroller = body.getScrollable().getScroller();
+        scroller = bodyContainer.getScrollable().getScroller();
         scroller.scrollToTop();
 //        if (!opts.list){
 //            this.getSwipeControlPanel().hide()

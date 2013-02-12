@@ -1,4 +1,4 @@
-Ext.define('Afisha.controller.News.NewsList', {
+Ext.define('Afisha.controller.Discount.DiscList', {
     extend: 'Ext.app.Controller',
 
     config: {
@@ -6,7 +6,7 @@ Ext.define('Afisha.controller.News.NewsList', {
 //            mainView: 'mainview',
 //            viewport: 'newsviewport',
             viewport: 'aviewport',
-            newsList: '#newslist',
+            discList: 'disclist #disclist',
 //            weatherPanel: 'newscontent toolbar panel#weatherPanel',
 //            erPanel: 'newscontent toolbar panel#erPanel',
 //            articlesList:'articlescontent newslist',
@@ -16,7 +16,7 @@ Ext.define('Afisha.controller.News.NewsList', {
 //            body:'pageview body',
 //            recordsCounter:'pageview toolbar panel#recordsCounter',
 //            swipeControlPanel:'pageview toolbar panel#swipeControlPanel',
-            sb:'segmentedbutton#catlist',
+            sb:'disclist segmentedbutton#disc_catlist',
 //            favButton:'pageview toolbar #addFav',
 //            minusFontButton:'pageview toolbar #minusFont',
 //            plusFontButton:'pageview toolbar #plusFont',
@@ -24,33 +24,12 @@ Ext.define('Afisha.controller.News.NewsList', {
         },
 
         control: {
-//            mainView:{
-//                activeitemchange:'onMainViewAIChange',
-//            },
-            newsList: {
+            discList: {
                 itemtap: 'onListItemTap'
             },
-//            articlesList: {
-//                itemtap: 'onListItemTap'
-//            },
-//            favoritesList: {
-//                itemtap: 'onListItemTap'
-//            },
             sb:{
                 toggle:'changeCategory'
-            },
-//            favButton:{
-//                tap:'addToFavorites'
-//            },
-//            minusFontButton:{
-//                tap:'lowerFont'
-//            },
-//            plusFontButton:{
-//                tap:'upperFont'
-//            },
-//            shareButton:{
-//                tap:'share'
-//            }
+            }
         }
     },
     addCategories:function(record){
@@ -62,14 +41,14 @@ Ext.define('Afisha.controller.News.NewsList', {
         sb.show();
     },
     initView:function(opt){
-        var store = this.getNewsList().getStore();
+        var store = this.getDiscList().getStore();
         if(!store.isLoaded() && !store.isLoading()){
-            this.getNewsList().setMasked({message:"wqe"});
-            this.getNewsList().setLoadingText(' ');
+            this.getDiscList().setMasked({message:"wqe"});
+            this.getDiscList().setLoadingText(' ');
             store.currentPage = 1;
             store.load(this.changeCategoryComplete,this);
         }
-        var q = Ext.getStore('NewsRubric');
+        var q = Ext.getStore('DiscRubric');
         q.load({
             callback: function(records, operation, success) {
                 if (!success)
@@ -84,89 +63,16 @@ Ext.define('Afisha.controller.News.NewsList', {
         //debugger;
 //        console.log(123)
     },
-
-//    upperFont:function(){
-//        var size = News.app.Settings.upperFont();
-//        this.setBodyFontSize(size);
-//    },
-//    lowerFont:function(){
-//        var size = News.app.Settings.lowerFont();
-//        this.setBodyFontSize(size);
-//    },
-//    //private
-//    setBodyFontSize:function(size){
-//        this.getBody().element.setStyle('font-size',size + 'em');
-//    },
-    addToFavorites:function(){
-        //todo: проверка по type
-        var opts,
-            favStore,
-            model,
-            rec,
-            index,
-            ico;
-        opts = this.getBody().getBodyOptions();
-        if (!opts || opts.reInit)
-            return;
-        favStore = this.getFavoritesList().getStore();
-        model = favStore.getModel();
-
-        index = this.checkFavorites(opts.record.get('rid'), favStore);
-        if (index != -1) {
-            //remove record from favorites
-            favStore.removeAt(index);
-            favStore.sync();
-            this.setEnabledFavoritesIcon(false);
-            return;
-        }
-
-        delete opts.record.data.id
-        rec = new model(opts.record.data);
-
-        favStore.add(rec);
-        favStore.sync();
-        
-        this.setEnabledFavoritesIcon(true);
-        News.gf.alert('Статья добавлена в избранное! Чтобы удалить ее из избранного нажмите на звездочку еще раз.');
-    },
-    //private
-    checkFavorites:function(rid, favStore){
-        if (!favStore)
-            favStore = this.getFavoritesList().getStore();
-        return favStore.find('rid', rid);        
-    },
-    //private
-    setEnabledFavoritesIcon:function(enabled){
-        var ico = this.getFavButton().element.down('span.x-button-icon.x-icon-mask');
-        if (!ico)
-            return;
-        if (enabled)
-            ico.addCls('gold');
-        else
-            ico.removeCls('gold');
-    },
-    //private
     onStoreLoadFail:function(msg){
         if (!msg)
             msg = "Не могу загрузить данные";
-        News.gf.alert(msg);
+        Afisha.gf.alert(msg);
     },
-
-//    onBodyTap:function(){
-//        if (this.getViewport().getActiveItem().xtype != 'pageview')
-//            return;
-//        this.getPageView().query('toolbar').forEach(function(el){
-//            if (el.isHidden())
-//                el.show()
-//            else
-//                el.hide();
-//        });
-//    },
 
     launch: function() {
         
 //        this.getArticlesList().getStore().on('load', this.setArticleDate, this);
-        var newsListStore = this.getNewsList().getStore();
+//        var newsListStore = this.getDiscList().getStore();
         //em to pixels for XTemplates
         var em,
             container,
@@ -191,15 +97,15 @@ Ext.define('Afisha.controller.News.NewsList', {
 
     changeCategory:function(me, button, isPressed, e){
         Afisha.gf.isOnline(true);
-        var store = this.getNewsList().getStore();
+        var store = this.getDiscList().getStore();
         store.getProxy().setExtraParam('rubric_id',button.config.rub_id);
         //this.getNewsList().setMasked(true);
-        this.getNewsList().setLoadingText(' ');
+        this.getDiscList().setLoadingText(' ');
         store.currentPage = 1;
         store.load(this.changeCategoryComplete,this);
     },
     changeCategoryComplete:function(){
-        this.getNewsList().setLoadingText(null)
+        this.getDiscList().setLoadingText(null)
     },
     onListItemTap: function(list, index, target, record){
         var rec_id,
@@ -212,7 +118,7 @@ Ext.define('Afisha.controller.News.NewsList', {
         //type = record.get('type');
 //        store = Ext.getStore('PageView');
         //body = this.getBody();
-        this.getApplication().fireEvent('showItem', 'pageview',{
+        this.getApplication().fireEvent('showItem', 'discview',{
             //type:type,
             rec_id:rec_id
         });
