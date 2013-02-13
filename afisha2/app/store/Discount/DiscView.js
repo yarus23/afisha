@@ -2,7 +2,7 @@ Ext.define('Afisha.store.Discount.DiscView', {
     extend: 'Ext.data.Store',
     config: {
         model: 'Afisha.model.Discount.DiscView',
-        autoLoad: true,
+        //autoLoad: true,
 //        data:[{
 //"id":17,
 //"title":"Просто блеск! Отбеливание зубов со скидкой 70%!",

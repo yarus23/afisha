@@ -7,6 +7,7 @@ Ext.define('Afisha.controller.Discount.DiscView', {
         refs: {
             viewport: 'aviewport',
             disvView:'aviewport discview',
+            photogallery: 'aviewport discview photogallery',
             header:'aviewport discview panel#disc_title',
             descr:'aviewport discview panel#disc_descr',
             price:'aviewport discview panel#disc_price panel#disc_price_val ',
@@ -16,7 +17,8 @@ Ext.define('Afisha.controller.Discount.DiscView', {
             conditions:'aviewport discview panel#disc_conditions',
             timeOut:'aviewport discview img#disc_timeout',
             buttons:'aviewport discview panel#disc_buttons_cont',
-            favBtn:'aviewport discview favbutton'
+            favBtn:'aviewport discview favbutton',
+            as:'aviewport discview actionsheet'
         },
         control: {
 
@@ -70,10 +72,33 @@ Ext.define('Afisha.controller.Discount.DiscView', {
                 style:'border-left:1px solid #949494',
                 iconAlign:'left',
                 flex:1,
-                text:phone
+                text:phone,
+                handler:this.showPhoneList,
+                scope:this
             }
             buttons_el.add(button);
         }
+    },
+    showPhoneList:function(){
+        var phone = this.getCurrentRecord().get('phone');
+        var list = phone.split(',');
+        var buttons = [];
+        for (var i = 0; i< list.length; i++){
+            buttons.push({
+                style: 'padding: 0em; margin:1em; height:3em;',
+                handler: null,
+                html: '<a class="x-button-label" style="color:black; text-decoration: none; padding: .8em .6em;" href="tel:' + list[i] + '">' + list[i] + '</a>'
+            })
+        }
+        buttons.push({text:'Отмена', action:'cancel', params:null,ui:'decline',handler:this.closeAS, scope:this, style:'margin:1em;'});
+        var as = this.getAs();
+        as.removeAll();
+        as.add(buttons);
+        if(buttons.length)
+            as.show();
+    },
+    closeAS:function(){
+        this.getAs().hide();
     },
     getTimeOutObj:function(){
         var end_date = this.getCurrentRecord().get('end_datetime');
@@ -171,6 +196,7 @@ Ext.define('Afisha.controller.Discount.DiscView', {
         this.setCurrentRecord(record);
         this.getHeader().setData(record.data);
         this.getDescr().setData(record.data);
+        this.updateGallery(record);
         this.getPrice().setData(record.data);
         this.getDiscount().setData(record.data);
         this.getSave().setData(record.data);
@@ -178,6 +204,25 @@ Ext.define('Afisha.controller.Discount.DiscView', {
         this.getTimeOut().setData(this.getTimeOutObj());
         this.getText().setData(record.data);
         this.getConditions().setData(record.data);
+    },
+    updateGallery:function(record){
+        var pictureList = [];
+        ///////////debug!!!!
+        pictureList.push("http://img.lenta.ru/news/2012/12/12/recognize/picture.jpg","http://img.lenta.ru/news/2012/11/13/backs/picture.jpg");
+        ///////////////
+        var urlBody = Global.img_url;
+        //image
+        var tmp = record.get('image');
+        if (tmp && tmp.length){
+            pictureList.push(urlBody + tmp);
+        }
+        //new version
+        tmp = record.get('images');
+        for (var i = 0; i< tmp.length; i++){
+            pictureList.push(urlBody + tmp[i][0]);
+        }
+        var pg = this.getPhotogallery();
+        pg.loadPictureList(pictureList);
     },
     goBack: function() {
         return false;

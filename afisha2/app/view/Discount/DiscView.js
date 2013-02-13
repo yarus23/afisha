@@ -41,7 +41,7 @@ Ext.define('Afisha.view.Discount.DiscView', {
                 tpl: new Ext.XTemplate('<div style="padding:0.5em; font-style:bold;" class="short_info">{description}</div>')
             },{
                 xtype:'photogallery',
-                id:'dv_gallery',
+                id:'disc_v_gallery',
                 hidden:true
             },{
                 xtype:'panel',
@@ -137,6 +137,10 @@ Ext.define('Afisha.view.Discount.DiscView', {
                 id:'disc_conditions',
                 cls:'viewer-body fontSized',
                 tpl: new Ext.XTemplate('<div style="font-size:1.1em; font-weight:bold; color:#606060;">УСЛОВИЯ</div><div >{cond}</div>')
+            },{
+                xtype:'actionsheet',
+                style:'background-color:transparent; background-image:none; max-height:50%;padding:0;',
+                hidden:true
             }]
         }]
     }
