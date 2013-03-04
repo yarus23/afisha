@@ -21,7 +21,9 @@ Ext.define('Afisha.controller.Discount.DiscView', {
             as:'aviewport discview actionsheet'
         },
         control: {
-
+            favBtn:{
+                tap:'onFavBtnTap'
+            }
         }
     },
 
@@ -137,50 +139,13 @@ Ext.define('Afisha.controller.Discount.DiscView', {
             },500);
         } else
             store.load(this.bindData, this);
-       
-        
-//        console.log(record.data)
-//        var type = Ext.getStore('Places').getCurrentType();
-//        this.setCurrentType(type);
-//        this.setCurrentRecord(record);
-//        //изврат с обходом подкатегорий, чтобы вытащить опции. пригодится в избранном
-//        var options;
-//        var filter;
-//        var categoriesStore = Ext.getStore('Categories');
-//        var catStore = categoriesStore.getById(type);//LifeSubCategories
-//        if (!catStore){
-//            categoriesStore.findBy(function(rec){
-//                var sub = rec.get('subcategories');
-//                if (!sub)
-//                    return false;
-//                var res = Ext.getStore(sub).getById(type);
-//                if (res){
-//                    options = res.get('options');
-//                    filter = res.get('filter')
-//                }
-//                else
-//                    return false;
-//            })
-//        } else {
-//            options = catStore.get('options');
-//            filter = catStore.get('filter')
-//        } 
-//        this.setSelectConfig(record, options);
-//        this.setupHeader(record);
-//        this.checkButtonsFields(record);
-//        this.collectImages(record);
-//        record.set('type',type);
-//        this.getFooter().setRecord(record);
-//        var favStore = Ext.getStore('Favorites');
-//        this.getFavBtn().setState(favStore.isRecordInFav(type, record.get('id')));
-        //this.getSchList().bindScheduleData(record.get('id'),null,false);
     },
     onFavBtnTap:function(){
         var params = {};
         var store = Ext.getStore('DiscView');
         var favStore = Ext.getStore('Favorites');
         params.type = 'discount';
-        var record = this.getBody().getRecord();
+        var record = this.getCurrentRecord();
         params.rid = record.get('id');
         params.title = record.get('title');
         params.descr = record.get('description');
@@ -208,7 +173,7 @@ Ext.define('Afisha.controller.Discount.DiscView', {
     updateGallery:function(record){
         var pictureList = [];
         ///////////debug!!!!
-        pictureList.push("http://img.lenta.ru/news/2012/12/12/recognize/picture.jpg","http://img.lenta.ru/news/2012/11/13/backs/picture.jpg");
+        //pictureList.push("http://img.lenta.ru/news/2012/12/12/recognize/picture.jpg","http://img.lenta.ru/news/2012/11/13/backs/picture.jpg");
         ///////////////
         var urlBody = Global.img_url;
         //image

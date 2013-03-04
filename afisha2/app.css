@@ -517,7 +517,14 @@ div.newslist div.newslistitem{
     //max-height:5em;
 }
 div.newslist div.newslistitem:nth-child(even){
-    background: transparent;
+    //background: transparent;
+}
+ div.newslist div.newslistitem div.x-innerhtml {
+	display:-webkit-box;
+}
+ div.newslist div.newslistitem div.x-innerhtml div.list-vertical{
+	margin-right:3em;
+	margin-left:1em;
 }
  div.newslist div.newslistitem div.newsListImage{
     /*background-size: 4em auto;

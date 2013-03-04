@@ -50,11 +50,11 @@ Ext.define('Afisha.view.Discount.DiscList', {
             cls:'newslist',
             style:'background-color:white',
             allowDeselect: false,
-            useComponents: true,
+            useComponents: false,
             loadingText:' ',
             emptyText: '<div style="position:absolute;left:50%;top:50%;margin-left:-3em;color:gray">Список пуст</div>',
             //emptyText:'Список пуст...',
-            defaultType  : 'disclistitem',
+            //defaultType  : 'disclistitem',
             scrollable: {
                 direction: 'vertical',
             },
@@ -92,6 +92,8 @@ Ext.define('Afisha.view.Discount.DiscList', {
             flex:1,
             disableSelection:true,
             store:'DiscList',
+            //<div class="x-img x-docked-left newsListImage" style="width: {[this.listImgSize]}px;height: {[this.listImgSize]}px;background-image:url(http://www.tula.rodgor.ru/pictures/news/{rid}/picture-{[this.listImgSize]}h.jpg)"></div>
+            itemTpl:'<div class="avatar x-img"style="width:3em;height:3em;background-size: contain;background-image:url(' + Global.img_url + '{image})" ></div><div class="list-vertical"><div class="newsListTitle">{title}</div><div class="newsListDescr">{description}</div></div>'
         }]
     }
 });

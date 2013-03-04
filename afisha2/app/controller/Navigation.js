@@ -19,6 +19,10 @@ Ext.define('Afisha.controller.Navigation', {
         }
     },
     launch: function(){
+        document.addEventListener("backbutton", function(){
+           Afisha.app.getApplication().fireEvent('goBack');
+            //Afisha.app.dispatch({action:'goBack',controller:'Navigation'},false)
+        }, false);
         this.getApplication().on({
             showItem: this.showItem,
             goBack: this.onBackButtonTap,
@@ -36,7 +40,7 @@ Ext.define('Afisha.controller.Navigation', {
     backFromHistory:function(){
         //debugger;
         if (this._history.length < 2){
-            //todo: exitApp
+            navigator.app.exitApp();
             return;//
         }
         this._history.pop();

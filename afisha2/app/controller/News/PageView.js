@@ -35,7 +35,7 @@ Ext.define('Afisha.controller.News.PageView', {
         var params = {};
         var store = Ext.getStore('PageView');
         var favStore = Ext.getStore('Favorites');
-        params.type = store.getProxy().getExtraParams().type;
+        params.type = 'news';//store.getProxy().getExtraParams().type;
         var record = this.getBody().getRecord();
         params.rid = record.get('id');
         params.title = record.get('title');

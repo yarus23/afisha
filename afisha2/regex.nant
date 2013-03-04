@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<project name="regex" basedir="." xmlns="http://nant.sf.net/schemas/nant-0.91.win32.net-1.0.xsd">
+   <description>This build file contains a script to add a regex filter</description>
+   <script language="C#" prefix="test" >
+         <imports>
+              <import namespace="System.Text.RegularExpressions"/>
+         </imports>
+         <references>
+             <include name="System.dll"/>
+         </references>
+         <code>
+         <![CDATA[
+           
+           [ElementName("regex")]
+           public class RegexFilter : NAnt.Core.Filters.Filter {
+              #region Private variables
+              private string _pattern;
+              private string _replacement;
+              private bool _expect_match = false;
+              private RegexOptions _options = RegexOptions.None;
+              
+              private StringBuilder _result;
+              #endregion
+           
+              #region Public instance overrides
+              [TaskAttribute("pattern", Required=true)]
+              public string Pattern {
+                 get { return _pattern; }
+                 set { _pattern = value; }
+              }
+              [TaskAttribute("replacement", Required=true)]
+              public string Replacement {
+                 get { return _replacement; }
+                 set { _replacement = value; }
+              }
+              [TaskAttribute("expectmatch", Required=false)]
+              public bool ExpectMatch {
+                 get { return _expect_match; }
+                 set { _expect_match = value; }
+              }
+              [TaskAttribute("options", Required=false)]
+              public string Options {
+                 set
+                 {
+                     // Create a lookup for the enumeration type
+                     Hashtable optionLookup = new Hashtable();
+                     foreach (object option in Enum.GetValues(typeof(RegexOptions)))
+                     {
+                        optionLookup[option.ToString()] = (int)option;
+                     }
+                  
+                     string[] options = value.Split('|');
+                     _options = RegexOptions.None;
+                     foreach( string option in options)
+                     {
+                        Object enumValue = optionLookup[option];
+                        if (enumValue == null)
+                        {
+                            throw new BuildException("'" + option + "' isn't a valid regex option!");
+                        }
+                        _options |= (RegexOptions)enumValue;
+                     }
+                 }
+              }
+              #endregion
+           
+              #region Override implementation of Filter
+              public override void InitializeFilter() {
+                 // Do the sed operation. Not as nice as it could be, as we read _all_ of the input
+                 // before processing. Doing it iteratively would be quite difficult however.
+                 string input = ReadAll();
+                 _result = new StringBuilder(Regex.Replace(input, Pattern, Replacement, _options));
+                 if (ExpectMatch)
+                 {
+                    // This isnt especially valid (eg, if the substitution is the same as the original),
+                    // but itll catch most cases
+                    if (input.Equals(_result))
+                    {
+                       throw new BuildException("Failed to substitute values in regex filter!");
+                    }
+                 }
+              }
+              #endregion Override implementation of Filter
+              
+              #region Override implementation of ChainableReader
+              public override int Read() {
+                 int temp = Peek();
+                 if (temp != -1) {
+                    _result.Remove(0, 1);
+                 }
+                 return temp;
+              }
+
+              public override int Peek() {
+                 if (_result.Length == 0) {
+                    return -1;
+                 } else {
+                    return _result[0];
+                 }
+              }
+              #endregion Override implementation of ChainableReader
+              
+              #region Private methods
+              private string ReadAll()
+              {
+                 StringBuilder input = new StringBuilder();
+                 for (int inputChar = base.Read(); inputChar != -1; inputChar = base.Read())
+                 {
+                    input.Append((char) inputChar);
+                 }
+                 return input.ToString();
+              }
+              #endregion
+           }
+          ]]>
+      </code>
+    </script>
+</project>

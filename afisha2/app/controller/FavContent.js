@@ -21,7 +21,11 @@ Ext.define('Afisha.controller.FavContent', {
                 type:record.get('type'),
                 rec_id:record.get('rid')
             });
-        } else {
+        } else if (record.get('type') == 'discount'){
+            this.getApplication().fireEvent('showItem', 'discview',{
+                rec_id:record.get('rid')
+            });
+        } else{
             this.getApplication().fireEvent('switchToPlaceView',{
                 type:record.get('type'),
                 rid:record.get('rid')

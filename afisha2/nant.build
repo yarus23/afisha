@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<project name="Afisha2" default="build">
+  <include buildfile="regex.nant"/>
+
+  <property name="builddir" value="G:\!Work\workspace\AfishaUU\assets\www\" />
+  <property name="YUICompressor.dir" value="c:/projects/yuicompressor-2.4.6/build" />
+
+   <target name="JavaScript.minify">
+    <echo message="${filename}" />
+    <exec program="java" workingdir="${YUICompressor.dir}">
+        <arg value="-jar" />
+        <arg value="yuicompressor-2.4.6.jar" />
+        <arg value="-o" />
+        <arg value="${filename}.min" />
+        <arg value="${filename}" />
+    </exec>
+    <move file="${filename}.min" tofile="${filename}" overwrite="true" />
+   </target>
+
+   <target name="minify">
+      <foreach item="File" property="filename">
+         <in>
+           <items>
+              <include name="${builddir}\app.js"/>
+              <include name="${builddir}\**\*.js"/>
+              <exclude name="${builddir}\lib\*.*"/>
+			  <exclude name="${builddir}\lib\**\*.*"/>
+           </items>
+         </in>
+         <do>
+            <echo message="${filename}" />
+            <call target="JavaScript.minify"/>
+         </do>
+      </foreach>
+   </target>
+
+   <target name="prepare">
+     <delete dir="${builddir}" />
+     <mkdir dir="${builddir}" />
+
+     <copy todir="${builddir}" includeemptydirs="true" overwrite="true">
+        <fileset basedir=".">
+           <include name="app/**/*.*"/>
+           <include name="resources/*.*"/>
+		   <include name="resources/**/*.*"/>
+		   <include name="config/*.*"/>
+           <include name="lib/sencha/resources/css/sencha-touch.css"/>
+           <include name="lib/sencha/sencha-touch-all.js"/>
+		   <include name="lib/cordova.js"/>
+           <include name="app.css"/>
+		   <include name="adv.css"/>
+		   <include name="detailsView.css"/>
+		   <include name="Roboto-BoldCondensed.ttf"/>
+		   <include name="Lobster.ttf"/>
+		   <include name="app.js"/>
+		   <include name="index.html"/>
+        </fileset>
+     </copy>
+   </target>
+
+   <target name="build" depends="prepare, minify"/>
+
+</project>
