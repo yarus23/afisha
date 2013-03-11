@@ -16,7 +16,11 @@ Ext.define('Afisha.controller.MapView', {
         return false;
     },
     initView:function(opt){
-        console.log(opt);
+//        console.log(opt);
+        if ((typeof google == "undefined" ) || !google.maps){
+            Afisha.gf.alert("Карта не может быть загружена.");
+            return;
+        }            
         this.getMapEl().setMapCenter(opt);
         if (this.marker)
             this.marker.setMap(null);
