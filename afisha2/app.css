@@ -747,6 +747,7 @@ div.tilebutton div.tileDescr {
 
 .x-toolbar {
     background-image:url('resources/header.png');
+	background-color: transparent;
     background-repeat:no-repeat;
     background-size: 100% 100%;
     background-position: center center;

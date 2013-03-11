@@ -10,6 +10,7 @@ Ext.define('Afisha.view.News.NewsList', {
     config: {
         controllerName:'News.NewsList',
         layout:'vbox',
+        style:'background-color:white;',
         items:[{
             xtype:'toptoolbar',
             title:'Новости'
@@ -26,7 +27,7 @@ Ext.define('Afisha.view.News.NewsList', {
             },            
             items:[{
                     xtype:'img',
-                    height:'0.3em',
+                    height:'0.35em',
                     src:'resources/catl_i.png',
                     cls:'img-border',
                     //style:'border 1 px solid red; height:1em;',
@@ -50,11 +51,11 @@ Ext.define('Afisha.view.News.NewsList', {
             cls:'newslist',
             style:'background-color:white',
             allowDeselect: false,
-            useComponents: true,
+            useComponents: false,
             loadingText:' ',
             emptyText: '<div style="position:absolute;left:50%;top:50%;margin-left:-3em;color:gray">Список пуст</div>',
             //emptyText:'Список пуст...',
-            defaultType  : 'newslistitem',
+            //defaultType  : 'newslistitem',
             scrollable: {
                 direction: 'vertical',
             },
@@ -92,6 +93,7 @@ Ext.define('Afisha.view.News.NewsList', {
             flex:1,
             disableSelection:true,
             store:'NewsList',
+            itemTpl:'<div class="avatar x-img"style="width:3em;height:3em;background-size: cover;background-image:url(' + Global.img_url + '{image})" ></div><div class="list-vertical"><div class="newsListTitle">{title}</div><div class="newsListDescr">{description}</div></div>'
             //type:'news',
 //            itemTpl: new Ext.XTemplate(
 //                '<div class="x-img x-docked-left newsListImage" style="width: {[this.listImgSize]}px;height: {[this.listImgSize]}px;background-image:url(http://www.tula.rodgor.ru/pictures/news/{rid}/picture-{[this.listImgSize]}h.jpg)"></div>',

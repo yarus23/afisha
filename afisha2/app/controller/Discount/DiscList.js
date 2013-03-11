@@ -43,7 +43,7 @@ Ext.define('Afisha.controller.Discount.DiscList', {
     initView:function(opt){
         var store = this.getDiscList().getStore();
         if(!store.isLoaded() && !store.isLoading()){
-            this.getDiscList().setMasked({message:"wqe"});
+            this.getDiscList().setMasked({xtype:'loadmask', message:"Загрузка"});
             this.getDiscList().setLoadingText(' ');
             store.currentPage = 1;
             store.load(this.changeCategoryComplete,this);
