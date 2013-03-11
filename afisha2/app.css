@@ -754,24 +754,27 @@ div.tilebutton div.tileDescr {
     background-repeat:no-repeat;
     background-size: 100% 100%;
         
-    width:2em;
-    height:2em;
+    width:1.8em;
+    height:1.8em;
+    margin-top:-0.2em
 }
 
 .x-backbutton {
-    background-image:url('resources/backbutton.png');
+    background-image:url('resources/toolbar/arrowleft.png');
     margin-left:0.3em;
-    margin-top:-0.2em;
 }
 
 .x-toolbutton#searchButton {
-    background-image:url('resources/searchbutton.png');
+    background-image:url('resources/toolbar/search.png');
+    margin-right:0.3em;
 }
 .x-toolbutton#sortButton {
-    background-image:url('resources/sortbutton.png');
+    background-image:url('resources/toolbar/filter.png');
+    margin-right:0.3em;
 }
 .x-toolbutton#filterButton {
-    background-image:url('resources/filterbutton.png');
+    background-image:url('resources/toolbar/filter.png');
+    margin-right:0.3em;
 }
 
 

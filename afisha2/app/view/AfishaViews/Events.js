@@ -108,13 +108,11 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 align:'right',
                 id:'searchButton'
             }, {
-                xtype:'button',
-                text:'Сорт',
+                xtype:'toolbutton',
                 align:'right',
                 id:'sortButton'
             }, {
-                xtype:'button',
-                text:'Фильтр',
+                xtype:'toolbutton',
                 align:'right',
                 id:'filterButton'
             }]

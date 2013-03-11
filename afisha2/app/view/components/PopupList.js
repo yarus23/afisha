@@ -13,23 +13,25 @@ Ext.define('Afisha.view.components.PopupList', {
             align: 'strech'
         },
         modal:true,
+        width:'auto',
         hideOnMaskTap: true,
         height:'1px',
-        width:'40%',
         items:[
             { text: 'Use setTitle'},
             {
-            xtype: 'list',
-            scrollable: {
-               disabled: true
-            },
+                xtype: 'list',
+                scrollable: {
+                    disabled: true
+                },
+                width:'auto',
+                style:'white-space:nowrap',
                 itemTpl : '<tpl if="selectable==false">\
-                               <div style="color:gray">{name}</div>\
+                               <div style="color:gray;width:auto">{name}</div>\
                            <tpl else>\
                                {name}\
                            </tpl>',
                 store:{
-                fields:[
+                    fields:[
                     { name:'name', type:'string' },
                     { name:'value', type:'string' },
                     { name: 'selectable', type: 'bool' }
