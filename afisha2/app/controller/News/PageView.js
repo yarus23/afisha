@@ -44,9 +44,14 @@ Ext.define('Afisha.controller.News.PageView', {
         this.getFavBtn().setState(favStore.setFav(params));
     },
     initView:function(opt){
+//        debugger;
         var store = Ext.getStore('PageView');
         var body = this.getBody();
         var bodyContainer = this.getBodyContainer();
+        bodyContainer.setMasked({
+            xtype:'loadmask',
+            message:'Загрузка'
+        });
         //store.getProxy().setExtraParam('type',opt.type);
         store.getProxy().setExtraParam('id',opt.rec_id);
         var favStore = Ext.getStore('Favorites');

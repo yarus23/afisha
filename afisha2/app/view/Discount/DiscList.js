@@ -11,8 +11,9 @@ Ext.define('Afisha.view.Discount.DiscList', {
         controllerName:'Discount.DiscList',
         layout:'vbox',
         items:[{
-            xtype:'toptoolbar',
-            title:'Скидки'
+                xtype:'toptoolbar',
+                style:'background-color:white;',
+                title:'Скидки'
             },{
             xtype:'segmentedbutton',
             id:'disc_catlist',
@@ -93,7 +94,7 @@ Ext.define('Afisha.view.Discount.DiscList', {
             disableSelection:true,
             store:'DiscList',
             //<div class="x-img x-docked-left newsListImage" style="width: {[this.listImgSize]}px;height: {[this.listImgSize]}px;background-image:url(http://www.tula.rodgor.ru/pictures/news/{rid}/picture-{[this.listImgSize]}h.jpg)"></div>
-            itemTpl:'<div class="avatar x-img"style="width:3em;height:3em;background-size: contain;background-image:url(' + Global.img_url + '{image})" ></div><div class="list-vertical"><div class="newsListTitle">{title}</div><div class="newsListDescr">{description}</div></div>'
+            itemTpl:'<div class="avatar x-img"style="width:3em;height:3em;background-size: cover;background-image:url(' + Global.img_url + '{image})" ></div><div class="list-vertical"><div class="newsListTitle">{title}</div><div class="newsListDescr">{description}</div></div>'
         }]
     }
 });

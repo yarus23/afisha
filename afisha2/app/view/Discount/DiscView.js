@@ -9,6 +9,7 @@ Ext.define('Afisha.view.Discount.DiscView', {
         items:[{
             xtype:'titlebar',
             title:'Скидки',
+            style:'background-color:white;',
             items:[{
                 xtype:'backbutton'   
             }]

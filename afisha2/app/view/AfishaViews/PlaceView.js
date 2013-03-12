@@ -41,7 +41,15 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
                 itemId:'selectDate',
             }]
         },{
+                    xtype:'img',
+                    height:'0.3em',
+                    src:'resources/white_header.png',
+                    cls:'img-border',
+                    style:'background-color:transparent; margin-left:0.1em;margin-right:0.1em;',
+                    docked:'top'
+            },{
             xtype:'panel',
+            cls:'pv_content',
             //flex:1,
             layout: {
                 type:'vbox',    

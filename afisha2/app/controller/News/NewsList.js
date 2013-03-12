@@ -64,12 +64,13 @@ Ext.define('Afisha.controller.News.NewsList', {
     initView:function(opt){
         var store = this.getNewsList().getStore();
         if(!store.isLoaded() && !store.isLoading()){
-            this.getNewsList().setMasked({message:"wqe"});
+            this.getNewsList().setMasked({xtype:'loadmask', message:"Загрузка"});
             this.getNewsList().setLoadingText(' ');
             store.currentPage = 1;
             store.load(this.changeCategoryComplete,this);
         }
         var q = Ext.getStore('NewsRubric');
+        
         q.load({
             callback: function(records, operation, success) {
                 if (!success)

@@ -126,6 +126,10 @@ Ext.define('Afisha.controller.Discount.DiscView', {
     },
     initView:function(opt){
         var store = Ext.getStore('DiscView');
+        this.getDisvView().setMasked({
+            xtype:'loadmask',
+            message:'Загрузка'
+        });
         store.getProxy().setExtraParam('id',opt.rec_id);
         var favStore = Ext.getStore('Favorites');
         this.getFavBtn().setState(favStore.isRecordInFav('discount', opt.rec_id));
@@ -169,6 +173,7 @@ Ext.define('Afisha.controller.Discount.DiscView', {
         this.getTimeOut().setData(this.getTimeOutObj());
         this.getText().setData(record.data);
         this.getConditions().setData(record.data);
+        this.getDisvView().setMasked(null);
     },
     updateGallery:function(record){
         var pictureList = [];
