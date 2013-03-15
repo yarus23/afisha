@@ -171,10 +171,10 @@ Afisha.ckeckByDate = function(event_id, date, end_date, val_field){
 Ext.application({
     name: 'Afisha',
     requires:['Ext.DateExtras', 'Afisha.util.gf','Afisha.util.schMethods','Afisha.util.Settings'],
-    views:['Viewport','FavContent','Adv','ImgFullView','MapView','Discount.DiscView','Discount.DiscList','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView','AfishaViews.EventView', 'AfishaViews.TileView','News.NewsList', 'AfishaViews.FilterView','News.PageView','Settings'],
+    views:['Viewport','FavContent','Adv','ImgFullView','MapView','Discount.DiscView','Discount.DiscList','AfishaViews.Categories', 'AfishaViews.Events','AfishaViews.PlaceView','AfishaViews.EventView', 'AfishaViews.TileView','News.NewsList', 'AfishaViews.FilterView','News.PageView','Settings', 'AuthView'],
     models:['Settings','Favorites','AfishaModels.CachedData', 'AfishaModels.Categories','AfishaModels.Events','AfishaModels.Places','AfishaModels.Schedule','AfishaModels.Dictionary','AfishaModels.ScheduleList','News.NewsList','News.PageView','Discount.DiscView','Discount.DiscList','News.NewsRubric'],
     stores:['Settings','Favorites','AfishaStores.Cache', 'AfishaStores.Categories','AfishaStores.LifeSubCategories','AfishaStores.Events','AfishaStores.Places','AfishaStores.Schedule','AfishaStores.Dictionary','News.NewsList','News.PageView','Discount.DiscView','Discount.DiscList','News.NewsRubric','Discount.DiscRubric'],
-    controllers:['Navigation','Adv','Discount.DiscView','Discount.DiscList','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','AfishaC.EventView','ImgFullView','MapView', 'AfishaC.TilesView','News.NewsList', 'AfishaC.FilterView','News.PageView','FavContent','Settings'],
+    controllers:['Navigation','Adv','Discount.DiscView','Discount.DiscList','AfishaC.Categories', 'AfishaC.Events','AfishaC.PlaceView','AfishaC.EventView','ImgFullView','MapView', 'AfishaC.TilesView','News.NewsList', 'AfishaC.FilterView','News.PageView','FavContent','Settings','AfishaC.OAuth'],
     launch: function() {
         this.Settings = Ext.create('Afisha.util.Settings',{});
         var splash = window.document.getElementById('splash');
