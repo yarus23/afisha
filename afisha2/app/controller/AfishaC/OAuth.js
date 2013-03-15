@@ -1,6 +1,10 @@
 Ext.define('Afisha.controller.AfishaC.OAuth', {
     extend: 'Ext.app.Controller',
 
+    onButtonTap: function (el, providerIndex) {
+        console.log(el, providerIndex);
+    },
+
     getUserData: function (callback) {
         if (!this.userdata) {
             this.showAuthView();
@@ -12,10 +16,11 @@ Ext.define('Afisha.controller.AfishaC.OAuth', {
 
     showAuthView: function () {
         if (!this.authView) {
-            this.authView = Ext.create('Afisha.view.AuthView');
+            this.authView = Ext.create('Afisha.view.AuthView', {
+                controller: this
+            });
             Ext.Viewport.add(this.authView);
         }
-        console.log(this.authView);
         this.authView.show();
     },
 

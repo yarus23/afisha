@@ -65,6 +65,8 @@ twitter
 	access_token_secret: 2rFl4p8HZzoENUsYx9aiM7sumXWOKdC9q70sAFESFU
 */
 
+var G = Global;
+
 var Providers = ({
     // data
 	_provider: {

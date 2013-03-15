@@ -7,14 +7,23 @@ Ext.define('Afisha.view.AuthView', {
         defaults: {
             style: {
                 width: '100%',
+                margin: window.innerWidth * 0.05 + 'px',
                 height: window.innerWidth * 0.8 / 3 + 'px'
             },
             layout: 'hbox',
             defaults: {
                 style: {
-                    margin: window.innerWidth * 0.025 + 'px;',
+                    margin: window.innerWidth * 0.025 + 'px',
                     width: window.innerWidth * 0.8 * 0.9 / 3 + 'px',
                     height: window.innerWidth * 0.8 / 3 + 'px'
+                },
+                listeners: {
+                    painted: function () {
+                        var me = this;
+                        this.element.on('tap', function () {
+                            me.up('authview').config.controller.onButtonTap(me, me.config.provider_index);
+                        });
+                    }
                 }
             }
         },
