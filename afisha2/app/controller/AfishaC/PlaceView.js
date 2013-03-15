@@ -16,7 +16,8 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
             photogallery: 'aviewport placeview photogallery',
             schList: 'aviewport placeview schedulelist',
             footer: 'aviewport placeview panel#pv_footer',
-            favBtn:' aviewport placeview favbutton'
+            favBtn:' aviewport placeview favbutton',
+            comBtn:'aviewport placeview #pv_commentsBtn'
         },
         control: {
             selectfield:{
@@ -30,6 +31,9 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
             },
             mapBtn:{
                 tap:'onMapButtonTap'
+            },
+            comBtn: {
+                tap: 'onComButtonTap'
             }
         }
     },
@@ -183,6 +187,13 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
     },
     onMapButtonTap:function(){
         Afisha.app.fireEvent('showItem', 'mapview',this.getMapBtn().getData());
+    },
+    onComButtonTap: function () {
+        var OAuthController = Afisha.app.getController('AfishaC.OAuth'),
+            callback = function (userdata) {
+                Afisha.app.fireEvent('showItem', 'addcomview');
+            };
+        OAuthController.getUserData(callback);
     },
     checkButtonsFields:function(record){
         var buttonsPanel = this.getButtons();
