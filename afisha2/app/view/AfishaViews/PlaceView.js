@@ -8,6 +8,7 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
         layout:'fit',
         items:[{
             xtype:'toolbar',
+            style:'background-color: transparent;',
             docked:'top',
             items: [{
                 xtype:'backbutton',
@@ -62,7 +63,7 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
             items:[{
                 xtype:'panel',
                 id:'pv_header',
-                style:'padding-top:0.2em;',
+                style:'padding-top:0.2em;margin-top:0.5em;',
                 cls:'detailsHeader',
                 items:[{
                     xtype:'favbutton',

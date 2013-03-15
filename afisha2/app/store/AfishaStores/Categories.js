@@ -19,6 +19,11 @@ Ext.define('Afisha.store.AfishaStores.Categories', {
                 options:{schType:'none'},
                 right: {id: 'restaurant' }
             },
+            { id: 'hotel', name: 'Отели', type: 'hotel', hiddenToolbar:true, ////////////////////////////
+                filter: { items: [ { id: 'district', name: 'Район'}]},
+                options:{schType:'none'},
+                right: {id: 'hotel' }
+            },
             { id: 'pool', name: 'Бильярд, Боулинг', type: 'pool', hiddenToolbar:true, options:{schType:'none'},/////////////////
                 right: {id: 'pool' }
             },      

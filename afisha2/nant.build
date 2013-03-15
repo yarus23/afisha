@@ -52,6 +52,7 @@
 		   <include name="adv.css"/>
 		   <include name="detailsView.css"/>
 		   <include name="Roboto-BoldCondensed.ttf"/>
+		   <include name="Roboto-Regular.ttf"/>
 		   <include name="Lobster.ttf"/>
 		   <include name="app.js"/>
 		   <include name="index.html"/>

@@ -13,6 +13,7 @@ Ext.define('Afisha.view.News.NewsList', {
         style:'background-color:white;',
         items:[{
             xtype:'toptoolbar',
+            style:'background-color: white;',
             title:'Новости'
             },{
             xtype:'segmentedbutton',

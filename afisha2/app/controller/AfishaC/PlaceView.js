@@ -222,14 +222,14 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
                 }
             })
         }
-        el_cache.push({
-            id:'pv_commentsBtn',
-            xtype:'clickbutton',
-            style:'border-top:0;',
-            data:{
-                value:'Добавить/Читать отзывы (' + record.get('com_count') + ')'
-            }
-        })
+//        el_cache.push({
+//            id:'pv_commentsBtn',
+//            xtype:'clickbutton',
+//            style:'border-top:0;',
+//            data:{
+//                value:'Добавить/Читать отзывы (' + record.get('com_count') + ')'
+//            }
+//        })
         for (var idx = 0; idx < el_cache.length; idx++){
             buttonsPanel.add(el_cache[idx]);
             if (idx != el_cache.length - 1){

@@ -7,6 +7,7 @@ Ext.define('Afisha.view.FavContent', {
         layout:'vbox',
         items:[{
                 xtype:'toptoolbar',
+                style:'background-color: white;',
                 title:'Избранное'
             },{
             xtype:'dataview',

@@ -4,6 +4,11 @@
         src: local("Roboto-BoldCondensed"), url("Roboto-BoldCondensed.ttf") format("truetype"); /* non-IE */
 }
 @font-face {
+        font-family: "Roboto-Regular";
+        font-style: normal;
+        src: local("Roboto-Regular"), url("Roboto-Regular.ttf") format("truetype"); /* non-IE */
+}
+@font-face {
         font-family: "Lobster";
         font-style: normal;
         src: local("Lobster"), url("Lobster.ttf") format("truetype"); /* non-IE */
@@ -550,7 +555,7 @@ div.newslist div.newslistitem:nth-child(even){
     font-weight: bold;
 }
 div.newslist div.newslistitem div.newsListDescr{
-	max-height: 2.4em;
+	max-height: 3em;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -648,6 +653,9 @@ div.categories-list{
     height: 2em;
     background-color: #58585A;
     //border-bottom: 1px solid black;
+}
+div.categories-list div.x-dock-body{
+	margin-top:-1px;
 }
 div.x-img.img-border{
 	background-repeat: repeat-x;

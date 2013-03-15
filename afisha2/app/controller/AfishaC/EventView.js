@@ -110,7 +110,7 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
         } 
         this.setSelectConfig(record, options);
         this.setupHeader(record);
-        this.checkButtonsFields(record);
+        //this.checkButtonsFields(record);
         this.collectImages(record);
         record.set('type',type);
         this.getFooter().setRecord(record);
@@ -181,7 +181,7 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
     collectImages:function(record){
         var pictureList = [];
         //var cat = record.category?record.category:record.type;
-        var urlBody = Global.server_url;
+        var urlBody = Global.img_url;
         //image
         var tmp = record.get('poster');
         if (tmp && (tmp.image instanceof Array) && tmp.length)

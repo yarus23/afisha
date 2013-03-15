@@ -8,6 +8,7 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
         layout:'fit',
         items:[{
             xtype:'toolbar',
+            style:'background-color: transparent;',
             docked:'top',
             items: [{
                 xtype:'backbutton',
@@ -62,6 +63,7 @@ Ext.define('Afisha.view.AfishaViews.EventView',{
             items:[{
                 xtype:'panel',
                 id:'ev_header',
+                style:'margin-top:0.5em;',
                 cls:'detailsHeader',
                 items:[{
                     xtype:'img',
