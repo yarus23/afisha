@@ -56,13 +56,14 @@ div.x-list-item div.list-item-content
     font-size:70%;
     display:inline-block;
     width:100%;
-    white-space: nowrap;
+    //white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: slategray;
     /*font-style:italic;*/
     position:relative;
     top:-0.3em;
+    height:3.3em;
 }
 
 /* ломает layout
@@ -195,7 +196,7 @@ div.detailsHeader span.num-votes {
 div.detailsHeader img.teststar,
 div.x-list div.x-list-item img.teststar{
     position:absolute;
-    right:0.5em;
+    left:0.5em;
     margin-top:0.2em;
     height:0.8em;
     width:4em;
@@ -211,6 +212,15 @@ div.x-list div.x-list-item div.superstar {
     height:1em;
     background-size:0.8em 0.8em;
 }
+div.x-list#eventsList div.x-list-item img.teststar,
+div.x-list#eventsList div.x-list-item div.superstar,
+div.x-list#eventsList div.x-list-item div.superstars {
+    position:static;
+}
+
+div.x-list#placesList div.x-list-item div.list-item-content{
+    height:2em;
+}
 
 div.detailsHeader div.superstar.empty,
 div.x-list div.x-list-item div.superstar.empty {
@@ -219,7 +229,7 @@ div.x-list div.x-list-item div.superstar.empty {
 
 div.detailsHeader div.superstars,
 div.x-list div.x-list-item div.superstars {
-    float:right;
+    float:left;
 }
 div.x-list div.x-list-item div.superstar,
 div.x-list div.x-list-item div.superstars {
@@ -245,10 +255,22 @@ div.x-list div.x-list-item div.stars-set {
     right:0.5em;
 }
 
-
+div.x-list div.x-list-item div.eventlist-item-block {
+    float:left;
+    display:inline-block;
+    height:100%;
+}
+div.x-list div.x-list-item div.eventlist-item-image {
+    border:1px solid red;
+    width:30%;
+}
+div.x-list div.x-list-item div.eventlist-textblock {
+    border:1px solid blue;
+    width:70%;
+}
 div.x-list div.x-list-item div.list-first-line,
 div.x-list div.x-list-item div.list-second-line {           
-    white-space: nowrap;
+    //white-space: nowrap;
 }
 div.x-list div.x-list-item div.list-first-line:last-child{
     padding-top:0.5em;
@@ -259,8 +281,8 @@ div.x-list div.x-list-item div.list-second-line.event-description{
 }
 div.x-list div.x-list-item div.list-second-line.event-description div.list-item-content{
     color: #3D4C5B;
-    text-overflow:ellipsis;
-    overflow:hidden;
+    //text-overflow:ellipsis;
+    //overflow:hidden;
     
 }
 div.x-list div.x-list-item div.list-second-line.event-description.schedule-description{
