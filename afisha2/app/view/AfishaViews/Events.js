@@ -105,6 +105,7 @@ Ext.define('Afisha.view.AfishaViews.Events',{
         items:[
         {
             xtype:'titlebar',
+            //baseCls: 'v',
             docked:'top',
             items: [{
                 xtype:'backbutton'

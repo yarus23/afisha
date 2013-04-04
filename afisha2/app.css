@@ -266,11 +266,11 @@ div.x-list div.x-list-item div.eventlist-item-block {
     height:100%;
 }
 div.x-list div.x-list-item div.eventlist-item-image {
-    border:1px solid red;
+    border:1px solid transparent;
     width:30%;
 }
 div.x-list div.x-list-item div.eventlist-textblock {
-    border:1px solid blue;
+    //border:1px solid blue;
     width:70%;
 }
 div.x-list div.x-list-item div.list-first-line,
@@ -781,6 +781,7 @@ div.tilebutton div.tileDescr {
     background-size: 100% 100%;
     background-position: center center;
     border:none;
+    background-color:white;
 }
 .x-toolbar.x-docked-top {
     border-bottom:none;

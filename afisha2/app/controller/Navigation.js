@@ -64,6 +64,8 @@ Ext.define('Afisha.controller.Navigation', {
     //reInit - вызывать ли инит элемента при переходен Назад на него (нужно для зацикленных переходов типа кино-фильм-кино)
     showItem:function(xtype, options, reInit ){
         //<DEBUG>
+        // какого х ЭТО ломает git???
+        /*
         if (xtype === 'events' && options && !options.userdata) {
             var OAuthController = Afisha.app.getController('AfishaC.OAuth'),
                 callback = function (userdata) {
@@ -73,7 +75,7 @@ Ext.define('Afisha.controller.Navigation', {
                 };
             OAuthController.getUserData(callback);
             return;
-        }
+        }*/
         //</DEBUG>
         if (reInit !== true){
             this.pushToHistory(xtype, null);
