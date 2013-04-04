@@ -10,6 +10,7 @@ Ext.define('Afisha.view.AfishaViews.FilterView',{
         },
         items:[ {
             xtype:'titlebar',
+            style:'background-color: white;',
             docked:'top',
             items: [{
                 xtype:'backbutton',

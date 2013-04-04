@@ -6,6 +6,7 @@ Ext.define('Afisha.view.Settings', {
 		layout: 'vbox',
 		items: [{
                     xtype:'titlebar',
+                    style:'background-color: white;',
                     docked:'top',
                     title:'Настройки',
                     items: [{

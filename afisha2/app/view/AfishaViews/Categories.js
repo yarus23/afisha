@@ -6,7 +6,8 @@ Ext.define('Afisha.view.AfishaViews.Categories',{
     config:{
         controllerName:'AfishaC.Categories',
         items:[{
-            xtype:'toptoolbar'
+            xtype:'toptoolbar',
+            style:'background-color: white;'
         },{
             xtype:'list',
             store:'Categories',

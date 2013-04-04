@@ -70,18 +70,18 @@ Ext.define('Afisha.controller.News.NewsList', {
             store.load(this.changeCategoryComplete,this);
         }
         var q = Ext.getStore('NewsRubric');
-        
-        q.load({
-            callback: function(records, operation, success) {
-                if (!success)
-                    return;
-                for(var i = 0; i< records.length; i++){
-                    this.addCategories(records[i]);
-                }
-                // the operation object contains all of the details of the load operation
-            },
-            scope: this
-        })
+        if (!q.data || !q.data.items || q.data.items.length == 0)
+            q.load({
+                callback: function(records, operation, success) {
+                    if (!success)
+                        return;
+                    for(var i = 0; i< records.length; i++){
+                        this.addCategories(records[i]);
+                    }
+                    // the operation object contains all of the details of the load operation
+                },
+                scope: this
+            })
         //debugger;
 //        console.log(123)
     },

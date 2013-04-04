@@ -9,6 +9,7 @@ Ext.define('Afisha.view.News.PageView', {
         items:[{
             xtype:'titlebar',
             title:'Новости',
+            style:'background-color: white;',
             items:[{
                 xtype:'backbutton'   
             }]

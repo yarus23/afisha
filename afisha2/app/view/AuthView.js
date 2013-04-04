@@ -1,0 +1,65 @@
+Ext.define('Afisha.view.AuthView', {
+    extend: 'Ext.Panel',
+    xtype: 'authview',
+    cls: 'auth-socialpanel',
+    config: {
+        modal: true,
+        defaults: {
+            style: {
+                width: '100%',
+                margin: window.innerWidth * 0.05 + 'px',
+                height: window.innerWidth * 0.8 / 3 + 'px'
+            },
+            layout: 'hbox',
+            defaults: {
+                style: {
+                    margin: window.innerWidth * 0.025 + 'px',
+                    width: window.innerWidth * 0.8 * 0.9 / 3 + 'px',
+                    height: window.innerWidth * 0.8 / 3 + 'px'
+                },
+                listeners: {
+                    painted: function () {
+                        var me = this;
+                        this.element.on('tap', function () {
+                            me.up('authview').config.controller.onButtonTap(me, me.config.provider_index);
+                        });
+                    }
+                }
+            }
+        },
+        items: [
+            {
+                items: [
+                    {
+                        html: '<img src="config/resources/icons/social/iko_1.png" width="100%"></img>',
+                        provider_index: 0
+                    },
+                    {
+                        html: '<img src="config/resources/icons/social/iko_2.png" width="100%"></img>',
+                        provider_index: 2
+                    },
+                    {
+                        html: '<img src="config/resources/icons/social/iko_3.png" width="100%"></img>',
+                        provider_index: 1
+                    }
+                ]
+            },
+            {
+                items: [
+                    {
+                        html: '<img src="config/resources/icons/social/iko_4.png" width="100%"></img>',
+                        provider_index: 5
+                    },
+                    {
+                        html: '<img src="config/resources/icons/social/iko_5.png" width="100%"></img>',
+                        provider_index: 3
+                    },
+                    {
+                        html: '<img src="config/resources/icons/social/iko_6.png" width="100%"></img>',
+                        provider_index: 4
+                    }
+                ]
+            }
+        ]
+    }
+});

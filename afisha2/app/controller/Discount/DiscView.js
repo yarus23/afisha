@@ -128,7 +128,8 @@ Ext.define('Afisha.controller.Discount.DiscView', {
         var store = Ext.getStore('DiscView');
         this.getDisvView().setMasked({
             xtype:'loadmask',
-            message:'Загрузка'
+            message:'Загрузка',
+            style:'background-color:gray;'
         });
         store.getProxy().setExtraParam('id',opt.rec_id);
         var favStore = Ext.getStore('Favorites');

@@ -7,6 +7,7 @@ Ext.define('Afisha.view.MapView',{
         items:[{
             xtype:'titlebar',
             docked:'top',
+            style:'background-color: white;',
             title:'Карта',
             items: [{
                 xtype:'backbutton',
@@ -23,7 +24,7 @@ Ext.define('Afisha.view.MapView',{
                   streetViewControl: false,
                   overviewMapControl: false,
                   sensor: true,
-                  mapTypeId: google.maps.MapTypeId.ROADMAP
+                  mapTypeId: typeof google== "undefined" ? null : google.maps.MapTypeId.ROADMAP
                 },
             useCurrentLocation: false
         }],

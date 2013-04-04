@@ -50,7 +50,9 @@ Ext.define('Afisha.controller.News.PageView', {
         var bodyContainer = this.getBodyContainer();
         bodyContainer.setMasked({
             xtype:'loadmask',
-            message:'Загрузка'
+            message:'Загрузка',
+            cls:'pv_mask',
+            style:'background-color:gray;'
         });
         //store.getProxy().setExtraParam('type',opt.type);
         store.getProxy().setExtraParam('id',opt.rec_id);

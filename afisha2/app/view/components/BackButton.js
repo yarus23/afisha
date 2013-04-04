@@ -68,6 +68,9 @@ Ext.define('Afisha.view.components.HrefBtn', {
                         '<tpl case="phone">tel:',
                 '</tpl>',
                 '{value}">',
+                '<tpl switch="type">',
+                    '<tpl case="phone">Тел. ',
+                '</tpl>',
                 '{value}',
                 '</a>')
 	}
