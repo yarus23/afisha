@@ -1,16 +1,16 @@
-Ext.define('Afisha.view.AuthView', {
+﻿Ext.define('Afisha.view.AuthProvidersPanel', {
     extend: 'Ext.Panel',
-    xtype: 'authview',
-    cls: 'auth-socialpanel',
+    xtype: 'authproviderspanel',
+    cls: 'auth-providerspanel',
     config: {
-        modal: true,
         defaults: {
             style: {
-                width: '100%',
                 margin: window.innerWidth * 0.05 + 'px',
+                marginLeft: '0px',
                 height: window.innerWidth * 0.8 / 3 + 'px'
             },
             layout: 'hbox',
+            width: '100%',
             defaults: {
                 style: {
                     margin: window.innerWidth * 0.025 + 'px',
@@ -18,10 +18,12 @@ Ext.define('Afisha.view.AuthView', {
                     height: window.innerWidth * 0.8 / 3 + 'px'
                 },
                 listeners: {
-                    painted: function () {
+                    initialize: function () {
                         var me = this;
                         this.element.on('tap', function () {
-                            me.up('authview').config.controller.onButtonTap(me, me.config.provider_index);
+                            var authController = me.up('authview').config.controller;
+                            authController.prov_image = this.down('img').getAttribute('src'); //fixme
+                            authController.onButtonTap(me, me.config.provider_index);
                         });
                     }
                 }
@@ -59,6 +61,49 @@ Ext.define('Afisha.view.AuthView', {
                         provider_index: 4
                     }
                 ]
+            }
+        ]
+    }
+});
+
+Ext.define('Afisha.view.AuthView', {
+    extend: 'Ext.Panel',
+    xtype: 'authview',
+    cls: 'auth-view',
+    config: {
+        modal: true,
+        centered: true,
+        style: {
+            padding: '0px',
+            backgroundColor: 'white'
+        },
+        width: '90%',
+        items: [
+            {
+                xtype: 'container',
+                layout: 'hbox',
+                items: [
+                    {
+                        xtype: 'container',
+                        flex: 1
+                    },
+                    {
+                        xtype: 'button',
+                        iconCls: 'delete',
+                        ui: 'decline-round',
+                        iconMask: true,
+                        handler: function (el) {
+                            el.up('authview').hide();
+                        }
+                    }
+                ]
+            },
+            {
+                style: 'text-align: center; font-size: 80%;',
+                html: 'Войдите через учетную запись своей социальной сети и получите дополнительные возможности'
+            },
+            {
+                xtype: 'authproviderspanel'
             }
         ]
     }

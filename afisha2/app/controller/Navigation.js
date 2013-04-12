@@ -1,4 +1,4 @@
-Ext.define('Afisha.controller.Navigation', {
+﻿Ext.define('Afisha.controller.Navigation', {
     extend: 'Ext.app.Controller',
 
     config: {
@@ -64,18 +64,16 @@ Ext.define('Afisha.controller.Navigation', {
     //reInit - вызывать ли инит элемента при переходен Назад на него (нужно для зацикленных переходов типа кино-фильм-кино)
     showItem:function(xtype, options, reInit ){
         //<DEBUG>
-        // какого х ЭТО ломает git???
-        /*
         if (xtype === 'events' && options && !options.userdata) {
             var OAuthController = Afisha.app.getController('AfishaC.OAuth'),
                 callback = function (userdata) {
                     options = options || {};
                     options.userdata = userdata;
-                    Afisha.app.fireEvent('showItem', 'addcomview', options);
+                    Afisha.app.fireEvent('showItem', /*'addcomview'*/'events', options);
                 };
             OAuthController.getUserData(callback);
             return;
-        }*/
+        }
         //</DEBUG>
         if (reInit !== true){
             this.pushToHistory(xtype, null);

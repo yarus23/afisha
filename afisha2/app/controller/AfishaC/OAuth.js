@@ -1,15 +1,26 @@
-Ext.define('Afisha.controller.AfishaC.OAuth', {
+﻿Ext.define('Afisha.controller.AfishaC.OAuth', {
     extend: 'Ext.app.Controller',
 
+    hideAuthView: function () {
+        if (this.userdata) {
+            this.onAuthCallback && this.onAuthCallback(this.userdata);
+            this.authView.hide();
+        }
+    },
+
     onButtonTap: function (el, providerIndex) {
-        console.log(el, providerIndex);
+        this.callback = {
+            that: this,
+            callback: this.hideAuthView
+        };
+        this.login(providerIndex);
     },
 
     getUserData: function (callback) {
         if (!this.userdata) {
+            this.onAuthCallback = callback; //debug
             this.showAuthView();
-        }
-        else {
+        } else {
             callback(this.userdata);
         }
     },
@@ -29,6 +40,13 @@ Ext.define('Afisha.controller.AfishaC.OAuth', {
             that: that,
             callback: callback
         };
+        //<debug>
+        if (Ext.os.is.Windows) {
+            this.userdata = false;
+            this.callback.callback.call(this.callback.that);
+            return;
+        }
+        //</debug>
         Auth.isAuthorized(this, this.onResult);
     },
 
@@ -36,6 +54,11 @@ Ext.define('Afisha.controller.AfishaC.OAuth', {
 
     onResult: function (data) {
         this.userdata = data.error ? false : data.data;
+        //<debug>
+        if (Ext.os.is.Windows) {
+            this.prov_image = 'config/resources/icons/social/iko_6.png'
+        } else
+        //</debug>
         this.prov_image = data.provider.icon;
         this.callback.callback.call(this.callback.that);
     },
@@ -48,6 +71,17 @@ Ext.define('Afisha.controller.AfishaC.OAuth', {
 
     login: function (index) {
         this.unAuthorize(1);
+        //<debug>
+        if (Ext.os.is.Windows) {
+            this.onResult({
+                data: {
+                    identity: "http://yandex.ru",
+                    full_name: "Антон Перякин"
+                }
+            });
+            return;
+        }
+        //</debug>
         Auth.login(index, this, this.onResult, this.onResult);
     },
     post: function (index, message, link, that, callback) {
@@ -58,11 +92,21 @@ Ext.define('Afisha.controller.AfishaC.OAuth', {
             Auth.login(index, this,
                 function (data) {
                     me.userdata = data.error ? false : data.data;
+                    //<debug>
+                    if (Ext.os.is.Windows) {
+                        this.prov_image = 'config/resources/icons/social/iko_6.png';
+                    } else
+                    //</debug>
                     me.prov_image = data.provider.icon;
                     me.post(index, message, link, that, callback);
                 },
                 function (data) {
                     me.userdata = data.error ? false : data.data;
+                    //<debug>
+                    if (Ext.os.is.Windows) {
+                        this.prov_image = 'config/resources/icons/social/iko_6.png';
+                    } else
+                    //</debug>
                     me.prov_image = data.provider.icon;
                     callback.call(that, 'error');
                 });
