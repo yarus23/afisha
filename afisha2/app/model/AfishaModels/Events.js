@@ -25,7 +25,8 @@ Ext.define('Afisha.model.AfishaModels.Events', {
         {name:'sort',type:'int',defaultValue: '0'},
         {name:'start_date',type:'string'},
         {name:'finish_date',type:'string'},
-        {name:'place_name',type:'string'}
+        {name:'place_name',type:'string'},
+        {name:'main_image', type:'string'}
 		]
 	}
 });	

@@ -64,6 +64,7 @@
     //reInit - вызывать ли инит элемента при переходен Назад на него (нужно для зацикленных переходов типа кино-фильм-кино)
     showItem:function(xtype, options, reInit ){
         //<DEBUG>
+		if( window.plugins && window.plugins.childBrowser )
         if (xtype === 'events' && options && !options.userdata) {
             var OAuthController = Afisha.app.getController('AfishaC.OAuth'),
                 callback = function (userdata) {

@@ -61,10 +61,10 @@ Afisha.placesTpl = new Ext.XTemplate(
      getDistanceStr: Afisha.getDistanceStr
  });
 
-
+// {[Global.img_url + values.main_image]}
 Afisha.eventsTpl = new Ext.XTemplate(
   '<tpl if="name">',
-    '<div class="eventlist-item-block eventlist-item-image">',
+    '<div class="eventlist-item-block eventlist-item-image" style="height:4.4em;background-repeat: no-repeat;background-position:center;background-size:80%;background-image:url(\'http://afisha.mikhelev.ru/img/ulanude/orig/news/43.jpg\')">',
     '</div>',
     '<div class="eventlist-item-block eventlist-textblock">',
       '<div class="list-first-line">',

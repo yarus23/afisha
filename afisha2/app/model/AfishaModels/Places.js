@@ -34,7 +34,7 @@ Ext.define('Afisha.model.AfishaModels.Places', {
             {name:'kitchen', type:'auto'}, //array
             {name:'genre', type:'auto'}, //array
             {name:'district', type:'auto'}, //array
-
+			{name:'main_image', type:'string'}
             //{name:'category', type:'string'} // для favorites
 	]
     }
