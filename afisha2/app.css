@@ -794,22 +794,24 @@ div.tilebutton div.tileDescr {
         
     width:2em;
     height:2em;
+    margin-top:-0.2em;    
 }
 
 .x-backbutton {
     background-image:url('resources/backbutton.png');
     margin-left:0.3em;
-    margin-top:-0.2em;
 }
 
 .x-toolbutton#searchButton {
     background-image:url('resources/searchbutton.png');
 }
 .x-toolbutton#sortButton {
-    background-image:url('resources/sortbutton.png');
+    background-image:url('resources/settings.png');
+    margin-left:0.3em;
 }
 .x-toolbutton#filterButton {
-    background-image:url('resources/filterbutton.png');
+    background-image:url('resources/settings.png');
+    margin-left:0.3em;
 }
 
 
