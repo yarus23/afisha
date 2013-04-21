@@ -243,7 +243,7 @@ Ext.define('Afisha.controller.AfishaC.Events', {
     },
     onSortButtonPress: function() {
         if( !this.sortpopup )
-            this.sortpopup = Ext.create('widget.popuplist');
+            this.sortpopup = Ext.create('widget.popuplist', { id: 'sortpopup'} );
         
         var activeItem = this.getTabpanel().getActiveItem();
         

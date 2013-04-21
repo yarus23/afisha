@@ -821,6 +821,10 @@ div.tilebutton div.tileDescr {
     margin-top:3em;
 }
 
+div#sortpopup {
+	width: 12em;
+}
+
 //* {
 //    font-family: "Tahoma";
 //}
