@@ -35,7 +35,7 @@ Ext.define('Afisha.view.News.NewsList', {
                     docked:'top'
             },{
                     xtype:'img',
-                    height:'0.35em',
+                    height:'0.3em',
                     src:'resources/catl.png',
                     cls:'img-border',
                     style:'margin-bottom: -0.1em;',
