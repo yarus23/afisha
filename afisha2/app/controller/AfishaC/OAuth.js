@@ -41,7 +41,7 @@
             callback: callback
         };
         //<debug>
-        if (Ext.os.is.Windows) {
+        if (Ext.os.deviceType === 'Desktop') {
             this.userdata = false;
             this.callback.callback.call(this.callback.that);
             return;
@@ -55,7 +55,7 @@
     onResult: function (data) {
         this.userdata = data.error ? false : data.data;
         //<debug>
-        if (Ext.os.is.Windows) {
+        if (Ext.os.deviceType === 'Desktop') {
             this.prov_image = 'config/resources/icons/social/iko_6.png'
         } else
         //</debug>
@@ -72,7 +72,7 @@
     login: function (index) {
         this.unAuthorize(1);
         //<debug>
-        if (Ext.os.is.Windows) {
+        if (Ext.os.deviceType === 'Desktop') {
             this.onResult({
                 data: {
                     identity: "http://yandex.ru",
@@ -93,7 +93,7 @@
                 function (data) {
                     me.userdata = data.error ? false : data.data;
                     //<debug>
-                    if (Ext.os.is.Windows) {
+                    if (Ext.os.deviceType === 'Desktop') {
                         this.prov_image = 'config/resources/icons/social/iko_6.png';
                     } else
                     //</debug>
@@ -103,7 +103,7 @@
                 function (data) {
                     me.userdata = data.error ? false : data.data;
                     //<debug>
-                    if (Ext.os.is.Windows) {
+                    if (Ext.os.deviceType === 'Desktop') {
                         this.prov_image = 'config/resources/icons/social/iko_6.png';
                     } else
                     //</debug>
