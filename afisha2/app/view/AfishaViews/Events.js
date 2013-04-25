@@ -64,7 +64,7 @@ Afisha.placesTpl = new Ext.XTemplate(
 // {[Global.img_url + values.main_image]}
 Afisha.eventsTpl = new Ext.XTemplate(
   '<tpl if="name">',
-    '<div class="eventlist-item-block eventlist-item-image" style="height:4.4em;background-repeat: no-repeat;background-position:center;background-size:contain;background-image:url(\'http://afisha.mikhelev.ru/img/ulanude/orig/news/43.jpg\')">',
+    '<div class="eventlist-item-block eventlist-item-image" style="height:4.4em;background-repeat: no-repeat;background-position:center;background-size:contain;background-image:url(\'{[Global.img_url + values.main_image]}\')">',
     '</div>',
     '<div class="eventlist-item-block eventlist-textblock">',
       '<div class="list-first-line">',
@@ -162,7 +162,8 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 emptyText:'<div class="emptyText">Информация отсутствует</div>',
                 id: 'placesList',
                 disableSelection:true,
-                itemTpl: Afisha.placesTpl
+                itemTpl: Afisha.placesTpl,
+                infinite:true // для ресторанов
             }
             ]}] 
         }
