@@ -67,7 +67,7 @@ div.x-list-item div.list-item-content
     color: slategray;
     /*font-style:italic;*/
     position:relative;
-    top:-0.3em;
+    top:-0.1em;
     height:3.3em;
 }
 
@@ -224,7 +224,7 @@ div.x-list#eventsList div.x-list-item div.superstars {
 }
 
 div.x-list#placesList div.x-list-item div.list-item-content{
-    height:2em;
+    height:2.5em;
 }
 
 div.detailsHeader div.superstar.empty,
@@ -337,13 +337,13 @@ div.x-mask img.splash {
     height:100%;
 }
 
-div#FavList .x-list-item .x-list-item-body span.distance,
-div.x-list#placesList .x-list-item .x-list-item-body span.distance {
+div#FavList .x-list-item span.distance,
+div.x-list#placesList .x-list-item span.distance {
     padding-right:0.3em;
     font-size:70%;
     color:slategray;
     font-style:italic;
-    position: absolute;
+    position: relative;
     right: 0.5em;
     width:auto;
     text-align:right;

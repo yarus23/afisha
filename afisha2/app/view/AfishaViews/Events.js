@@ -153,7 +153,8 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 emptyText:'<div class="emptyText">Информация отсутствует</div>',
                 store:'Events',
                 disableSelection:true,
-                itemTpl: Afisha.eventsTpl
+                itemTpl: Afisha.eventsTpl,
+                itemHeight:100
             },
             {
                 title: 'Places',
@@ -163,6 +164,7 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 id: 'placesList',
                 disableSelection:true,
                 itemTpl: Afisha.placesTpl,
+                itemHeight:80,
                 infinite:true // для ресторанов
             }
             ]}] 

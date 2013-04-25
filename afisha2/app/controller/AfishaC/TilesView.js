@@ -102,11 +102,10 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                     }
                 }))})(handler);
                 
-                
+                if( !rowDef[i].text ) rowDef[i].text = '';
                 var titleDef = { cls: 'tileTitle', html: rowDef[i].title };
                 if( rowDef[i].color  ) titleDef.style = 'color: ' + rowDef[i].color;
                 var title = Ext.create('Ext.Container', titleDef);
-                
                 var tileInner = Ext.create('Ext.Container', {
                     items: [title, {
                             layout: {
