@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="adv.css" type="text/css"/>
         <script type="text/javascript" src="lib/cordova.js"></script>
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+		<!--
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
         <script type="text/javascript" src="lib/sencha/sencha-touch-all.js"></script>
         <script type="text/javascript" src="app/util/geolib.js"></script>
         <script type="text/javascript" src="config/config.js"></script>
@@ -25,10 +27,16 @@
 		<script type="text/javascript" src="lib/cordova/iOS/ShareKitPlugin.js"></script>
 		iOS-->
 		<!--<script type="text/javascript" src="start.js"></script>-->
+		<script type="text/javascript" src="start.js"></script>
 	</head>
     <body >
         <div id="splash" style="z-index: 999;position: absolute;display: block;left: 0;top: 0;height: 100%;width: 100%; background-color: #e66021;" >
             <div style="background-size: auto 11em;background-position: center;background-repeat: no-repeat;height: 100%;background-image: url('resources/splash.png');"></div>
+        </div>
+        <div id="adv_splash" style="z-index: 999;position: absolute;left: 0;top: 0;height: 100%;width: 100%; display:none;">
+            <div id="adv_close" style="display: none;">
+                <img src="resources/cross.png"/>
+            </div>
         </div>
         <!--<div id="splash">
             <div id="adv_close" style="display: none;">

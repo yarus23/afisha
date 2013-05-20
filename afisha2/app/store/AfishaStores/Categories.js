@@ -61,7 +61,7 @@ Ext.define('Afisha.store.AfishaStores.Categories', {
             { id: 'taxi', name: 'Активный отдых', type: 'active_rest', hiddenToolbar:true,options:{schType:'none'},
                 right: {store: null, id: 'active_rest' }
             },
-            { id: 'shop', name: 'Шопинг', type: 'shop', hiddenToolbar:true,options:{schType:'none'},
+            { id: 'shop', name: 'Доставка на дом', type: 'shop', hiddenToolbar:true,options:{schType:'none'},
                 right: {store: null, id: 'shop' }
             }
         ]

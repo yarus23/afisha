@@ -11,8 +11,8 @@
 	app_store: 'http://itunes.apple.com/us/app/id520794707',
 	//Google Analytics
 	ga: 'UA-31136083-1',
-	adv: 'http://ads.adfox.ru/201803/getCode?p1=bikkk&p2=eory&pfc=a&pfb=a&plp=a&pli=a&pop=a',
-	banner_adv: 'http://ads.adfox.ru/201803/getCode?p1=bipgt&p2=eozf&pfc=a&pfb=a&plp=a&pli=a&pop=a',
+	adv: 'http://ads.adfox.ru/210050/getCode?p1=bkuvw&p2=eteb&pfc=a&pfb=a&plp=a&pli=a&pop=a',
+	banner_adv: 'http://ads.adfox.ru/210050/getCode?p1=bkuwg&p2=etee&pfc=a&pfb=a&plp=a&pli=a&pop=a',
 	//
 	providers: {
 		_default: {

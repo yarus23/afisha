@@ -14,7 +14,7 @@ Date.prototype.nextWeek = function(){
 }
 /*
  * Эмуляция Mouse Click
- **/
+
 Element.prototype.mouseClick = function()
 {
     if( document.createEvent ) 
@@ -26,7 +26,7 @@ Element.prototype.mouseClick = function()
 {
         this.fireEvent('onclick');
     }
-}
+} **/
 Ext.data.Types.CUSTOMDATE = {
     convert: function(value) {
         var dateFormat = this.getDateFormat(),
@@ -179,6 +179,8 @@ Ext.application({
         this.Settings = Ext.create('Afisha.util.Settings',{});
         var splash = window.document.getElementById('splash');
         splash.style.display = "none";
+        var adv_splash = window.document.getElementById('adv_splash');
+        adv_splash.style.display = "none";
         //компенсируем изменения сенчи
         Date.prototype.format = function(format){
             return Ext.DateExtras.format(this, format);

@@ -16,14 +16,16 @@
 div.x-img.gold{
     background-color: gold !important;
 }
-div#splash {
+div#splash, 
+div#adv_splash {
     z-index	: 999;
     position	: absolute;
     display	: block;
     left	: 0;
     top	: 0;
 }
-div#splash > img {
+div#splash > img,
+div#adv_splash > img {
     width	: 100%;
     height	: 100%;
 }
