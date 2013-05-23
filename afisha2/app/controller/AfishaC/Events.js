@@ -305,6 +305,11 @@ Ext.define('Afisha.controller.AfishaC.Events', {
             this.getSearchPanel().setHidden(true);  
             return true;          
         }
+        var filterview = Ext.Viewport.down('filterview')
+        if (filterview != null){
+            Ext.Viewport.remove(filterview);
+            return true;
+        }
         return false;
     }
 })

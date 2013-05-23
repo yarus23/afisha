@@ -15,6 +15,7 @@ Ext.define('Afisha.view.AfishaViews.FilterView',{
             items: [{
                 xtype:'backbutton',
                 listeners:{
+                    
                     tap: function() { Ext.Viewport.remove(this.up('filterview'));}
                 }
             }]
