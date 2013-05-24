@@ -16,29 +16,29 @@
 	//
 	providers: {
 		_default: {
-			redirect_uri: 'http://afisha.mikhelev.ru/oauth'
+			redirect_uri: 'http://afishache.co.cc/oauth'
 		},
 		vk: {
-			app_id: '3668131'
+			app_id: '2897879'
 		},
 		google: {
-			client_id: '600483226099.apps.googleusercontent.com'
+			client_id: '53528919723.apps.googleusercontent.com'
 		},
 		fb: {
-			app_id: '338336639627841'
+			app_id: '393705187314663'
 		},
 		odnoklassniki: {
-			app_id: '176776704',
-			secret_key: '25AE2BE7C37BFE599351223F',
-			public_key: 'CBAHGKILABABABABA'
+			app_id: '61780480',
+			secret_key: '3FCF4C6A81AFA4251B2FD6BA',
+			public_key: 'CBADLPKEABABABABA'
 		},
 		mailru: {
-			app_id: '705303',
-			secret_key: '48832a70957038bb399aa64e69ca9632'
+			app_id: '672108',
+			secret_key: '50e99f07aa56c9eec14ace7d2c493d09'
 		},
 		twitter: {
-			consumer_key: 'RiX4Wo1l4gTEuWFdHgVng',
-			consumer_secret: 'ulM5JRidDU3RuJchXk3nR12eUMp0glkixch6fsznXzU'
+			consumer_key: 'Nn1OqYDWQRzHRW7NywjEA',
+			consumer_secret: 'cH3cbzQCGgGF8JFGu5ErYV6ne5PgNxUVwyG72vkQ'		
 		}
 	}
 };
