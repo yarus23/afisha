@@ -4,10 +4,8 @@ Ext.define('Afisha.store.AfishaStores.Cache', {
         model: 'Afisha.model.AfishaModels.CachedData',
         autoLoad: false,
         proxy: {
-			type: 'memory',
-			reader: {
-				type: 'json'
-			}
+			type: 'localstorage',
+			id: 'cache'
 		}
     }
 });

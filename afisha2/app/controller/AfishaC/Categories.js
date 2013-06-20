@@ -151,21 +151,23 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             callback: callback
         });
 	},
-			
+
     loadCategory:function(type, user_callback){
+		var hash;
+		
         var callback = function(success,response){
             if (success){
                 //check that fields not undefined
-
                 var data_str = Ext.encode(response.root);
                 //var data_str = Ext.encode(response.query.results.json.root);
-                if( recNo >= 0 ) {
-                    var rec = cache.getById(type);
+                if( rec ) {
                     rec.set('data', data_str);
                     rec.set('timestamp', Ext.Date.now());
+                    rec.set('hash', hash);
                 }
                 else
-                    cache.insert(0, { id: type, data: data_str, timestamp: Ext.Date.now() });
+                    cache.add( { name: type, data: data_str, timestamp: Ext.Date.now() });
+                cache.sync();
                 this.fillStores(data_str,type, user_callback)
             } else {
                 Afisha.gf.alert('Не удалось загрузить данные. Проверьте интернет соединение.');
@@ -175,20 +177,56 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         }
 
         var cache = Ext.getStore('Cache');
-        var recNo = cache.indexOfId(type);
+        cache.load(); // ???
+        var rec = cache.findRecord('name', type);
+        var me = this;
         
-        // Данные в кеше валидны 1 час
-        if( recNo >= 0 && (Ext.Date.now() - cache.getAt(recNo).get('timestamp')) < (1000 * 60 * 60)) {
-            console.log('loading ' + type + ' from cache');
-            if( this.currentCategory == type )
-                user_callback();
-            else
-                this.fillStores(cache.getAt(recNo).get('data'),type, user_callback);
-        }
-        else {
-            Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
-            this.loadJsonP(type, callback);
-        }
+        function loadJsonData() {
+			if( rec && (rec.get('hash') == hash)) {
+				console.log('loading ' + type + ' from cache');
+				if( me.currentCategory == type )
+					user_callback();
+				else
+					me.fillStores(rec.get('data'),type, user_callback);
+			}
+			else {
+				Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
+				me.loadJsonP(type, callback);
+			}
+		}
+		if( Ext.os.deviceType == 'Desktop' ) {
+		Ext.data.JsonP.request({
+            url : 'http://query.yahooapis.com/v1/public/yql',
+            params: {format:'json', q: 'select * from html where url="' + Global.server_url
+                                      + '?type=' + type + '&mode=hash"'},
+            callbackKey: 'callback',
+            scope:this,
+            callback: function(success, response){ 
+				if( success )
+					loadJsonData(response.query.results.body.p);
+				else {
+					Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
+					me.loadJsonP(type, callback);
+				}				
+			}
+        }) } else
+        Ext.Ajax.request({
+            url: Global.server_url,
+            method: 'GET',
+            params:{
+                type: type,
+                mode: 'hash'
+            },
+            success: function(response){
+				hash = response.responseText;
+				loadJsonData();
+			},
+			failure: function() {
+				Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
+				this.loadJsonP(type, callback);
+			}
+        });
+        		
     },
     
     fillStores:function(data_str, type, user_callback){
