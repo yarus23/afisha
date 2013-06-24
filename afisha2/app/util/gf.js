@@ -59,17 +59,23 @@ Ext.define('Afisha.util.gf', {
                 navigator.geolocation.getCurrentPosition(callback, errCallback,{ enableHighAccuracy: true, timeout: 30000, maximumAge: 300000 });
         },
         openUrl: function(link_el, not_external, external) {
-            var href;
-            if ( ( !Ext.os.is.iOS || not_external) && !external) {
-                link_el.mouseClick();
-            } else {        	
-                href = link_el.getAttribute('href');
-                href = encodeURI(href);
-                if (window.plugins && window.plugins.childBrowser)
-                    window.plugins.childBrowser.showWebPage(href);
-                else
-                    link_el.mouseClick();
+            var href = link_el.getAttribute('href');
+            if (href.indexOf("tel:") == -1 && href.indexOf("mailto:") == -1 && href.indexOf("http") == -1){
+                href = "http://" + href;
             }
+            window.open(href, '_system', 'location=yes');
+//            return;
+//            var href;
+//            if ( ( !Ext.os.is.iOS || not_external) && !external) {
+//                link_el.mouseClick();
+//            } else {        	
+//                href = link_el.getAttribute('href');
+//                href = encodeURI(href);
+//                if (window.plugins && window.plugins.childBrowser)
+//                    window.plugins.childBrowser.showWebPage(href);
+//                else
+//                    link_el.mouseClick();
+//            }
         },
         ///приводим все объекты к одному виду, чтобы убрать film_id у фильмов, clubevent_id у всего остального, а чтобы у всех было event_id  итд
         unifySchedule: function(data){

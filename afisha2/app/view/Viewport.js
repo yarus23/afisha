@@ -29,8 +29,9 @@ Ext.define('Afisha.view.Viewport',{
                 xtype:'discview'
             },{
                 xtype:'disclist'
-            }
-        ],
+            },{
+                xtype:'commentsview'
+        }],
         fullscreen:true,
         layout:'card'
     }

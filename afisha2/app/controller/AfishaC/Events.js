@@ -311,5 +311,21 @@ Ext.define('Afisha.controller.AfishaC.Events', {
             return true;
         }
         return false;
+    },
+    launch: function(){
+        //em to pixels for XTemplates
+        var em,
+            container,
+            bodyImageWidth;
+        container = this.getViewport().element;
+        em = new Ext.Element(document.createElement('div'));
+        em.setStyle('height','0em');
+        em.setStyle('width','1em');
+        container.appendChild(em);
+        this.em = em.getWidth();
+        Ext.XTemplate.addMember('em',this.em);
+        Ext.XTemplate.addMember('eventListImgSize',Math.ceil(this.em*4.3));
+        Ext.XTemplate.addMember('newsListImgSize',Math.ceil(this.em*3));
+        container.removeChild(em);
     }
 })

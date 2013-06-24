@@ -33,15 +33,15 @@
             {
                 items: [
                     {
-                        html: '<img src="config/resources/icons/social/iko_1.png" width="100%"></img>',
+                        html: '<img src="resources/icons/social/iko_1.png" width="100%"></img>',
                         provider_index: 0
                     },
                     {
-                        html: '<img src="config/resources/icons/social/iko_2.png" width="100%"></img>',
+                        html: '<img src="resources/icons/social/iko_2.png" width="100%"></img>',
                         provider_index: 2
                     },
                     {
-                        html: '<img src="config/resources/icons/social/iko_3.png" width="100%"></img>',
+                        html: '<img src="resources/icons/social/iko_3.png" width="100%"></img>',
                         provider_index: 1
                     }
                 ]
@@ -49,15 +49,15 @@
             {
                 items: [
                     {
-                        html: '<img src="config/resources/icons/social/iko_4.png" width="100%"></img>',
+                        html: '<img src="resources/icons/social/iko_4.png" width="100%"></img>',
                         provider_index: 5
                     },
                     {
-                        html: '<img src="config/resources/icons/social/iko_5.png" width="100%"></img>',
+                        html: '<img src="resources/icons/social/iko_5.png" width="100%"></img>',
                         provider_index: 3
                     },
                     {
-                        html: '<img src="config/resources/icons/social/iko_6.png" width="100%"></img>',
+                        html: '<img src="resources/icons/social/iko_6.png" width="100%"></img>',
                         provider_index: 4
                     }
                 ]

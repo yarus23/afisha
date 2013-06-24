@@ -64,7 +64,7 @@ Afisha.placesTpl = new Ext.XTemplate(
 // {[Global.img_url + values.main_image]}
 Afisha.eventsTpl = new Ext.XTemplate(
   '<tpl if="name">',
-    '<div class="eventlist-item-block eventlist-item-image" style="height:4.4em;background-repeat: no-repeat;background-position:center;background-size:contain;background-image:url(\'{[Global.img_url + values.main_image]}\')">',
+    '<div class="eventlist-item-block eventlist-item-image" style="height:{[this.eventListImgSize]}px;background-repeat: no-repeat;background-position:center;background-size:contain;background-image:url(\'{[Global.img_url + "img/get_image/?path=" + values.main_image + "&width=" + this.eventListImgSize + "&height=" + this.eventListImgSize]}\')">',
     '</div>',
     '<div class="eventlist-item-block eventlist-textblock">',
       '<div class="list-first-line">',
@@ -91,7 +91,11 @@ Afisha.eventsTpl = new Ext.XTemplate(
          if (dateStr.length <3)
              return '';
          return (dateStr[2][0] == '0' ? dateStr[2][1].toString() : dateStr[2]) + getMonthShortName(dateStr[1]);
+     },
+     getimg:function(){
+         debugger;
      }
+     
  });
 
 

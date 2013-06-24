@@ -94,7 +94,7 @@ Ext.define('Afisha.view.News.NewsList', {
             flex:1,
             disableSelection:true,
             store:'NewsList',
-            itemTpl:'<div class="avatar x-img"style="width:3em;height:3em;background-size: cover;background-image:url(' + Global.img_url + '{image})" ></div><div class="list-vertical"><div class="newsListTitle">{title}</div><div class="newsListDescr">{description}</div></div>'
+            itemTpl:'<div class="avatar x-img"style="width:{[this.newsListImgSize]}px;height:{[this.newsListImgSize]}px;background-size: cover;background-image:url({[Global.img_url + "img/get_image/?path=" + values.image + "&width=" + this.newsListImgSize + "&height=" + this.newsListImgSize]})" ></div><div class="list-vertical"><div class="newsListTitle">{title}</div><div class="newsListDescr">{description}</div></div>'
             //type:'news',
 //            itemTpl: new Ext.XTemplate(
 //                '<div class="x-img x-docked-left newsListImage" style="width: {[this.listImgSize]}px;height: {[this.listImgSize]}px;background-image:url(http://www.tula.rodgor.ru/pictures/news/{rid}/picture-{[this.listImgSize]}h.jpg)"></div>',
