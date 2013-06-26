@@ -31,38 +31,38 @@ OUTPUT POFILE DATA:
 PROVIDERS: 
 google
 	https://code.google.com/apis/console/#project:372524027973:access
-	client_id: 53528919723.apps.googleusercontent.com
-	client_secret: ZH6-WJ04NppbMr1EheJCafFW
+	client_id: 600483226099.apps.googleusercontent.com
+	client_secret: QWpqZiaZ3dReZNjMS1M_WYzD
 	redirect_uri: http://localhost
 	
 vkontakte	
-	http://vk.com/app2897879
-	app_id: 2897879
-	secret_key: IrUxHTPnqmANo1e83yJK
+	http://vk.com/app3668131
+	app_id: 3668131
+	secret_key: 3u7TjKMMCeUnSOaI45jf
 	
 facebook
-	https://developers.facebook.com/apps/393705187314663
-	app_id: 393705187314663
-	secret_key: 29a676a067cc94ab1cf31eb3c419c11c
+	https://developers.facebook.com/apps/338336639627841
+	app_id: 338336639627841
+	secret_key: 03ef82d38e8322f0d86449cbc7db81e1
  
 odnoklassniki
 	http://www.odnoklassniki.ru/games/afishache
-	app_id: 61780480
-	public_key: CBADLPKEABABABABA
-	secret_key: 3FCF4C6A81AFA4251B2FD6BA
+	app_id: 176776704
+	public_key: CBAHGKILABABABABA
+	secret_key: 25AE2BE7C37BFE599351223F
 
 mail.ru
-	http://api.mail.ru/apps/my/672108
-	app_id: 672108
-	private_key: 50e99f07aa56c9eec14ace7d2c493d09 
-	secret_key: 3603588fbd00bc70d08c260f639e5c7b 
+	http://api.mail.ru/apps/my/705303
+	app_id: 705303
+	private_key: 910fbd2102bf19872487289b701a8641
+	secret_key: 48832a70957038bb399aa64e69ca9632
 
 twitter
-	https://dev.twitter.com/apps/1918683
-	consumer_key: Nn1OqYDWQRzHRW7NywjEA
-	consumer_secret: cH3cbzQCGgGF8JFGu5ErYV6ne5PgNxUVwyG72vkQ
-	access_token: 121027105-HawwgeYBuWH6R899bRi0wLjVATR8UXUgt1L2rXB6
-	access_token_secret: 2rFl4p8HZzoENUsYx9aiM7sumXWOKdC9q70sAFESFU
+	https://dev.twitter.com/apps/4462968
+	consumer_key: RiX4Wo1l4gTEuWFdHgVng
+	consumer_secret: ulM5JRidDU3RuJchXk3nR12eUMp0glkixch6fsznXzU
+	access_token: 121027105-5JR9IchLvVRWhpeZzoj447CGwbWj6pXMhFSi81Ul
+	access_token_secret: jt0hANMh8JvvwCA9jL5AqxBbGkSjwma4fA7DCo6IGSE
 */
 
 var G = Global;
@@ -123,33 +123,19 @@ var Providers = ({
         },
         getToken: function () {
             var me = this;
-            var ref = window.open('http://afishache.co.cc/loading.html?' + me.getTokenLink(), '_blank', 'location=yes');
-            
-            ref.addEventListener('loadstop', function() { 
-                var url = event.url;
+            window.plugins.childBrowser.onLocationChange = function (url) {
                 if (url.indexOf(me.redirect_uri) == 0) {
                     //alert('window.plugins.childBrowser.onLocationChange __ ' + url); // debug
                     var response = url.getParamsFromUrl();
                     //alert(window.plugins.childBrowser.close);
-                    ref.close();
+                    window.plugins.childBrowser.close();
                     					
                     response.error ? me.onError(response.error) : me.onToken(response, true);
                 }
+            };
+            window.plugins.childBrowser.showWebPage('http://afishache.co.cc/loading.html?' + me.getTokenLink(), {
+                showLocationBar : false
             });
-            
-//            window.plugins.childBrowser.onLocationChange = function (url) {
-//                if (url.indexOf(me.redirect_uri) == 0) {
-//                    //alert('window.plugins.childBrowser.onLocationChange __ ' + url); // debug
-//                    var response = url.getParamsFromUrl();
-//                    //alert(window.plugins.childBrowser.close);
-//                    window.plugins.childBrowser.close();
-//                    					
-//                    response.error ? me.onError(response.error) : me.onToken(response, true);
-//                }
-//            };
-//            window.plugins.childBrowser.showWebPage('http://afishache.co.cc/loading.html?' + me.getTokenLink(), {
-//                showLocationBar : false
-//            });
         },
         getProfileData: function () {
             var me = this;
