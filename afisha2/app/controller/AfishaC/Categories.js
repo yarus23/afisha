@@ -159,7 +159,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             if (success){
                 //check that fields not undefined
                 var data_str = Ext.encode(response.root);
-                debugger;
+                //debugger;
                 //var data_str = Ext.encode(response.query.results.json.root);
                 if( rec ) {
                     rec.set('data', data_str);
@@ -195,16 +195,18 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
 				me.loadJsonP(type, callback);
 			}
 		}
-		if( /desktop/i.test(Ext.os.deviceType) ) {
+		
 		Ext.data.JsonP.request({
-            url : 'http://query.yahooapis.com/v1/public/yql',
-            params: {format:'json', q: 'select * from html where url="' + Global.server_url
-                                      + '?type=' + type + '&mode=hash"'},
+            url: Global.server_url,
+            params:{
+                type: type,
+                mode: 'hash'
+            },
             callbackKey: 'callback',
             scope:this,
             callback: function(success, response){ 
 				if( success ) {
-					hash = response.query.results.body.p;
+					hash = response.hash;
 					loadJsonData();
 				}
 				else {
@@ -212,22 +214,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
 					me.loadJsonP(type, callback);
 				}				
 			}
-        }) } else
-        Ext.Ajax.request({
-            url: Global.server_url,
-            params:{
-                type: type,
-                mode: 'hash'
-            },
-            success: function(response){
-				hash = response.responseText;
-				loadJsonData();
-			},
-			failure: function() {
-				Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
-				this.loadJsonP(type, callback);
-			}
-        });
+        })
         		
     },
     
