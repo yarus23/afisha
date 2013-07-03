@@ -213,7 +213,7 @@ div.detailsHeader div.superstar,
 div.x-list div.x-list-item div.superstar {
     position:absolute;
     right:0.5em;
-    background-image:url('config/resources/icons/starfilled.png');
+    background-image:url('resources/starfilled.png');
     background-repeat: repeat-x;
     width:3.9em;
     height:1em;
@@ -231,7 +231,7 @@ div.x-list#placesList div.x-list-item div.list-item-content{
 
 div.detailsHeader div.superstar.empty,
 div.x-list div.x-list-item div.superstar.empty {
-    background-image:url('config/resources/icons/star.png');
+    background-image:url('resources/star.png');
 }
 
 div.detailsHeader div.superstars,
