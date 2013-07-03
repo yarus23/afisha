@@ -171,8 +171,13 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                 cache.sync();
                 this.fillStores(data_str,type, user_callback)
             } else {
-                Afisha.gf.alert('Не удалось загрузить данные. Проверьте интернет соединение.');
-                console.log("Не удалось загрузить данные")                
+				if( rec ) { // не загрузили но что-то есть в кеше
+					Afisha.gf.alert('Проверьте интернет соединение. Данные могут быть неактуальными.');
+					this.fillStores(rec.get('data'),type, user_callback);
+				} else {
+					Afisha.gf.alert('Не удалось загрузить данные. Проверьте интернет соединение.');
+					console.log("Не удалось загрузить данные");
+				}               
             }
             Ext.Viewport.setMasked(false);
         }
