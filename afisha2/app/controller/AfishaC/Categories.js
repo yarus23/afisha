@@ -183,24 +183,32 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         }
 
         var cache = Ext.getStore('Cache');
-        cache.load(); // ???
+        if( !this.cacheLoaded ) {
+			cache.load();
+			this.cacheLoaded = true;
+		}
         var rec = cache.findRecord('name', type);
         var me = this;
         
         function loadJsonData() {
 			if( rec && (rec.get('hash') == hash)) {
 				console.log('loading ' + type + ' from cache');
-				if( me.currentCategory == type )
-					user_callback();
-				else
-					me.fillStores(rec.get('data'),type, user_callback);
+				me.fillStores(rec.get('data'),type, user_callback);
+				rec.set('timestamp', Ext.Date.now());
 			}
 			else {
 				Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
 				me.loadJsonP(type, callback);
 			}
 		}
-		
+        // Данные в памяти валидны 10 минут
+        if( rec && ((Ext.Date.now() - rec.get('timestamp')) < (1000 * 60 * 10))) {
+            console.log('loading ' + type + ' from memory');
+            if( this.currentCategory == type )
+                user_callback();
+            else
+                this.fillStores(rec.get('data'),type, user_callback);
+        } else
 		Ext.data.JsonP.request({
             url: Global.server_url,
             params:{
