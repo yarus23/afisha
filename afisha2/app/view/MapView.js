@@ -26,7 +26,7 @@ Ext.define('Afisha.view.MapView',{
                   sensor: true,
                   mapTypeId: typeof google== "undefined" ? null : google.maps.MapTypeId.ROADMAP
                 },
-            useCurrentLocation: false
+            useCurrentLocation: false,
         }],
     }
 });
