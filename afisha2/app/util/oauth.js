@@ -123,19 +123,18 @@ var Providers = ({
         },
         getToken: function () {
             var me = this;
-            window.plugins.childBrowser.onLocationChange = function (url) {
+            var ref = window.open('http://afisha.mikhelev.ru/loading.html?' + me.getTokenLink(), '_blank', 'location=yes');
+            ref.addEventListener('loadstop', function(event) {
+                var url = event.url;
                 if (url.indexOf(me.redirect_uri) == 0) {
                     //alert('window.plugins.childBrowser.onLocationChange __ ' + url); // debug
                     var response = url.getParamsFromUrl();
                     //alert(window.plugins.childBrowser.close);
-                    window.plugins.childBrowser.close();
+                    ref.close();
                     					
                     response.error ? me.onError(response.error) : me.onToken(response, true);
                 }
-            };
-            window.plugins.childBrowser.showWebPage('http://afishache.co.cc/loading.html?' + me.getTokenLink(), {
-                showLocationBar : false
-            });
+            })
         },
         getProfileData: function () {
             var me = this;
