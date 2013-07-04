@@ -30,16 +30,18 @@ Afisha.getRatingHtml = function(rate,type,trailer){
     }
     else
     {
-        if (type)
-            return '<img src="config/resources/icons/star-'+ rate + '.png" class="teststar"></img>';
+        //if (type)
+        //    return '<img src="config/resources/icons/star-'+ rate + '.png" class="teststar"></img>';
         var s = '';
         if( rate >= 4.9 )
             s += '<div class="superstar"></div>';
         else
         if( rate == 0 )
-            s += '<div class="superstar empty"></div>';
+            return s;//s += '<div class="superstar empty"></div>';
         else {
-            s += '<div class="superstars"><div class="superstar" style="width:'+(0.76*rate + 0.05)+'em"></div><div class="superstar empty" style="width:'+0.8 * (5-rate)+'em"></div></div>';
+//            s += '<div class="superstars"><div class="superstar" style="width:'+(0.76*rate + 0.05)+'em"></div><div class="superstar empty" style="width:'+0.8 * (5-rate)+'em"></div></div>';
+            s += '<div class="superstars"><div class="superstar" style="width:'+(0.76*rate + 0.05)+'em"></div></div>';
+
         }
         return s;
     }

@@ -124,14 +124,27 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         this.onSortMenuItemPress(type);
     },
     onSetFilter: function(params) {
-        var f = [];
+/*        var f = [];
         for( var i in params ) {
             if( params[i] && params[i] > 0 )
                 f.push({ property: i, value: params[i]});
-        }
-        //debugger;
+        }*/
         this.getPlacesList().getStore().clearFilter(true);
-        this.getPlacesList().getStore().filter(f);
+        this.getPlacesList().getStore().filterBy(function(rec) {
+				var pass = true;
+				
+				for( var i in params ) {
+				  if( !pass ) return false;
+				  
+				  if( params[i] && params[i] > 0 ) {
+					  var a = rec.get(i);
+					  if( a instanceof Array )
+					     pass = pass &&  (a.indexOf(params[i]) > -1 );
+					  else pass = pass && (a == params[i]);
+				  }
+			     }
+				 return pass;
+			});
     },
     onSwitch: function(){
         var me = this;
