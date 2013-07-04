@@ -173,7 +173,8 @@ Ext.define('Afisha.controller.AfishaC.Events', {
             this.onSearchClear();
         } else {
             this.getSearchEdit().setValue('');
-            this.getSearchEdit().focus();
+            var me = this;
+            setTimeout(function() { me.getSearchEdit().focus(); });
         }
         this.getSearchPanel().setHidden(!doShow);
     },
