@@ -5,7 +5,7 @@ Ext.define('Afisha.store.Comments', {
         autoLoad: true,
         proxy: {
             type: 'scripttag',
-            url : 'http://afisha.mikhelev.ru/app/ulanude/comments',//'http://www.tula.rodgor.ru/incl/export_json.php',//
+            url : 'http://afisha-uu.13857.aqq.ru/app/ulanude/comments',//'http://www.tula.rodgor.ru/incl/export_json.php',//
             extraParams:{
             },
             reader: {

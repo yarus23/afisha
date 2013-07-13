@@ -123,7 +123,7 @@ var Providers = ({
         },
         getToken: function () {
             var me = this;
-            var ref = window.open('http://afisha.mikhelev.ru/loading.html?' + me.getTokenLink(), '_blank', 'location=yes');
+            var ref = window.open('http://afisha-uu.13857.aqq.ru/loading.html?' + me.getTokenLink(), '_blank', 'location=yes');
             ref.addEventListener('loadstop', function(event) {
                 var url = event.url;
                 if (url.indexOf(me.redirect_uri) == 0) {

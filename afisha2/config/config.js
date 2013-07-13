@@ -1,8 +1,8 @@
 ﻿var Global = {
 	//
 	debug: false,
-	server_url: 'http://afisha.mikhelev.ru/app/ulanude',//'http://afishache.co.cc/administrator/',
-        img_url:'http://afisha.mikhelev.ru/',
+	server_url: 'http://afisha-uu.13857.aqq.ru/app/ulanude',//'http://afishache.co.cc/administrator/',
+        img_url:'http://afisha-uu.13857.aqq.ru/',
 	db_name: 'afishache2',
 	//
 	app_name: 'Афиша Улан-Удэ',
@@ -16,7 +16,7 @@
 	//
 	providers: {
 		_default: {
-			redirect_uri: 'http://afisha.mikhelev.ru/oauth'
+			redirect_uri: 'http://afisha-uu.13857.aqq.ru/oauth'
 		},
 		vk: {
 			app_id: '3668131'

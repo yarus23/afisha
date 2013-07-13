@@ -48,7 +48,7 @@ Ext.define('Afisha.view.News.PageView', {
                         styleHtmlContent:true,
                         tpl: new Ext.XTemplate(
                             //'<div class="header"><h1>{title}</h1>',
-                            '<tpl if="image && this.isNews(values.image)"><p align="center"><img style="display:none;" onload="this.style.setProperty(\'display\',\'block\');" class="title-img" src="http://afisha.mikhelev.ru/{image}"></img></p></tpl>',
+                            '<tpl if="image && this.isNews(values.image)"><p align="center"><img style="display:none;" onload="this.style.setProperty(\'display\',\'block\');" class="title-img" src="http://afisha-uu.13857.aqq.ru/{image}"></img></p></tpl>',
                             '<div class="date-time">{date:date("j.n.Y H:i")}</div></div>',
                             '<div class="footer">{body}</div>',
                             {

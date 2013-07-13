@@ -79,7 +79,7 @@ Ext.define('Afisha.controller.Comments', {
         info.sign = 0;
         info.user_data = userData;//{"identity":"http://vk.com/mikhelev","provider":"vk.com","prov_name":"\u0412\u043a\u043e\u043d\u0430\u043a\u0442\u0435","first_name":"Andrey","last_name":"Mikhelev","full_name":"AndreyMikhelev","nickname":"Walker","photo":"http://cs9805.vk.me/v9805581/2f/5I5HSe56lzU.jpg","uid":"http://vk.com/mikhelev","dob":"","gender":"","email":""}
         Ext.Ajax.request({
-            url: 'http://afisha.mikhelev.ru/app/ulanude/comments',
+            url: 'http://afisha-uu.13857.aqq.ru/app/ulanude/comments',
             method:'POST',
             timeout:10000,
             jsonData: info,
