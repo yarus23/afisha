@@ -1,0 +1,1 @@
+Ext.define("Afisha.store.News.PageView",{extend:"Ext.data.Store",config:{model:"Afisha.model.News.PageView",proxy:{type:"scripttag",url:"http://mobile.afisha-uu.ru/app/ulanude/data/news/getone/",reader:{type:"json",}}},});

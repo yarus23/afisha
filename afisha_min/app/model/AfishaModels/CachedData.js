@@ -1,0 +1,1 @@
+Ext.define("Afisha.model.AfishaModels.CachedData",{extend:"Ext.data.Model",config:{fields:[{name:"name",type:"string"},{name:"data",type:"string"},{name:"hash",type:"string"},{name:"timestamp",type:"int"}]}});

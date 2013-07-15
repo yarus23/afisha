@@ -1,0 +1,1 @@
+Ext.define("Afisha.model.Favorites",{extend:"Ext.data.Model",config:{fields:[{name:"id",type:"int"},{name:"rid",type:"int"},{name:"title",type:"string"},{name:"descr",type:"string"},{name:"type",type:"string"}],proxy:{type:"localstorage",id:"fav-proxy"}}});

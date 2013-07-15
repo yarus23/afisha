@@ -1,0 +1,1 @@
+Ext.define("Afisha.store.News.NewsView",{extend:"Ext.data.Store",config:{model:"News.model.NewsView",proxy:{type:"scripttag",url:"http://www.tula.rodgor.ru/incl/export_json.php",reader:{type:"json",rootProperty:"root"}}},});

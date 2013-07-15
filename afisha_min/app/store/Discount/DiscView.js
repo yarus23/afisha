@@ -1,0 +1,1 @@
+Ext.define("Afisha.store.Discount.DiscView",{extend:"Ext.data.Store",config:{model:"Afisha.model.Discount.DiscView",proxy:{type:"scripttag",url:"http://mobile.afisha-uu.ru/app/ulanude/data/discounts/getone/",reader:{type:"json"}}},});

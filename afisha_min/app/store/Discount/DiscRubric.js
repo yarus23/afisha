@@ -1,0 +1,1 @@
+Ext.define("Afisha.store.Discount.DiscRubric",{extend:"Ext.data.Store",config:{model:"Afisha.model.News.NewsRubric",autoLoad:false,proxy:{type:"scripttag",url:"http://mobile.afisha-uu.ru/app/ulanude/structure/discountrubrics/",reader:{type:"json",rootProperty:"root"}}},});
