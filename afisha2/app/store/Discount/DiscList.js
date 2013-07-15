@@ -7,7 +7,7 @@ Ext.define('Afisha.store.Discount.DiscList', {
         pageSize:20,
         proxy: {
             type: 'scripttag',
-            url : 'http://afisha-uu.13857.aqq.ru/app/ulanude/data/discounts/',//'http://www.tula.rodgor.ru/incl/export_json.php',//
+            url : 'http://mobile.afisha-uu.ru/app/ulanude/data/discounts/',//'http://www.tula.rodgor.ru/incl/export_json.php',//
             startParam:'offset',
             extraParams:{
                 type:'news',

@@ -24,7 +24,7 @@ Ext.define('Afisha.store.Discount.DiscView', {
 //        }]
         proxy: {
             type: 'scripttag',
-            url : 'http://afisha-uu.13857.aqq.ru/app/ulanude/data/discounts/getone/',
+            url : 'http://mobile.afisha-uu.ru/app/ulanude/data/discounts/getone/',
             //callbackKey: 'callback',
             reader: {
                 type: 'json'
