@@ -6,7 +6,7 @@ Ext.define('Afisha.view.AfishaViews.FilterView',{
         fullscreen: true,
         layout: {
             type:'vbox',
-            align:'left'
+            align:'center'
         },
         items:[ {
             xtype:'titlebar',
