@@ -8,7 +8,6 @@
 
 // todo: подпинать дизайн
 // todo: уважать настройку gps
-// todo: кнопки фильтра и сортировки
 // todo: менее прозрачная load mask сначала
 // todo: все фильмы делить на категории в прокате и скоро
 // todo: есть ли смысл во всех показывать прошедшие фильмы сегодня?
@@ -18,7 +17,6 @@
 // done:
 // todo: в горизонтали иконки tileview уезжают
 // todo: при слайдинге видна черная полоса внизу
-// todo: ellipsis в спискtах
 // todo: не включать distance если нет gps
 // todo: первоначально сортировать
 // todo: выборку по дате
@@ -129,6 +127,7 @@ Ext.define('Afisha.controller.AfishaC.Events', {
             if( params[i] && params[i] > 0 )
                 f.push({ property: i, value: params[i]});
         }*/
+        this.resetScroll();
         this.getPlacesList().getStore().clearFilter(true);
         this.getPlacesList().getStore().filterBy(function(rec) {
 				var pass = true;
@@ -178,10 +177,17 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         }
         this.getSearchPanel().setHidden(!doShow);
     },
+    resetScroll: function() {
+        var list = this.getTabpanel().getActiveItem();
+        var store = list.getStore();
+        var scroller = list.getScrollable().getScroller();		
+        scroller.scrollTo(0, 0, false);
+	},
     onFilterByDatePressed: function(val) {
         this.getTabpanel().getActiveItem().sortConfig.type = val;
-        var store = this.getTabpanel().getActiveItem().getStore();
-        
+        var list = this.getTabpanel().getActiveItem();
+        var store = list.getStore();
+        this.resetScroll();
         var date = null;
         switch(val) {
             case 'filterCurrentDay':
