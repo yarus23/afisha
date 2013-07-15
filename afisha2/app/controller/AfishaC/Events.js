@@ -179,7 +179,6 @@ Ext.define('Afisha.controller.AfishaC.Events', {
     },
     resetScroll: function() {
         var list = this.getTabpanel().getActiveItem();
-        var store = list.getStore();
         var scroller = list.getScrollable().getScroller();		
         scroller.scrollTo(0, 0, false);
 	},
@@ -303,9 +302,9 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         tabPanel.getTabBar().setHidden(onlyPlaces);
         
         // передернем список
-        this.getPlacesList().getScrollable().getScroller().scrollTo(0, 0);
-        this.getEventsList().getScrollable().getScroller().scrollTo(0, 0);
-        
+		this.getPlacesList().getScrollable().getScroller().scrollTo(0, 0, false);
+		this.getEventsList().getScrollable().getScroller().scrollTo(0, 0, false);
+
         // спрячем ненужное
         this.getFilterButton().setHidden(filter == null);
         this.getSortButton().setHidden(filter != null);
@@ -316,6 +315,7 @@ Ext.define('Afisha.controller.AfishaC.Events', {
     },
     
     goBack: function() {
+		this.resetScroll();
         if( this.sortpopup && !this.sortpopup.getHidden() ) {
             this.sortpopup.hide();
             return true;

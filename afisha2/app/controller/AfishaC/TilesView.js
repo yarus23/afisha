@@ -12,7 +12,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                 newsPressed:'onNewsPressed',
                 cinemaPressed: 'onCinemaPressed',
                 clubsPressed: 'onClubsPressed',
-                concertPressed: 'onConcertPressed',
+                shopPressed: 'onShopPressed',
                 restaurantPressed:'onRestaurantPressed',
                 favPressed:'onFavPressed',
                 settingsPressed:'onSettingsPressed',
@@ -34,7 +34,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     onClubsPressed: function() {
         this.getApplication().fireEvent('switchTo', 'club');
     },
-    onConcertPressed: function() {
+    onShopPressed: function() {
         this.getApplication().fireEvent('switchTo', 'shop');
     },
     onRestaurantPressed: function() {
@@ -71,7 +71,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
             }, {
                 items: [
                     { title: 'Красота', icon:'8w', bg:'#202020', id: 'health', handler: 'healthPressed'}, 
-                    { title: 'Доставка на дом', icon:'7w', bg:'#00bce2', id: 'shop', handler: 'concertPressed'}, 
+                    { title: 'Доставка на дом', icon:'7w', bg:'#00bce2', id: 'shop', handler: 'shopPressed'}, 
                     { title: 'Избранное', icon:'1w', bg:'#e66021', id: 'favorites', handler:'favPressed' }]
             }];
         for( var v in def ) {
