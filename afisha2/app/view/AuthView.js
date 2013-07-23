@@ -40,10 +40,10 @@
                         html: '<img src="resources/icons/social/iko_2.png" width="100%"></img>',
                         provider_index: 2
                     },
-                    {
-                        html: '<img src="resources/icons/social/iko_3.png" width="100%"></img>',
-                        provider_index: 1
-                    }
+//                    {
+//                        html: '<img src="resources/icons/social/iko_3.png" width="100%"></img>',
+//                        provider_index: 1
+//                    }
                 ]
             },
             {
@@ -52,10 +52,10 @@
                         html: '<img src="resources/icons/social/iko_4.png" width="100%"></img>',
                         provider_index: 5
                     },
-                    {
-                        html: '<img src="resources/icons/social/iko_5.png" width="100%"></img>',
-                        provider_index: 3
-                    },
+//                    {
+//                        html: '<img src="resources/icons/social/iko_5.png" width="100%"></img>',
+//                        provider_index: 3
+//                    },
                     {
                         html: '<img src="resources/icons/social/iko_6.png" width="100%"></img>',
                         provider_index: 4
@@ -77,7 +77,7 @@ Ext.define('Afisha.view.AuthView', {
             padding: '0px',
             backgroundColor: 'white'
         },
-        width: '90%',
+        width: '60%',
         items: [
             {
                 xtype: 'container',

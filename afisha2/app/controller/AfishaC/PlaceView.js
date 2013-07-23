@@ -128,6 +128,7 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         var favStore = Ext.getStore('Favorites');
         this.getFavBtn().setState(favStore.isRecordInFav(type, record.get('id')));
         //this.getSchList().bindScheduleData(record.get('id'),null,false);
+        this.getCommentsCount();
     },
     onFavBtnTap:function(){
         var record = this.getCurrentRecord();
@@ -243,7 +244,7 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
             xtype:'clickbutton',
             style:'border-top:0;',
             data:{
-                value:'Добавить/Читать отзывы (' + record.get('com_count') + ')'
+                value:'Добавить/Читать отзывы'
             }
         })
         for (var idx = 0; idx < el_cache.length; idx++){
@@ -287,6 +288,19 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         var pg = this.getPhotogallery();
         pg.loadPictureList(pictureList);
 
+    },
+    getCommentsCount:function(){
+        var me = this;
+        var store = Ext.getStore("PlaceComments");
+        var data = this.getCurrentRecord();
+        store.getProxy().setExtraParam("id",data.get("id"));
+        store.load(function(records, operation, success){
+            if(!success || records.length == 0){
+                return;
+            }
+            var com_count = records[0].get("com_count");
+            me.getComBtn().updateData({value:'Добавить/Читать отзывы (' + com_count + ')'})
+        });
     },
     goBack: function() {
         return false;
