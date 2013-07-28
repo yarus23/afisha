@@ -3,6 +3,7 @@ Ext.define('Afisha.view.components.PhotoGallery',{
     xtype:'photogallery',
     config:{
         data:[],
+        previewData:[],
         layout:'hbox',
         cls:'photogallery',
         style:'margin-top:0;',
@@ -28,8 +29,9 @@ Ext.define('Afisha.view.components.PhotoGallery',{
         }]
     },
     //data - array of img's'
-    loadPictureList:function(data){
+    loadPictureList:function(data,previewData){
         this.setData(data);
+        this.setPreviewData(previewData);
         var carousel = this.down('carousel'),
             data_ln = data.length;
         if (!data_ln){
@@ -44,7 +46,7 @@ Ext.define('Afisha.view.components.PhotoGallery',{
                 style:'background-size:contain;top: -1px;',
                 src:null,
                 preview: true,
-                img:data[i]
+                img:previewData[i]
             }]);
         }
         carousel.setActiveItem(0);

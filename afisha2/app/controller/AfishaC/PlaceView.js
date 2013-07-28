@@ -128,7 +128,7 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         var favStore = Ext.getStore('Favorites');
         this.getFavBtn().setState(favStore.isRecordInFav(type, record.get('id')));
         //this.getSchList().bindScheduleData(record.get('id'),null,false);
-        this.getCommentsCount();
+        //this.getCommentsCount();
     },
     onFavBtnTap:function(){
         var record = this.getCurrentRecord();
@@ -261,9 +261,12 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         //buttonsPanel.add
     },
     collectImages:function(record){
+        var previewList = [];
         var pictureList = [];
         //var cat = record.category?record.category:record.type;
         var urlBody = Global.img_url;
+        var previewBody = "http://mobile.afisha-uu.ru/img/get_image/?path=";
+        var heightParam = "&height=" + Afisha.gf.getEmToPxHeight(10);
         //image
         var tmp = record.get('image');
         //old version?
@@ -278,15 +281,13 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
             }
         } else
         //new version
+
         for (var i = 0; i< tmp.length; i++){
             pictureList.push(urlBody + tmp[i][0]);
+            previewList.push(previewBody + tmp[i][0] + heightParam);
         }
-    //console.log(pictureList);
-        ///////////debug!!!!
-        //pictureList.push("http://img.lenta.ru/news/2012/12/12/recognize/picture.jpg","http://img.lenta.ru/news/2012/11/13/backs/picture.jpg");
-        ///////////////
         var pg = this.getPhotogallery();
-        pg.loadPictureList(pictureList);
+        pg.loadPictureList(pictureList,previewList);
 
     },
     getCommentsCount:function(){

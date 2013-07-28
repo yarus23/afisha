@@ -6,6 +6,11 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
         controllerName:'AfishaC.PlaceView',
         cls:'detailsView',
         layout:'fit',
+        listeners:{
+            show:function(){
+                Afisha.app.getController("AfishaC.PlaceView").getCommentsCount();
+            }
+        },
         items:[{
             xtype:'toolbar',
             style:'background-color: transparent;',

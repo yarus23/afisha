@@ -179,11 +179,15 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
         })
     },
     collectImages:function(record){
+        var previewList = [];
         var pictureList = [];
         //var cat = record.category?record.category:record.type;
         var urlBody = Global.img_url;
+        var previewBody = "http://mobile.afisha-uu.ru/img/get_image/?path=";
+        var heightParam = "&height=" + Afisha.gf.getEmToPxHeight(10);
         //image
         var tmp = record.get('poster');
+        //old version?
         if (tmp && (tmp.image instanceof Array) && tmp.length)
         {
             for (var idx = 0; idx < tmp.length; idx++)
@@ -195,15 +199,13 @@ Ext.define('Afisha.controller.AfishaC.EventView', {
             }
         } else
         //new version
+
         for (var i = 0; i< tmp.length; i++){
             pictureList.push(urlBody + tmp[i][0]);
+            previewList.push(previewBody + tmp[i][0] + heightParam);
         }
-        ///////////debug!!!!
-//        pictureList.push("http://img.lenta.ru/news/2012/12/12/recognize/picture.jpg","http://img.lenta.ru/news/2012/11/13/backs/picture.jpg");
-        ///////////////
         var pg = this.getPhotogallery();
-        pg.loadPictureList(pictureList);
-
+        pg.loadPictureList(pictureList,previewList);
     },
     goBack: function() {
         return false;

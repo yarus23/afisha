@@ -4,10 +4,26 @@
 Ext.define('Afisha.util.gf', {
     alternateClassName:'Afisha.gf',
     config: {
-        //
+        em : 0
     },
     statics: {
         //public
+        getEmToPxHeight:function(inEm){
+            if (this.em){
+                return Math.ceil(this.em*inEm);
+            }
+            var em,
+            container,
+            bodyImageWidth;
+            container = Ext.getBody();
+            em = new Ext.Element(document.createElement('div'));
+            em.setStyle('height','0em');
+            em.setStyle('width','1em');
+            container.appendChild(em);
+            this.em = em.getWidth();
+            container.removeChild(em);
+            return Math.ceil(this.em*inEm);
+        },
         share:function(title,url){
             if (!window.plugins || !window.plugins.share && !window.plugins.shareKit)
                     return;
@@ -97,7 +113,7 @@ Ext.define('Afisha.util.gf', {
         }
     },
     constructor: function(config) {
-        //this.initConfig(config);
+//        this.initConfig(config);
     }
 });
 
