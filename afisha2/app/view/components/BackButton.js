@@ -4,7 +4,7 @@ Ext.define('Afisha.view.components.BackButton', {
 	config: {
             // нам нужны функции кнопки но не нужен css
             baseCls: Ext.baseCSSPrefix + 'backbutton',
-            width:'1.8em',
+            width:'2.5em',
             height:'1.8em'
             /*height:'2.2em',
             text: 'Назад',

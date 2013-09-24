@@ -54,6 +54,12 @@ Ext.define('Afisha.controller.AfishaC.FilterView', {
                     label:filter[i].name,
                     options:options,
                     autoSelect:false,
+                    //usePicker: true,
+                    defaultPhonePickerConfig: {
+                        doneButton: 'Выбрать',
+                        cancelButton: 'Отмена',
+                        id:'bottomPopup'
+                    },
                     value:0 });
                 this.getFieldset().add(widget);
             }

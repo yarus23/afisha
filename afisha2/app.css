@@ -774,7 +774,7 @@ div.tilebutton div.tileTitle {
 div.tilebutton div.tileDescr {
     font-size: small;
     padding-left:0.5em;
-    padding-top:1em;
+    padding-top:0.5em;
 }
 
 .x-toolbar {
@@ -787,6 +787,10 @@ div.tilebutton div.tileDescr {
 }
 .x-toolbar.x-docked-top {
     border-bottom:none;
+}
+
+.x-picker .x-toolbar.x-docked-top {
+    background-image: -webkit-linear-gradient(top, #e65f20 0%,#e29676 3%,#e96f37 100%) !important;
 }
 
 .x-backbutton,
@@ -802,6 +806,7 @@ div.tilebutton div.tileDescr {
 .x-backbutton {
     background-image:url('resources/backbutton.png');
     margin-left:0.3em;
+    background-size: 72% 100%;
 }
 
 .x-toolbutton#searchButton {
@@ -866,4 +871,5 @@ div.x-toolbar .x-field.x-field-select .x-input-text {
 div.x-toolbar .x-field.x-field-select:after {
     border-top-color: yellow;
 }
+
 

@@ -368,6 +368,7 @@ var load_scripts = {
 };
 
 var js_files = [
+        {js: "lib/cordova.js", onlyphone:true },
 	{js: "lib/sencha/sencha-touch-all.js"},
 	{js: "app/util/geolib.js"},
 	{js: "config/config.js"},
@@ -379,6 +380,7 @@ var js_files = [
 ];     
 
 var ios_js_files = [
+        {js: "lib/cordova.js"},
 	{js: "lib/sencha-touch/sencha-touch-all.js"},
 	{js: "app.js"},
 	{js: "http://maps.api.2gis.ru/1.0?loadByRequire=1"}
@@ -389,7 +391,8 @@ function loadNextScriptFile() {
 	if( files.length == 0 ){
 		return false;
 	}
-	var script_obj = files.shift();	
+	var script_obj = files.shift();
+        if( platform.Desktop && script_obj.onlyphone ) script_obj = files.shift();
 	var script = document.createElement("script");
 	script.type = "text/javascript";
 	// for develop
