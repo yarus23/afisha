@@ -302,8 +302,8 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         tabPanel.getTabBar().setHidden(onlyPlaces);
         
         // передернем список
-		this.getPlacesList().getScrollable().getScroller().scrollTo(0, 0, false);
-		this.getEventsList().getScrollable().getScroller().scrollTo(0, 0, false);
+        this.getPlacesList().getScrollable().getScroller().scrollTo(0, 0, false);
+	this.getEventsList().getScrollable().getScroller().scrollTo(0, 0, false);
 
         // спрячем ненужное
         this.getFilterButton().setHidden(filter == null);

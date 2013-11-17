@@ -49,7 +49,11 @@ Afisha.getRatingHtml = function(rate,type,trailer){
 
 Afisha.placesTpl = new Ext.XTemplate(
   '<tpl if="name">',
+  '<tpl if="sort &gt; 0">', 
+    '<div class="list-first-line" style="color:DarkBlue">',
+   '<tpl else>', 
     '<div class="list-first-line">',
+  '</tpl>',    
        '{[this.vote(values.vote, values.type, values.trailer)]}',
        '<div class="list-item-title" style="width:{[Afisha.titleWidth]}px">{name}</div>',
     '</div>',

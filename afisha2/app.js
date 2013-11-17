@@ -196,6 +196,8 @@ Ext.application({
             id:'advAS',
             hidden: true
         }]);
+    
+       document.addEventListener("deviceready", function(){
         Afisha.gf.isOnline(true);
         // включаем watch
         Afisha.geo = new Geo();
@@ -207,6 +209,8 @@ Ext.application({
             //debugger;
             //alert('geo err')
             });
+       }, false);
+
         
 
     },
