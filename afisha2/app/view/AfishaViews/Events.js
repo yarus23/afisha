@@ -9,6 +9,7 @@ Afisha.getDistanceStr = function(data) {
     else return d.toFixed(1) + 'км';
 }
 Afisha.getRatingHtml = function(rate,type,trailer){
+    // todo: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     var noRate = ['beauty','stomotolog','medic','fitnes'];
     if (type && trailer !== undefined && (noRate.indexOf(type) != -1))
         return '';
@@ -164,7 +165,8 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 store:'Events',
                 disableSelection:true,
                 itemTpl: Afisha.eventsTpl,
-                itemHeight:100
+                itemHeight:100,
+                scrollToTopOnRefresh: false
             },
             {
                 title: 'Places',
@@ -175,6 +177,7 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 disableSelection:true,
                 itemTpl: Afisha.placesTpl,
                 itemHeight:80,
+                scrollToTopOnRefresh: false,
                 infinite:true // для ресторанов
             }
             ]}] 
