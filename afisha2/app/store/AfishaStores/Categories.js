@@ -10,14 +10,16 @@ Ext.define('Afisha.store.AfishaStores.Categories', {
         data:[
             { id: 'cinema', name: 'Кино', type: 'cinema', options:{schSelectDefType:0, schType:'date'},//////////////////////////////
                 left: { name: 'Фильмы',id: 'film' },
-                right: {name: 'Кинотеатры', id: 'kino' }
+                right: {name: 'Кинотеатры', id: 'kino' },
+                mainWindow: true
             },
             { id: 'restaurant', name: 'Рестораны', type: 'restaurant', hiddenToolbar:true, ////////////////////////////
                 filter: { items: [ { id: 'kitchen', name:'Кухня'},
                                    { id: 'genre', name: 'Тип'},
                                    { id: 'district', name: 'Район'}]},
                 options:{schType:'none'},
-                right: {id: 'restaurant' }
+                right: {id: 'restaurant' },
+                mainWindow: true
             },
             { id: 'hotel', name: 'Отели', type: 'hotel', hiddenToolbar:true, ////////////////////////////
                 filter: { items: [ { id: 'district', name: 'Район'}]},
@@ -44,11 +46,13 @@ Ext.define('Afisha.store.AfishaStores.Categories', {
                 right: {store: null,/* Afisha.stores.poolPlacesStore, id: 'pool' }
             },*/
             { id: 'health', name: 'Красота и здоровье', type: 'health', hiddenToolbar:true,
-                subcategories: 'LifeSubCategories'
+                subcategories: 'LifeSubCategories',
+                mainWindow: true
             },
             { id: 'club', name: 'Клубы', type: 'club',options:{schSelectDefType:null, schType:'date'},//////////////////////////
                 left: { name: 'События',  id: 'clubevent' },
-                right: {name: 'Клубы', id: 'club' }
+                right: {name: 'Клубы', id: 'club' },
+                mainWindow: true
             },
             { id: 'expo', name: 'Выставки', type: 'expo',options:{schSelectDefType:null, schType:'date'},/////////////////////////
                 left: { name: 'События',  id: 'expoevent' },
@@ -56,13 +60,15 @@ Ext.define('Afisha.store.AfishaStores.Categories', {
             },
             { id: 'theatre', name: 'Театры', type:'theatre',options:{schSelectDefType:'week', schType:'date'},//////////////////
                 left: { name: 'Постановки',  id: 'theatreevent' },
-                right: {name: 'Театры',  id: 'theatre' }
+                right: {name: 'Театры',  id: 'theatre' },
+                mainWindow: true
             },
             { id: 'taxi', name: 'Активный отдых', type: 'active_rest', hiddenToolbar:true,options:{schType:'none'},
                 right: {store: null, id: 'active_rest' }
             },
             { id: 'shop', name: 'Доставка на дом', type: 'shop', hiddenToolbar:true,options:{schType:'none'},
-                right: {store: null, id: 'shop' }
+                right: {store: null, id: 'shop' },
+                mainWindow: true
             }
         ]
         

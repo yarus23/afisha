@@ -55,6 +55,13 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             switchToPlaceView:this.switchToPlaceView,
             scope: this});
             
+        var catStore = Ext.getStore(this.defaultStore);
+        var store = this.showStore = new Ext.data.Store();
+        catStore.each(function(record){
+            if( !record.get('mainWindow'))
+                store.add(record.copy());
+        });
+        this.getCatList().setStore(this.showStore)
     },
     // методы с возможностью загружать данные торчат наружу
     switchTo: function(id) {
@@ -124,7 +131,7 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
         this.loadCategory(record.get('type'), function() { me.showEventsDialog(record.get('id')) });
     },
     reInitCategoryList:function(){
-        this.getCatList().setStore(this.defaultStore)
+        this.getCatList().setStore(this.showStore)
         this.getTopToolbar().setTitle(this.defaultTitle);
         this.currentSubStore = null;
     },

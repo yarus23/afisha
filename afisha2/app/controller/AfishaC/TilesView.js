@@ -57,7 +57,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     launch: function() {
         var def = [{
                 items: [ 
-                    { title: 'Афиша', icon:'6w', bg: '#00bce2', flex: 2, handler: 'afishaPressed', text: 'Все актуальные события в городе. Кинопремьеры, анонсы концертов', id: 'afisha' },
+                    { title: 'Развлечения', icon:'6w', bg: '#00bce2', flex: 2, handler: 'afishaPressed', text: 'Все актуальные события в городе. Кинопремьеры, анонсы концертов', id: 'afisha' },
                     { title: 'Настройки', icon:'2w', bg: '#1ba456', color: 'white', id: 'settings', handler:'settingsPressed'}]
             }, {
                 items: [ 
