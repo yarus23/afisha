@@ -27,7 +27,7 @@ Ext.define('Afisha.store.AfishaStores.Categories', {
                 subcategories: 'LifeSubCategories',
                 mainWindow: true
             },
-            { id: 'taxi', name: 'Активный отдых', type: 'active_rest', hiddenToolbar:true,options:{schType:'none'},
+            { id: 'active_rest', name: 'Активный отдых', type: 'active_rest', hiddenToolbar:true,options:{schType:'none'},
                 right: {store: null, id: 'active_rest' }
             },
             { id: 'cinema', name: 'Кино', type: 'cinema', options:{schSelectDefType:0, schType:'date'},//////////////////////////////
@@ -64,7 +64,7 @@ Ext.define('Afisha.store.AfishaStores.Categories', {
             { id: 'theatre', name: 'Театры', type:'theatre',options:{schSelectDefType:'week', schType:'date'},//////////////////
                 left: { name: 'Постановки',  id: 'theatreevent' },
                 right: {name: 'Театры',  id: 'theatre' },
-                mainWindow: false
+                mainWindow: true
             },
             { id: 'shop', name: 'Доставка на дом', type: 'shop', hiddenToolbar:true,options:{schType:'none'},
                 right: {store: null, id: 'shop' },
