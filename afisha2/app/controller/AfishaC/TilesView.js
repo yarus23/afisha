@@ -44,7 +44,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
         this.getApplication().fireEvent('showItem', 'favcontent');
     },
     onSettingsPressed: function(){
-        this.getApplication().fireEvent('showItem', 'mainsettings');
+        this.getApplication().fireEvent('switchTo', 'theatre');
     },
     onDiscountsPressed: function(){
         this.getApplication().fireEvent('showItem', 'disclist');
@@ -58,7 +58,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
         var def = [{
                 items: [ 
                     { title: 'Развлечения', icon:'6w', bg: '#00bce2', flex: 2, handler: 'afishaPressed', text: 'Все актуальные события в городе. Кинопремьеры, анонсы концертов', id: 'afisha' },
-                    { title: 'Настройки', icon:'2w', bg: '#1ba456', color: 'white', id: 'settings', handler:'settingsPressed'}]
+                    { title: 'Театры', icon:'2w', bg: '#1ba456', color: 'white', id: 'theatre', handler:'settingsPressed'}]
             }, {
                 items: [ 
                     { title: 'Клубы', icon:'4w', bg:'#202020', id: 'clubs', handler: 'clubsPressed'}, 

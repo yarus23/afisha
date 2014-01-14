@@ -128,7 +128,10 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             return;
         }
         var me = this;
-        this.loadCategory(record.get('type'), function() { me.showEventsDialog(record.get('id')) });
+        if( record.get('type') == 'settings' )
+            this.getApplication().fireEvent('showItem', 'mainsettings');
+        else
+            this.loadCategory(record.get('type'), function() { me.showEventsDialog(record.get('type')) });
     },
     reInitCategoryList:function(){
         this.getCatList().setStore(this.showStore)
