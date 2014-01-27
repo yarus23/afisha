@@ -16,7 +16,7 @@ Ext.define('Afisha.view.components.ScheduleList',{
             '</div>',
             '<tpl if="isSchedule">',
                 '<div class="list-item-content schedule"><tpl for="schedule">',
-                    '{time}<tpl if="price.length"><i>/{price}р.</i></tpl>&nbsp;',
+                    '{time}<tpl if="price.length"><i>/{price}р.</i></tpl>&nbsp; ',
                 '</tpl></div>',
             '</tpl>',
             '<tpl if="isService">',
