@@ -1,3 +1,7 @@
+window.onerror = function(message, url, linenumber) {
+    alert("JavaScript error: " + message + " on line" + linenumber + " for " + url);
+}
+
 var platform = {
 	init: function(navigator) {
 		var me = this,
@@ -380,7 +384,7 @@ var js_files = [
 ];     
 
 var ios_js_files = [
-        {js: "lib/cordova.js"},
+    {js: "lib/cordova_ios.js"},
 	{js: "lib/sencha-touch/sencha-touch-all.js"},
 	{js: "app.js"},
 	{js: "http://maps.api.2gis.ru/1.0?loadByRequire=1"}
