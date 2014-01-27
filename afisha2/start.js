@@ -385,9 +385,13 @@ var js_files = [
 
 var ios_js_files = [
     {js: "lib/cordova_ios.js"},
-	{js: "lib/sencha-touch/sencha-touch-all.js"},
-	{js: "app.js"},
-	{js: "http://maps.api.2gis.ru/1.0?loadByRequire=1"}
+	{js: "lib/sencha/sencha-touch-all.js"},
+	{js: "app/util/geolib.js"},
+	{js: "config/config.js"},
+	{js: "lib/jsOAuth-1.3.3.js"},
+    {js: "app/util/oauth.js"},
+    //{js: "http://maps.google.com/maps/api/js?sensor=true"},
+    {js: "app.js"}
 ];
 
 function loadNextScriptFile() {
