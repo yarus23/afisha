@@ -519,6 +519,10 @@ div.x-mask-loading{
     background-color: transparent !important;
 }
 
+div.x-mask .x-mask-message {
+    color:white;
+}
+
 form#optionsView #authReset {
     border-bottom: 1px solid #DDD;
 }
