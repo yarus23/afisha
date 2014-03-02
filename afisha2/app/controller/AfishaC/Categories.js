@@ -65,6 +65,9 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
     },
     // методы с возможностью загружать данные торчат наружу
     switchTo: function(id) {
+	if (!Afisha.gf.isOnline(true)){
+		return false;
+	}
        var me = this;
        this.loadCategory(id, function() { me.showEventsDialog(id) });        
     },
