@@ -21,6 +21,12 @@ Ext.define('Afisha.view.components.PhotoGallery',{
             cls:'imgPreview',
             items:[]
         },{
+            flex:1,
+            height:'10em',
+            xtype:'panel',
+            cls:'fakePanel',
+			hidden:true
+        },{
             xtype:'img',
             src:'resources/arr_right.png',
             width:'1em',
@@ -43,7 +49,7 @@ Ext.define('Afisha.view.components.PhotoGallery',{
             carousel.add([{
                 xtype:'img',
                 html:'<div style="margin-top:5em; text-align:center;"> Загрузка<br/>изображения...</div>',
-                style:'background-size:contain;top: -1px;',
+                //style:'background-size:contain;top: -1px;',
                 src:null,
                 preview: true,
                 img:previewData[i]
@@ -51,5 +57,17 @@ Ext.define('Afisha.view.components.PhotoGallery',{
         }
         carousel.setActiveItem(0);
         this.show();
-    }
+    },
+	setLoading:function(isLoading){
+		var carousel = this.down('carousel');
+		var fakePanel = this.down('panel');
+		if(isLoading){
+			carousel.hide();
+			fakePanel.show();
+		}
+		else{
+			carousel.show();
+			fakePanel.hide();
+		}
+	}
 });

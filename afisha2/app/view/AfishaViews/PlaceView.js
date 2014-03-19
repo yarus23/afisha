@@ -56,6 +56,7 @@ Ext.define('Afisha.view.AfishaViews.PlaceView',{
             },{
             xtype:'panel',
             cls:'pv_content',
+			id:'pv_content',
             //flex:1,
             layout: {
                 type:'vbox',    
