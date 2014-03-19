@@ -58,8 +58,8 @@ Ext.define('Afisha.util.gf', {
             if(Ext.os.is.Desktop) {
                 return true;
             }
-            if( navigator.network.connection )
-                offline = navigator.network.connection.type == Connection.NONE; 
+            if( navigator.connection )
+                offline = navigator.connection.type == Connection.NONE; 
             if (offline && withAlert)
                this.alert('Нет интернета! Для работы с приложением подключитесь к сети.');
             return !offline;

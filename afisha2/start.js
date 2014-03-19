@@ -196,6 +196,7 @@ var splash_adv_path = '';
 var splash_adv_exp = '';
 
 var getSplashUrl = function(){
+
     var xmlhttp = new XMLHttpRequest();
     if (!xmlhttp)
         return;
@@ -228,7 +229,9 @@ var getSplashUrl = function(){
       }
     }
     var timeout = setTimeout( function(){ xmlhttp.abort();}, 5000);
-    xmlhttp.send(null);
+	try{
+		xmlhttp.send(null);
+	} catch(e){return;}
 }
 var start = function() {
         var tmp;
