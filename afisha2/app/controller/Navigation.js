@@ -63,7 +63,8 @@
     },
     //reInit - вызывать ли инит элемента при переходен Назад на него (нужно для зацикленных переходов типа кино-фильм-кино)
     showItem:function(xtype, options, reInit ){
-	if (!Afisha.gf.isOnline(true)){
+	var cachedViews = ['placeview','events','categories','eventview'];
+	if (cachedViews.indexOf(xtype) == -1 && !Afisha.gf.isOnline(true)){
 		return;
 	}
         //<DEBUG>

@@ -65,9 +65,6 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
     },
     // методы с возможностью загружать данные торчат наружу
     switchTo: function(id) {
-	if (!Afisha.gf.isOnline(true)){
-		return false;
-	}
        var me = this;
        this.loadCategory(id, function() { me.showEventsDialog(id) });        
     },
@@ -209,7 +206,9 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
 				me.fillStores(rec.get('data'),type, user_callback);
 				rec.set('timestamp', Ext.Date.now());
 			}
-			else {
+			else if (!Afisha.gf.isOnline(true)){
+				return false;
+			} else {
 				Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
 				me.loadJsonP(type, callback);
 			}
@@ -221,7 +220,9 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                 user_callback();
             else
                 this.fillStores(rec.get('data'),type, user_callback);
-        } else
+        } else if (!Afisha.gf.isOnline(true)){
+				return false;
+			} else
 		Ext.data.JsonP.request({
             url: Global.server_url,
             params:{

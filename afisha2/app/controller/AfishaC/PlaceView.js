@@ -271,6 +271,9 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         //buttonsPanel.add
     },
     collectImages:function(record){
+		if (!Afisha.gf.isOnline()){
+			return ;
+		}
         var previewList = [];
         var pictureList = [];
         //var cat = record.category?record.category:record.type;
@@ -301,6 +304,9 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
 
     },
     getCommentsCount:function(){
+		if (!Afisha.gf.isOnline()){
+			return ;
+		}
         var me = this;
         var store = Ext.getStore("PlaceComments");
         var data = this.getCurrentRecord();
