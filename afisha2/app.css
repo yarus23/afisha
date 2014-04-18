@@ -789,6 +789,9 @@ div.tilebutton div.tileDescr {
     border:none;
     background-color:white;
 }
+.x-toolbar.toolbar_wa{
+	background-image:url('resources/header_wa.png');
+}
 .x-toolbar.x-docked-top {
     border-bottom:none;
 }
