@@ -59,13 +59,13 @@ Afisha.placesTpl = new Ext.XTemplate(
        '<div class="list-item-title" style="width:{[Afisha.titleWidth]}px">{name}</div>',
     '</div>',
     '<div class="list-second-line">',
-       '<span class="distance">{[this.getDistanceStr(values)]}</span>',
+//       '<span class="distance">{[this.getDistanceStr(values)]}</span>',
        '<div class="list-item-content" style="width:{[Afisha.titleWidth]}px">{address}</div>',
     '</div>',
   '</tpl>',
  {
      vote: Afisha.getRatingHtml,
-     getDistanceStr: Afisha.getDistanceStr
+     //getDistanceStr: Afisha.getDistanceStr
  });
 
 // {[Global.img_url + values.main_image]}
@@ -100,7 +100,7 @@ Afisha.eventsTpl = new Ext.XTemplate(
          return (dateStr[2][0] == '0' ? dateStr[2][1].toString() : dateStr[2]) + getMonthShortName(dateStr[1]);
      },
      getimg:function(){
-         debugger;
+         //debugger;
      }
      
  });
@@ -116,7 +116,7 @@ Ext.define('Afisha.view.AfishaViews.Events',{
         items:[
         {
             xtype:'titlebar',
-            //baseCls: 'v',
+            cls:'toolbar_wa',
             docked:'top',
             items: [{
                 xtype:'backbutton'
@@ -178,7 +178,7 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 itemTpl: Afisha.placesTpl,
                 itemHeight:80,
                 scrollToTopOnRefresh: false,
-                infinite:true // для ресторанов
+                //infinite:true // для ресторанов//будем устанавливать флаг программно
             }
             ]}] 
         }

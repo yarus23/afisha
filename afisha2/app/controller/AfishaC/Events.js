@@ -89,7 +89,31 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         });
         Afisha.initListWidth();       
     },
+	ReinitPlacesList: function(){
+		var dataLn = Ext.getStore('Places').data.length;
+		var places = this.getPlacesList();
+		var tabPanel = this.getTabpanel();
+		var placeItemConfig = tabPanel.config.items[1];
+		if (dataLn > 15){
+			if (!places.config.infinite){
+				places.destroy();
+				var config = placeItemConfig;
+				config.infinite = true;
+				tabPanel.add(config);
+				console.log('infinite')
+			}
+		} else {
+			if (places.config.infinite){
+				places.destroy();
+				var config = placeItemConfig;
+				config.infinite = false;
+				tabPanel.add(config);
+				console.log('uninfinite')
+			}
+		}
+	},
     initView:function(opt){
+		this.ReinitPlacesList();
         this.getEventsList().sortConfig = { 
             type: 'filterAllDays', 
             caption: 'Выбрать за',
