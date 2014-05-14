@@ -100,7 +100,6 @@ Ext.define('Afisha.controller.AfishaC.Events', {
 				var config = placeItemConfig;
 				config.infinite = true;
 				tabPanel.add(config);
-				console.log('infinite')
 			}
 		} else {
 			if (places.config.infinite){
@@ -108,7 +107,6 @@ Ext.define('Afisha.controller.AfishaC.Events', {
 				var config = placeItemConfig;
 				config.infinite = false;
 				tabPanel.add(config);
-				console.log('uninfinite')
 			}
 		}
 	},
