@@ -44,12 +44,12 @@ Ext.define('Afisha.util.gf', {
         //использовать так - MT.gf.alert('текст алерта')
         alert:function(message, fn, scope ){
             var title = Global.app_name;
-            if (Ext.os.is.Desktop){
+//            if (Ext.os.is.Desktop){
                 Ext.Msg.alert(title, message);
                 return;
-            }
-            navigator.notification.alert(message, fn ? fn : Ext.emptyFn, title);
-            navigator.notification.vibrate(300);
+//            }
+//            navigator.notification.alert(message, fn ? fn : Ext.emptyFn, title);
+//            navigator.notification.vibrate(300);
         },
         //public
         //использовать так - MT.gf.isOnline()
@@ -58,8 +58,8 @@ Ext.define('Afisha.util.gf', {
             if(Ext.os.is.Desktop) {
                 return true;
             }
-            if( navigator.network.connection )
-                offline = navigator.network.connection.type == Connection.NONE; 
+            if( navigator.connection )
+                offline = navigator.connection.type == Connection.NONE; 
             if (offline && withAlert)
                this.alert('Нет интернета! Для работы с приложением подключитесь к сети.');
             return !offline;

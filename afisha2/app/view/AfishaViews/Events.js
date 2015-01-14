@@ -9,6 +9,7 @@ Afisha.getDistanceStr = function(data) {
     else return d.toFixed(1) + 'км';
 }
 Afisha.getRatingHtml = function(rate,type,trailer){
+    // todo: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     var noRate = ['beauty','stomotolog','medic','fitnes'];
     if (type && trailer !== undefined && (noRate.indexOf(type) != -1))
         return '';
@@ -49,18 +50,22 @@ Afisha.getRatingHtml = function(rate,type,trailer){
 
 Afisha.placesTpl = new Ext.XTemplate(
   '<tpl if="name">',
+  '<tpl if="sort &gt; 0">', 
+    '<div class="list-first-line" style="color:DarkBlue">',
+   '<tpl else>', 
     '<div class="list-first-line">',
+  '</tpl>',    
        '{[this.vote(values.vote, values.type, values.trailer)]}',
        '<div class="list-item-title" style="width:{[Afisha.titleWidth]}px">{name}</div>',
     '</div>',
     '<div class="list-second-line">',
-       '<span class="distance">{[this.getDistanceStr(values)]}</span>',
+//       '<span class="distance">{[this.getDistanceStr(values)]}</span>',
        '<div class="list-item-content" style="width:{[Afisha.titleWidth]}px">{address}</div>',
     '</div>',
   '</tpl>',
  {
      vote: Afisha.getRatingHtml,
-     getDistanceStr: Afisha.getDistanceStr
+     //getDistanceStr: Afisha.getDistanceStr
  });
 
 // {[Global.img_url + values.main_image]}
@@ -95,7 +100,7 @@ Afisha.eventsTpl = new Ext.XTemplate(
          return (dateStr[2][0] == '0' ? dateStr[2][1].toString() : dateStr[2]) + getMonthShortName(dateStr[1]);
      },
      getimg:function(){
-         debugger;
+         //debugger;
      }
      
  });
@@ -111,7 +116,7 @@ Ext.define('Afisha.view.AfishaViews.Events',{
         items:[
         {
             xtype:'titlebar',
-            //baseCls: 'v',
+            cls:'toolbar_wa',
             docked:'top',
             items: [{
                 xtype:'backbutton'
@@ -160,7 +165,8 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 store:'Events',
                 disableSelection:true,
                 itemTpl: Afisha.eventsTpl,
-                itemHeight:100
+                itemHeight:100,
+                scrollToTopOnRefresh: false
             },
             {
                 title: 'Places',
@@ -171,7 +177,8 @@ Ext.define('Afisha.view.AfishaViews.Events',{
                 disableSelection:true,
                 itemTpl: Afisha.placesTpl,
                 itemHeight:80,
-                infinite:true // для ресторанов
+                scrollToTopOnRefresh: false,
+                //infinite:true // для ресторанов//будем устанавливать флаг программно
             }
             ]}] 
         }

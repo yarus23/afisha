@@ -46,22 +46,22 @@
 //                    }
                 ]
             },
-            {
-                items: [
-                    {
-                        html: '<img src="resources/icons/social/iko_4.png" width="100%"></img>',
-                        provider_index: 5
-                    },
+//            {
+//                items: [
+//                    {
+//                        html: '<img src="resources/icons/social/iko_4.png" width="100%"></img>',
+//                        provider_index: 5
+//                    },
 //                    {
 //                        html: '<img src="resources/icons/social/iko_5.png" width="100%"></img>',
 //                        provider_index: 3
 //                    },
-                    {
-                        html: '<img src="resources/icons/social/iko_6.png" width="100%"></img>',
-                        provider_index: 4
-                    }
-                ]
-            }
+//                    {
+//                        html: '<img src="resources/icons/social/iko_6.png" width="100%"></img>',
+//                        provider_index: 4
+//                    }
+//                ]
+//            }
         ]
     }
 });

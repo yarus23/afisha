@@ -11,6 +11,7 @@ Ext.define('Afisha.model.AfishaModels.Categories', {
             { name: 'right', type: 'auto', defaultValue:null },
             { name: 'subcategories', type: 'string', defaultValue:null },
             { name: 'options', type: 'auto', defaultValue:null },
+            { name: 'mainWindow', type: 'bool' }
         ]
     }
 });

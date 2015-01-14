@@ -19,6 +19,9 @@ Ext.define('Afisha.controller.MapView', {
         return false;
     },
     onMapRender:function(extMapComponent, googleMapComp){
+        // зачем на старте приложения когда все view рендерятся нам нужна карта?
+        /*
+        console.log('map render');
         googleMapComp = extMapComponent.getMap();
         var theView = Ext.ComponentQuery.query('map')[0];
         var data = theView.getData();
@@ -28,9 +31,10 @@ Ext.define('Afisha.controller.MapView', {
         theView.marker = new google.maps.Marker({
             position: position = new google.maps.LatLng (lat,lng),
             map: googleMapComp,
-        });
+        });*/
     },
     onUpdateData:function(extMapComponent){
+        console.log('map update data');
         var googleMapComp = extMapComponent.getMap();
         var theView = Ext.ComponentQuery.query('map')[0];
         var data = theView.getData();
@@ -55,6 +59,7 @@ Ext.define('Afisha.controller.MapView', {
             Afisha.gf.alert("Карта не может быть загружена.");
             return;
         }     
+        console.log('map init');
         this.getMapEl().setData(opt);
 //        this.getMapEl().setMapCenter(opt);
 //        if (this.marker)

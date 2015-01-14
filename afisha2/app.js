@@ -196,6 +196,14 @@ Ext.application({
             id:'advAS',
             hidden: true
         }]);
+
+       document.addEventListener("deviceready", function(){
+            if (parseFloat(window.device.version) === 7.0) {
+               //console.log('iOS7 is the official OS of SATAN!');
+               document.body.style.marginTop = "20px";
+               document.body.style.backgroundColor = "#e96f37";
+               Ext.Viewport.setHeight(Ext.Viewport.getWindowHeight() - 20);
+            }
         Afisha.gf.isOnline(true);
         // включаем watch
         Afisha.geo = new Geo();
@@ -207,6 +215,8 @@ Ext.application({
             //debugger;
             //alert('geo err')
             });
+       }, false);
+
         
 
     },

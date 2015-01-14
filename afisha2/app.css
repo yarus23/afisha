@@ -70,7 +70,7 @@ div.x-list-item div.list-item-content
     /*font-style:italic;*/
     position:relative;
     top:-0.1em;
-    height:3.3em;
+    height:3.4em;
 }
 
 /* ломает layout
@@ -519,6 +519,10 @@ div.x-mask-loading{
     background-color: transparent !important;
 }
 
+div.x-mask .x-mask-message {
+    color:white;
+}
+
 form#optionsView #authReset {
     border-bottom: 1px solid #DDD;
 }
@@ -784,6 +788,9 @@ div.tilebutton div.tileDescr {
     background-position: center center;
     border:none;
     background-color:white;
+}
+.x-toolbar.toolbar_wa{
+	background-image:url('resources/header_wa.png');
 }
 .x-toolbar.x-docked-top {
     border-bottom:none;

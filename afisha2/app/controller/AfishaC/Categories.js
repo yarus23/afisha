@@ -55,6 +55,13 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             switchToPlaceView:this.switchToPlaceView,
             scope: this});
             
+        var catStore = Ext.getStore(this.defaultStore);
+        var store = this.showStore = new Ext.data.Store();
+        catStore.each(function(record){
+            if( !record.get('mainWindow'))
+                store.add(record.copy());
+        });
+        this.getCatList().setStore(this.showStore)
     },
     // методы с возможностью загружать данные торчат наружу
     switchTo: function(id) {
@@ -121,10 +128,13 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
             return;
         }
         var me = this;
-        this.loadCategory(record.get('type'), function() { me.showEventsDialog(record.get('id')) });
+        if( record.get('type') == 'settings' )
+            this.getApplication().fireEvent('showItem', 'mainsettings');
+        else
+            this.loadCategory(record.get('type'), function() { me.showEventsDialog(record.get('type')) });
     },
     reInitCategoryList:function(){
-        this.getCatList().setStore(this.defaultStore)
+        this.getCatList().setStore(this.showStore)
         this.getTopToolbar().setTitle(this.defaultTitle);
         this.currentSubStore = null;
     },
@@ -196,7 +206,9 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
 				me.fillStores(rec.get('data'),type, user_callback);
 				rec.set('timestamp', Ext.Date.now());
 			}
-			else {
+			else if (!Afisha.gf.isOnline(true)){
+				return false;
+			} else {
 				Ext.Viewport.setMasked({xtype:'loadmask',message:'Загрузка данных...'});
 				me.loadJsonP(type, callback);
 			}
@@ -208,7 +220,9 @@ Ext.define('Afisha.controller.AfishaC.Categories', {
                 user_callback();
             else
                 this.fillStores(rec.get('data'),type, user_callback);
-        } else
+        } else if (!Afisha.gf.isOnline(true)){
+				return false;
+			} else
 		Ext.data.JsonP.request({
             url: Global.server_url,
             params:{

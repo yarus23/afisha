@@ -89,7 +89,29 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         });
         Afisha.initListWidth();       
     },
+	ReinitPlacesList: function(){
+		var dataLn = Ext.getStore('Places').data.length;
+		var places = this.getPlacesList();
+		var tabPanel = this.getTabpanel();
+		var placeItemConfig = tabPanel.config.items[1];
+		if (dataLn > 15){
+			if (!places.config.infinite){
+				places.destroy();
+				var config = placeItemConfig;
+				config.infinite = true;
+				tabPanel.add(config);
+			}
+		} else {
+			if (places.config.infinite){
+				places.destroy();
+				var config = placeItemConfig;
+				config.infinite = false;
+				tabPanel.add(config);
+			}
+		}
+	},
     initView:function(opt){
+		this.ReinitPlacesList();
         this.getEventsList().sortConfig = { 
             type: 'filterAllDays', 
             caption: 'Выбрать за',
@@ -302,8 +324,8 @@ Ext.define('Afisha.controller.AfishaC.Events', {
         tabPanel.getTabBar().setHidden(onlyPlaces);
         
         // передернем список
-		this.getPlacesList().getScrollable().getScroller().scrollTo(0, 0, false);
-		this.getEventsList().getScrollable().getScroller().scrollTo(0, 0, false);
+        this.getPlacesList().getScrollable().getScroller().scrollTo(0, 0, false);
+	this.getEventsList().getScrollable().getScroller().scrollTo(0, 0, false);
 
         // спрячем ненужное
         this.getFilterButton().setHidden(filter == null);

@@ -14,7 +14,7 @@ Ext.define('Afisha.view.Adv', {
                 src: null,
                 cls:'advimg',
                 style:'background-size:100% 100%;',
-                tpl: new Ext.XTemplate('<a style="display:none;" href="{AdClickURL}" />')
+                tpl: new Ext.XTemplate('<tpl if="AdClickURL"><a style="display:none;" href="{AdClickURL}" /></tpl>')
         }/*,{
             xtype:'actionsheet',
             hidden: true

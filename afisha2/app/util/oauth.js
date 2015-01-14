@@ -209,7 +209,7 @@ var Providers = ({
             return 'http://oauth.vkontakte.ru/authorize'
             + '?client_id=' + me.app_id
             + '&scope=' + 'offline,wall'
-            + '&redirect_uri=' + 'blank.html'//me.redirect_uri
+            + '&redirect_uri=' + 'http://oauth.vk.com/blank.html'//me.redirect_uri
             + '&display=' + 'touch'
             + '&response_type=' + 'token'	
         },

@@ -44,7 +44,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
         this.getApplication().fireEvent('showItem', 'favcontent');
     },
     onSettingsPressed: function(){
-        this.getApplication().fireEvent('showItem', 'mainsettings');
+        this.getApplication().fireEvent('switchTo', 'theatre');
     },
     onDiscountsPressed: function(){
         this.getApplication().fireEvent('showItem', 'disclist');
@@ -57,8 +57,8 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
     launch: function() {
         var def = [{
                 items: [ 
-                    { title: 'Афиша', icon:'6w', bg: '#00bce2', flex: 2, handler: 'afishaPressed', text: 'Все актуальные события в городе. Кинопремьеры, анонсы концертов', id: 'afisha' },
-                    { title: 'Настройки', icon:'2w', bg: '#1ba456', color: 'white', id: 'settings', handler:'settingsPressed'}]
+                    { title: 'Развлечения', icon:'6w', bg: '#00bce2', flex: 2, handler: 'afishaPressed', text: 'Все актуальные события в городе. Кинопремьеры, анонсы концертов', id: 'afisha' },
+                    { title: 'Театры', icon:'11', bg: '#1ba456', color: 'black', id: 'theatre', handler:'settingsPressed'}]
             }, {
                 items: [ 
                     { title: 'Клубы', icon:'4w', bg:'#202020', id: 'clubs', handler: 'clubsPressed'}, 
@@ -118,7 +118,7 @@ Ext.define('Afisha.controller.AfishaC.TilesView', {
                 });
                 if( rowDef[i].icon ) {
         
-                    var t = Ext.create('Ext.Container', { style:'background-position: 95% 90%; position:absolute; background-repeat: no-repeat; background-image: url("resources/icons/' + rowDef[i].icon + '.png")'});
+                    var t = Ext.create('Ext.Container', { style:'background-size:2.5em; background-position: 95% 90%; position:absolute; background-repeat: no-repeat; background-image: url("resources/icons/' + rowDef[i].icon + '.png")'});
                     tile.add(t);
                 }
                 tile.add(tileInner);

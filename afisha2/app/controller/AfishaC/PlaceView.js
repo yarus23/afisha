@@ -17,7 +17,8 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
             schList: 'aviewport placeview schedulelist',
             footer: 'aviewport placeview panel#pv_footer',
             favBtn:' aviewport placeview favbutton',
-            comBtn:'aviewport placeview #pv_commentsBtn'
+            comBtn:'aviewport placeview #pv_commentsBtn',
+			pvContent:'aviewport placeview #pv_content'
         },
         control: {
             selectfield:{
@@ -93,6 +94,7 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         list.removeCls('getsize');//x-list-item
     },
     initView:function(record){
+		var me = this;
 //        console.log(record.data)
         var type = Ext.getStore('Places').getCurrentType();
         this.setCurrentType(type);
@@ -119,6 +121,14 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
             options = catStore.get('options');
             filter = catStore.get('filter')
         } 
+		var pvScroller = this.getPvContent().getScrollable().getScroller();
+		pvScroller.clearListeners();
+		pvScroller.on('scrollstart',function(){
+			me.getPhotogallery().setLoading(true);
+		})
+		pvScroller.on('scrollend',function(){
+			me.getPhotogallery().setLoading(false);
+		})
         this.setSelectConfig(record, options);
         this.setupHeader(record);
         this.checkButtonsFields(record);
@@ -261,6 +271,9 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
         //buttonsPanel.add
     },
     collectImages:function(record){
+		if (!Afisha.gf.isOnline()){
+			return ;
+		}
         var previewList = [];
         var pictureList = [];
         //var cat = record.category?record.category:record.type;
@@ -291,6 +304,9 @@ Ext.define('Afisha.controller.AfishaC.PlaceView', {
 
     },
     getCommentsCount:function(){
+		if (!Afisha.gf.isOnline()){
+			return ;
+		}
         var me = this;
         var store = Ext.getStore("PlaceComments");
         var data = this.getCurrentRecord();

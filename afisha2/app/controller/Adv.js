@@ -32,6 +32,9 @@ Ext.define('Afisha.controller.Adv', {
         }
     },
     loadAdv: function(){
+		if(!Afisha.gf.isOnline()){
+			return;
+		}
         var req = Ext.Ajax.request({
             url: Global.adv,//'http://ads.adfox.ru/202618/getCode?p1=biury&p2=epmz&pfc=a&pfb=a&plp=a&pli=a&pop=a',//'http://localhost/tst/index.php',
             method: 'POST',
