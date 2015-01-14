@@ -271,7 +271,7 @@ var Providers = ({
             + '?client_id=' + me.client_id
             + '&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile' 
             + '&redirect_uri=' + me.redirect_uri
-            + '&response_type=' + 'token'	
+            + '&response_type=' + 'code'	
         },
         getProfileDataLink: function () {
             var me = this;
